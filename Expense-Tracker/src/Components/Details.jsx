@@ -27,9 +27,6 @@ function Details({setDetails})
 
     const handleAdd = ()=>
     {
-        const priceInput = document.getElementById("id_input");
-        const categoryInput = document.getElementById("id_category");
-
         const newDetail = {"price": price,
                            "category": category,
                            "date" : date};
