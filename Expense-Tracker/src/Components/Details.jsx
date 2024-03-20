@@ -38,7 +38,7 @@ function Details({setDetails})
     //TODO: add a number check on the Price field
     return(
         <>
-        <input id="id_input" className="inputDetials" type="text" value={price} placeholder="Enter the Price" onChange={ (event) => {handlePrice(event)}}></input>
+        <input id="id_input" className="inputDetials" type="number" value={price} placeholder="Enter the Price" onChange={ (event) => {handlePrice(event)}}></input>
         <br/>
         <input id="id_category" className="inputDetials" type="text" value={category} placeholder="Enter the Category" onChange={(event)=>{handleCategory(event)}}></input>
         <br/>
