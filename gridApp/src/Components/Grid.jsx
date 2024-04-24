@@ -27,7 +27,7 @@ function Grid()
         <>
             <div>this is grid component</div>
             <JqxGrid
-            width="100%"
+            width="700px"
             source={adapter}
             columns={[
               {
