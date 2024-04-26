@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import JqxGrid from 'jqwidgets-scripts/jqwidgets-react-tsx/jqxgrid';
-import JqxInput from "jqwidgets-scripts/jqwidgets-react-tsx/jqxinput";
 import "jqwidgets-scripts/jqwidgets/styles/jqx.base.css";
 import "jqwidgets-scripts/jqwidgets/styles/jqx.material.css";
 
