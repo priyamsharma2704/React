@@ -1,11 +1,8 @@
-import Grid from './Components/Grid.jsx';
-import Tab from './Components/Grid2.jsx';
-
+import Tab from './Components/Tab.jsx';
+import './App.css';
 function App() {
     return (
         <>
-            <h1>asdaw</h1>
-            {/* <Grid></Grid> */}
             <Tab></Tab>
         </>
     )
