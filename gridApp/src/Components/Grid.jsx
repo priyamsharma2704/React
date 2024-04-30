@@ -1,10 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import JqxGrid from "jqwidgets-scripts/jqwidgets-react-tsx/jqxgrid";
 import "jqwidgets-scripts/jqwidgets/styles/jqx.base.css";
 import "jqwidgets-scripts/jqwidgets/styles/jqx.material.css";
 
 function Grid() {
   //const [user, setUser] = useState(1);
+
+  useEffect(() => {
+    console.log("useEffect");
+    fetch("http://localhost:5000/api")
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      console.log(data)
+    })
+  });
 
   const data = [
     {
