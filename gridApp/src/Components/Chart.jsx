@@ -1,88 +1,98 @@
 import JqxChart from "jqwidgets-scripts/jqwidgets-react-tsx/jqxchart";
 function Chart() {
-  const months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
+  //------------------------------------
+  const sampleData = [
+    { Day: "Monday", Running: 30, Swimming: 10, Cycling: 25, Goal: 40 },
+    { Day: "Tuesday", Running: 25, Swimming: 15, Cycling: 10, Goal: 50 },
+    { Day: "Wednesday", Running: 30, Swimming: 10, Cycling: 25, Goal: 60 },
+    { Day: "Thursday", Running: 40, Swimming: 20, Cycling: 25, Goal: 40 },
+    { Day: "Friday", Running: 45, Swimming: 20, Cycling: 25, Goal: 50 },
+    { Day: "Saturday", Running: 30, Swimming: 20, Cycling: 30, Goal: 60 },
+    { Day: "Sunday", Running: 20, Swimming: 30, Cycling: 10, Goal: 90 },
   ];
-  const source = {
-    datafields: [{ name: "Date" }, { name: "S&P 500" }, { name: "NASDAQ" }],
-    datatype: "csv",
-    url: "./nasdaq_vs_sp500.txt",
-  };
 
   const state = {
-    description: "NASDAQ Composite compared to S&P 500",
-    padding: { left: 10, top: 5, right: 10, bottom: 5 },
+    description: "Time spent in vigorous exercise by activity",
+    padding: { left: 10, top: 10, right: 15, bottom: 10 },
     seriesGroups: [
       {
         series: [
-          { dataField: "S&P 500", displayText: "S&P 500" },
-          { dataField: "NASDAQ", displayText: "NASDAQ" },
+          {
+            dataField: "Swimming",
+            labels: {
+              backgroundColor: "#FEFEFE",
+              backgroundOpacity: 0.2,
+              borderColor: "#7FC4EF",
+              borderOpacity: 0.7,
+              padding: { left: 5, right: 5, top: 0, bottom: 0 },
+              visible: true,
+            },
+            symbolType: "square",
+          },
+          {
+            dataField: "Running",
+            labels: {
+              backgroundColor: "#FEFEFE",
+              backgroundOpacity: 0.2,
+              borderColor: "#7FC4EF",
+              borderOpacity: 0.7,
+              padding: { left: 5, right: 5, top: 0, bottom: 0 },
+              visible: true,
+            },
+            symbolType: "square",
+          },
+          {
+            dataField: "Cycling",
+            labels: {
+              backgroundColor: "#FEFEFE",
+              backgroundOpacity: 0.2,
+              borderColor: "#7FC4EF",
+              borderOpacity: 0.7,
+              padding: { left: 5, right: 5, top: 0, bottom: 0 },
+              visible: true,
+            },
+            symbolType: "square",
+          },
+          {
+            dataField: "Goal",
+            labels: {
+              backgroundColor: "#FEFEFE",
+              backgroundOpacity: 0.2,
+              borderColor: "#7FC4EF",
+              borderOpacity: 0.7,
+              padding: { left: 5, right: 5, top: 0, bottom: 0 },
+              visible: true,
+            },
+            symbolType: "square",
+          },
         ],
         type: "line",
       },
     ],
-    source: new jqx.dataAdapter(source, {
-      async: false,
-      autoBind: true,
-      loadError: (xhr, status, error) => {
-        alert('Error loading "' + source.url + '" : ' + error);
-      },
-    }),
-    title: "U.S. Stock Market Index Performance",
-    titlePadding: { left: 50, top: 0, right: 0, bottom: 10 },
+    source: sampleData,
+    title: "Fitness & exercise weekly scorecard",
+    titlePadding: { left: 90, top: 0, right: 0, bottom: 10 },
     valueAxis: {
-      tickMarks: { color: "#BCBCBC" },
-      title: { text: "Daily Closing Price<br>" },
-      visible: true,
+      labels: { horizontalAlignment: "right" },
+      maxValue: 100,
+      minValue: 0,
+      title: { text: "Time in minutes<br><br>" },
+      unitInterval: 10,
     },
     xAxis: {
-      baseUnit: "month",
-      dataField: "Date",
-      formatFunction: (value) => {
-        return (
-          //value.getDate() +
-          //"-" +
-          months[value.getMonth()] //+
-          //"-" +
-          //value.getFullYear()
-        );
-      },
-      gridLines: {
-        color: "#BCBCBC",
-        interval: 3,
-        visible: true,
-      },
-      labels: {
-        angle: -45,
-        offset: { x: 0, y: -25 },
-        rotationPoint: "topright",
-      },
-      maxValue: "01-01-2015",
-      minValue: "01-01-2014",
-      tickMarks: {
-        color: "#BCBCBC",
-        interval: 1,
-        visible: true,
-      },
-      type: "date",
+      dataField: "Day",
+      gridLines: { visible: true, interval: 1 },
+      padding: { bottom: 10 },
+      tickMarks: { visible: true, interval: 1 },
       unitInterval: 1,
-      valuesOnTicks: true,
+      valuesOnTicks: false,
     },
   };
+
+  //------------------------------------
+
   return (
     <>
-      this is chart
       <JqxChart
         style={{ width: "850px", height: "500px" }}
         title={state.title}
@@ -95,7 +105,7 @@ function Chart() {
         xAxis={state.xAxis}
         valueAxis={state.valueAxis}
         seriesGroups={state.seriesGroups}
-        colorScheme={"scheme04"}
+        colorScheme={"scheme05"}
       />
     </>
   );
