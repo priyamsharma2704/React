@@ -1,5 +1,5 @@
 import { useState } from "react";
-function AppsLists() 
+function AppsLists({setItemsInCart}) 
 {
     const [userList, setUserList] = useState([]);
 
@@ -32,6 +32,10 @@ function AppsLists()
     function handleCheckboxClick(e)
     {
         console.log(e);
+        if(e.target.checked)
+            setItemsInCart(prevItem=>prevItem+1);
+        else
+            setItemsInCart(prevItem=>prevItem-1);
     }
 
     return (

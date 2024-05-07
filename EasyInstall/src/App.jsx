@@ -5,6 +5,7 @@ import Cart from './Components/Cart.jsx';
 
 function App() {
     const [count, setCount] = useState(0);
+    const [cartItems, setCartItems] = useState(0);
 
     return (
         <>
@@ -14,10 +15,10 @@ function App() {
             placeholder="Search..."
             className="">
             </input>
-            <Cart className=""></Cart>
+            <Cart className="" items={cartItems}></Cart>
         </div>
         <div className="">
-            <AppsLists></AppsLists>
+            <AppsLists setItemsInCart={setCartItems}></AppsLists>
         </div>
 
         </>

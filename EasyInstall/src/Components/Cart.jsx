@@ -13,20 +13,20 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
     },
   }));
 
-function Cart() {
+function Cart({items}) {
 
-    const [cartItems, setCartItems] = useState(0);
+    //const [cartItems, setCartItems] = useState(0);
 
     const handleCartItems = (newItem) =>
     {
-        console.log(newItem)
-        setCartItems(prevCartItem => prevCartItem + newItem);
+        console.log(items);
+        //setCartItems(prevCartItem => prevCartItem + newItem);
     }
-    
+
   return (
     <>
       <IconButton aria-label="cart">
-        <StyledBadge badgeContent={cartItems} color="secondary">
+        <StyledBadge badgeContent={items} color="secondary">
           <ShoppingCartIcon />
         </StyledBadge>
       </IconButton>
