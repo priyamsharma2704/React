@@ -15,12 +15,18 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 
 function Cart({items}) 
 {
+    const handleClick = () =>
+    {
+        console.log("clicked");
+    }
+
     return (
         <>
         <IconButton aria-label="cart">
             <StyledBadge badgeContent={items} color="secondary">
-            <ShoppingCartIcon />
+            <ShoppingCartIcon onClick={handleClick}/>
             </StyledBadge>
+            
         </IconButton>
         </>
     );

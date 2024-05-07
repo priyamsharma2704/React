@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
+import "./App.css"
 import AppsLists from "./Components/AppsLists.jsx";
 import Cart from './Components/Cart.jsx';
 
-
-function App() {
+function App()
+{
     const [appsList, setAppsList] = useState([]);
     const [cartItems, setCartItems] = useState(0);
 

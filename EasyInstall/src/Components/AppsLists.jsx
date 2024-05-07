@@ -26,9 +26,8 @@ function AppsLists({ setItemsInCart, setApps }) {
         "Skype",
     ];
 
-    function handleCheckboxClick(e) {
-        //console.log(e);
-        //console.log(e.target.parentElement.innerText)
+    function handleCheckboxClick(e) 
+    {
         const currItem = e.target.parentElement.innerText;
         var idx = appList.indexOf(currItem);
         if (!e.target.checked) 
