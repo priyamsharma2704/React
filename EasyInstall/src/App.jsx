@@ -1,11 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AppsLists from "./Components/AppsLists.jsx";
 import Cart from './Components/Cart.jsx';
 
 
 function App() {
-    const [count, setCount] = useState(0);
+    const [appsList, setAppsList] = useState([]);
     const [cartItems, setCartItems] = useState(0);
+
+    useEffect(()=>{
+        console.log(appsList);
+    },[appsList]);
 
     return (
         <>
@@ -18,7 +22,7 @@ function App() {
             <Cart className="" items={cartItems}></Cart>
         </div>
         <div className="">
-            <AppsLists setItemsInCart={setCartItems}></AppsLists>
+            <AppsLists setItemsInCart={setCartItems} setApps={setAppsList}></AppsLists>
         </div>
 
         </>
