@@ -20,9 +20,9 @@ function Tab()
                     </ul>
                     <div>
                         <Grid></Grid>
-                        {/* <div className='test1'>
-                            <Chart></Chart>
-                        </div> */}
+                    </div>
+                    <div>
+                        <Chart></Chart>
                     </div>
                     
                     <div>qwqwewq</div>
