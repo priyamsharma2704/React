@@ -13,7 +13,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
     },
   }));
 
-function CartBadge({items}) 
+function CartBadge({itemsCount}) 
 {
     const handleClick = () =>
     {
@@ -23,7 +23,7 @@ function CartBadge({items})
     return (
         <>
         <IconButton aria-label="cart">
-            <StyledBadge badgeContent={items} color="secondary">
+            <StyledBadge badgeContent={itemsCount} color="secondary">
             <ShoppingCartIcon onClick={handleClick}/>
             </StyledBadge>
             
