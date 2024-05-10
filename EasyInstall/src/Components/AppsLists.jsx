@@ -29,7 +29,6 @@ function AppsLists({ setItemsInCart, setApps }) {
     function handleCheckboxClick(e) 
     {
         const currItem = e.target.parentElement.innerText;
-        var idx = appList.indexOf(currItem);
         if (!e.target.checked) 
         {
             setItemsInCart((prevItem) => prevItem - 1);

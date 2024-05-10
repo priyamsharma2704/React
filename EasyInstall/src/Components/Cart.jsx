@@ -1,33 +1,64 @@
-import {useState} from "react";
-import Badge from '@mui/material/Badge';
-import { styled } from "@mui/material/styles";
+import { Link, useLocation } from "react-router-dom";
 import IconButton from "@mui/material/IconButton";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import DeleteIcon from "@mui/icons-material/Delete";
+function Cart() {
+    const location = useLocation();
+    const apps = location.state.apps;
+    console.log(location.state);
 
-const StyledBadge = styled(Badge)(({ theme }) => ({
-    '& .MuiBadge-badge': {
-      right: -3,
-      top: 13,
-      border: `2px solid ${theme.palette.background.paper}`,
-      padding: '0 4px',
-    },
-  }));
+    const handleDeleteItem = () =>
+        {
+            console.log("delete");
+            const currItem = e.target.parentElement.innerText;
+        if (!e.target.checked) 
+        {
+            setItemsInCart((prevItem) => prevItem - 1);
 
-function Cart({items}) 
-{
-    const handleClick = () =>
-    {
-        console.log("clicked");
+            /*
+            When using React, you should never mutate the state directly. If an object (or Array, which is an object too) is changed, you should create a new copy.
+            Others have suggested using Array.prototype.splice(), but that method mutates the Array, so it's better not to use splice() with React.
+            Easiest to use Array.prototype.filter() to create a new array:
+                    */
+            setApps((apps) =>
+                apps.filter(function (list) {
+                return list != currItem;
+                })
+            );
+            return;
+        }
+
+        setItemsInCart((prevItem) => prevItem + 1);
+        setApps((apps) => [...apps, e.target.parentElement.innerText]);
+        }
+
+
+    if (apps.length == 0) {
+        return (
+        <>
+            <div>Cart Empty</div>
+            <Link to="/">
+            <button>Home</button>
+            </Link>
+        </>
+        );
     }
 
     return (
         <>
-        <IconButton aria-label="cart">
-            <StyledBadge badgeContent={items} color="secondary">
-            <ShoppingCartIcon onClick={handleClick}/>
-            </StyledBadge>
-            
-        </IconButton>
+        <ul>
+            {apps.map((app, index) => (
+            <li key={index}>
+                {app}
+                <IconButton aria-label="delete" size="small" color="error" onClick={handleDeleteItem}>
+                    <DeleteIcon fontSize="inherit" />
+                </IconButton>
+            </li>
+            ))}
+        </ul>
+        <Link to="/">
+            <button>Home</button>
+        </Link>
+        <button>Download Script</button>
         </>
     );
 }
