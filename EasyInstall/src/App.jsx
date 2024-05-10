@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import "./App.css"
 import AppsLists from "./Components/AppsLists.jsx";
+import CartBadge from './Components/CartBadge.jsx';
 import Cart from './Components/Cart.jsx';
-
+import {Link} from 'react-router-dom';
 function App()
 {
     const [appsList, setAppsList] = useState([]);
@@ -20,7 +21,11 @@ function App()
             placeholder="Search..."
             className="">
             </input>
-            <Cart className="" items={cartItems}></Cart>
+            <Link to='/Cart'><CartBadge className="" items={cartItems}></CartBadge></Link>
+        </div>
+        <div>
+            <input type="radio" name="Linux" value="Linux"/>Linux
+            <input type="radio" name="Linux" value="Linux" defaultChecked/>Windows
         </div>
         <div className="">
             <AppsLists setItemsInCart={setCartItems} setApps={setAppsList}></AppsLists>
