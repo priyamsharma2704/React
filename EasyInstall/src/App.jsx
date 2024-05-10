@@ -21,7 +21,7 @@ function App()
             placeholder="Search..."
             className="">
             </input>
-            <Link to='/Cart' state={{apps:appsList}}><CartBadge className="" itemsCount={cartItems}></CartBadge></Link>
+            <Link to='/Cart' state={{apps:appsList, cart:cartItems}}><CartBadge className="" itemsCount={cartItems}></CartBadge></Link>
         </div>
         <div>
             <input type="radio" name="Linux" value="Linux"/>Linux
