@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
+import {saveAs} from 'file-saver';
 function Cart() {
     const location = useLocation();
     const apps = location.state.apps;
@@ -31,6 +32,14 @@ function Cart() {
         setApps((apps) => [...apps, e.target.parentElement.innerText]);
         }
 
+/* To download a file 
+https://www.altcademy.com/blog/how-to-write-file-in-reactjs/
+ */
+    const handleDownloadScript = () =>
+        {
+            const file = new Blob(["Hello"], {type:'text/plain;charset=utf-8'});
+            saveAs(file, "hello.txt");
+        }
 
     if (apps.length == 0) {
         return (
@@ -58,7 +67,7 @@ function Cart() {
         <Link to="/">
             <button>Home</button>
         </Link>
-        <button>Download Script</button>
+        <button onClick={handleDownloadScript}>Download Script</button>
         </>
     );
 }
