@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useItemStore} from "../Store/store.js";
 import Badge from '@mui/material/Badge';
 import { styled } from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton";
@@ -13,8 +13,12 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
     },
   }));
 
-function CartBadge({itemsCount}) 
+function CartBadge() 
 {
+    const {cartItems} = useItemStore((state) => ({
+        cartItems: state.cartItems
+    }));
+
     const handleClick = () =>
     {
         console.log("clicked");
@@ -23,7 +27,7 @@ function CartBadge({itemsCount})
     return (
         <>
         <IconButton aria-label="cart">
-            <StyledBadge badgeContent={itemsCount} color="secondary">
+            <StyledBadge badgeContent={cartItems} color="secondary">
             <ShoppingCartIcon onClick={handleClick}/>
             </StyledBadge>
             
