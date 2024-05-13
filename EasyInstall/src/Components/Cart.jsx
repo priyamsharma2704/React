@@ -1,47 +1,37 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, createRoutesFromChildren, useLocation } from "react-router-dom";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import {saveAs} from 'file-saver';
-function Cart() {
-    const location = useLocation();
-    const apps = location.state.apps;
-    console.log(location.state);
+import { useAppStore, useItemStore } from "../Store/store";
 
-    const handleDeleteItem = () =>
-        {
-            console.log("delete");
-            const currItem = e.target.parentElement.innerText;
-        if (!e.target.checked) 
-        {
-            setItemsInCart((prevItem) => prevItem - 1);
+function Cart() 
+{
+    const {appsList, removeAppFromCart} = useAppStore((state) => ({
+        appsList: state.appsList,
+        removeAppFromCart: state.removeAppFromCart
+    }));
 
-            /*
-            When using React, you should never mutate the state directly. If an object (or Array, which is an object too) is changed, you should create a new copy.
-            Others have suggested using Array.prototype.splice(), but that method mutates the Array, so it's better not to use splice() with React.
-            Easiest to use Array.prototype.filter() to create a new array:
-                    */
-            setApps((apps) =>
-                apps.filter(function (list) {
-                return list != currItem;
-                })
-            );
-            return;
+    const {removeItem} = useItemStore((state) => ({
+        removeItem: state.removeItem
+    }));
+
+    const handleDeleteItem = (app) =>
+        {
+            removeAppFromCart(app);
+            removeItem();
         }
 
-        setItemsInCart((prevItem) => prevItem + 1);
-        setApps((apps) => [...apps, e.target.parentElement.innerText]);
-        }
-
-/* To download a file 
-https://www.altcademy.com/blog/how-to-write-file-in-reactjs/
- */
+    /* To download a file 
+        https://www.altcademy.com/blog/how-to-write-file-in-reactjs/
+    */
     const handleDownloadScript = () =>
         {
             const file = new Blob(["Hello"], {type:'text/plain;charset=utf-8'});
             saveAs(file, "hello.txt");
         }
 
-    if (apps.length == 0) {
+    if (appsList.length == 0) 
+    {
         return (
         <>
             <div>Cart Empty</div>
@@ -55,10 +45,10 @@ https://www.altcademy.com/blog/how-to-write-file-in-reactjs/
     return (
         <>
         <ul>
-            {apps.map((app, index) => (
+            {appsList.map((app, index) => (
             <li key={index}>
                 {app}
-                <IconButton aria-label="delete" size="small" color="error" onClick={handleDeleteItem}>
+                <IconButton aria-label="delete" size="small" color="error" onClick={() => handleDeleteItem(app)}>
                     <DeleteIcon fontSize="inherit" />
                 </IconButton>
             </li>
