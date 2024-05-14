@@ -27,6 +27,7 @@ function AppsLists()
         {
             removeItem();
             removeAppFromCart(currItem);
+            updateCheckedStatus(currItem, false);
             return;
         }
 
@@ -55,7 +56,7 @@ function AppsLists()
         <ul>
             {filteredItems.map((item,index) => 
             <li key={index}>
-                <input type="checkbox" onClick={handleCheckboxClick} defaultChecked={item.checked}></input>{item.name}
+                <input type="checkbox" onClick={handleCheckboxClick} defaultChecked={item.checked}></input> {item.name}
             </li>)}
         </ul>
         </>
