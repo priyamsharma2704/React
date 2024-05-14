@@ -8,7 +8,8 @@ import {appList} from './GlobalVars/Golbal.js';
 
 function App()
 {
-    const {setSearchItem, setFilteredItems} = useSearchStore((state) => ({
+    const {searchItem, setSearchItem, setFilteredItems} = useSearchStore((state) => ({
+        searchItem: state.searchItem,
         setSearchItem: state.setSearchItem,
         setFilteredItems:state.setFilteredItems
     }));
@@ -32,7 +33,8 @@ function App()
             type="text"
             placeholder="Search..."
             className=""
-            onChange={handleSearch}>
+            onChange={handleSearch}
+            value={searchItem}>
             </input>
             <Link to='/Cart' ><CartBadge className="" ></CartBadge></Link>
         </div>
