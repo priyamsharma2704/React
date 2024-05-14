@@ -1,6 +1,6 @@
-import {useAppStore, useItemStore} from '../Store/store.js';
+import {useAppStore, useItemStore, useSearchStore} from '../Store/store.js';
+import {appList} from '../GlobalVars/Golbal.js';
 
-// function AppsLists({ setItemsInCart, setApps }) 
 function AppsLists() 
 {
     const {appsList, addAppToCart, removeAppFromCart} = useAppStore((state) => ({
@@ -15,31 +15,9 @@ function AppsLists()
         removeItem: state.removeItem
     }));
 
-    const appList = [
-        {name:"FireFox", checked:false},
-        {name:"Steam", checked:false},
-        {name:"Discord", checked:false},
-        {name:"Notion", checked:false},
-        {name:"WinZip", checked:false},
-        {name:"VSCode", checked:false},
-        {name:"Oh My Posh", checked:false},
-        {name:"Chrome", checked:false},
-        {name:"1Password", checked:false},
-        {name:"Windows Terminal", checked:false},
-        {name:"KDiff", checked:false},
-        {name:"StreamLabs", checked:false},
-        {name:"Vim", checked:false},
-        {name:"Unity", checked:false},
-        {name:"GitButler", checked:false},
-        {name:"Ear Trumpet", checked:false},
-        {name:"Microsoft Teams", checked:false},
-        {name:"Zoom", checked:false},
-        {name:"iTunes", checked:false},
-        {name:"Notepad++", checked:false},
-        {name:"GIMP", checked:false},
-        {name:"PuTTY", checked:false},
-        {name:"Skype", checked:false}
-    ]; 
+    const {filteredItems} = useSearchStore((state) => ({
+        filteredItems: state.filteredItems
+    }));
 
     function handleCheckboxClick(e) 
     {
@@ -66,6 +44,7 @@ function AppsLists()
             appList[index].checked = checked;
         console.log(appList);
     }
+
     //update the appList local var from the state.
     appsList.forEach(element => {
         updateCheckedStatus(element, true);
@@ -74,11 +53,10 @@ function AppsLists()
     return (
         <>
         <ul>
-            {appList.map((app, index) => (
+            {filteredItems.map((item,index) => 
             <li key={index}>
-                <input type="checkbox" onClick={handleCheckboxClick} defaultChecked={app.checked}></input> {app.name}
-            </li>
-            ))}
+                <input type="checkbox" onClick={handleCheckboxClick} defaultChecked={item.checked}></input>{item.name}
+            </li>)}
         </ul>
         </>
     );
