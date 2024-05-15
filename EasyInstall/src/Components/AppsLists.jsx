@@ -40,9 +40,9 @@ function AppsLists()
     function updateCheckedStatus(appName, checked)
     {
         console.log("function", checked);
-        const index = appList.findIndex(app => app.name == appName);
-        if(index !== -1)
-            appList[index].checked = checked;
+        const item = appList.find(app => app.name == appName);
+        if(item !== null || item !== undefined)
+            item.checked = checked;
         console.log(appList);
     }
 
