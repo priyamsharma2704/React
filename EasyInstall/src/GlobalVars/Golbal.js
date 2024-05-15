@@ -25,3 +25,10 @@ const appList = [
 ]; 
 
 export {appList};
+
+export function updateCheckedStatus(appName, checked)
+{
+    const item = appList.find(app => app.name == appName);
+    if(item !== null || item !== undefined)
+        item.checked = checked;
+}

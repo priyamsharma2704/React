@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import "./App.css"
 import AppsLists from "./Components/AppsLists.jsx";
 import CartBadge from './Components/CartBadge.jsx';

@@ -1,5 +1,5 @@
 import {useAppStore, useItemStore, useSearchStore} from '../Store/store.js';
-import {appList} from '../GlobalVars/Golbal.js';
+import {updateCheckedStatus} from '../GlobalVars/Golbal.js';
 
 function AppsLists() 
 {
@@ -9,8 +9,7 @@ function AppsLists()
         removeAppFromCart: state.removeAppFromCart
     }));
 
-    const {cartItems, addItem, removeItem} = useItemStore((state) =>({
-        cartItems: state.cartItems,
+    const {addItem, removeItem} = useItemStore((state) =>({
         addItem: state.addItem,
         removeItem: state.removeItem
     }));
@@ -37,15 +36,6 @@ function AppsLists()
         updateCheckedStatus(currItem, true);
     }
 
-    function updateCheckedStatus(appName, checked)
-    {
-        console.log("function", checked);
-        const item = appList.find(app => app.name == appName);
-        if(item !== null || item !== undefined)
-            item.checked = checked;
-        console.log(appList);
-    }
-
     //update the appList local var from the state.
     appsList.forEach(element => {
         updateCheckedStatus(element, true);
@@ -55,7 +45,7 @@ function AppsLists()
         <>
         <ul>
             {filteredItems.map((item,index) => 
-            <li key={index}>
+            <li key={item.name}> 
                 <input type="checkbox" onClick={handleCheckboxClick} defaultChecked={item.checked}></input> {item.name}
             </li>)}
         </ul>
