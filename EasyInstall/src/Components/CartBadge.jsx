@@ -21,7 +21,6 @@ function CartBadge()
 
     const handleClick = () =>
     {
-        console.log("clicked");
     }
 
     return (
