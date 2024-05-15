@@ -1,8 +1,9 @@
-import { Link, createRoutesFromChildren, useLocation } from "react-router-dom";
+import { Link} from "react-router-dom";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import {saveAs} from 'file-saver';
 import { useAppStore, useItemStore } from "../Store/store";
+import { updateCheckedStatus } from "../GlobalVars/Golbal";
 
 function Cart() 
 {
@@ -15,10 +16,11 @@ function Cart()
         removeItem: state.removeItem
     }));
 
-    const handleDeleteItem = (app) =>
+    const handleDeleteItem = (appName) =>
         {
-            removeAppFromCart(app);
+            removeAppFromCart(appName);
             removeItem();
+            updateCheckedStatus(appName, false);
         }
 
     /* To download a file 
