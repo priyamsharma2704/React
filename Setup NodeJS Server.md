@@ -41,3 +41,6 @@
 			console.log(data);
 		})
 	});
+
+## MongoDB collection name
+	Inside MongoDB, the collection name should start with small letter should also be plural.
