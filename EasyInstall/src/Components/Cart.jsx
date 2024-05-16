@@ -3,7 +3,7 @@ import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import {saveAs} from 'file-saver';
 import { useAppStore, useItemStore } from "../Store/store";
-import { updateCheckedStatus } from "../GlobalVars/Golbal";
+import { appList, updateCheckedStatus } from "../GlobalVars/Golbal";
 
 function Cart() 
 {
@@ -28,8 +28,21 @@ function Cart()
     */
     const handleDownloadScript = () =>
         {
-            const file = new Blob(["Hello"], {type:'text/plain;charset=utf-8'});
-            saveAs(file, "hello.txt");
+            let fileContent = "";
+            for(let app in appsList)
+            {
+                let currItem = appsList[app];
+                let item = appList.find((app) => app.name == currItem);
+                if (item !== null || item !== undefined)
+                    { 
+                        fileContent += "winget install --id=";
+                        fileContent += item.id + " -e";
+                        if(app != appsList.length - 1)
+                            fileContent += "  && \n";
+                    }
+            }
+            const file = new Blob([fileContent], {type:'text/plain;charset=utf-8'});
+            saveAs(file, "install.bat");
         }
 
     if (appsList.length == 0) 
