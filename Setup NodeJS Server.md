@@ -44,3 +44,10 @@
 
 ## MongoDB collection name
 	Inside MongoDB, the collection name should start with small letter should also be plural.
+
+## Using ENV VARS
+	Here are three mistakes/gotchas that tripped me up.
+
+	Ensure the .env files are in the root, not the src directory. The filename .env and/or .env.development will work when running locally.
+	Restart the local web server for the variables to appear: npm run dev
+	Prefix the variables with VITE_ (as already mentioned by Mahmoud and Wonkledge)
