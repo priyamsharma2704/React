@@ -51,3 +51,8 @@
 	Ensure the .env files are in the root, not the src directory. The filename .env and/or .env.development will work when running locally.
 	Restart the local web server for the variables to appear: npm run dev
 	Prefix the variables with VITE_ (as already mentioned by Mahmoud and Wonkledge)
+
+## VERCEL
+	dont use the localhost on the front end side when deploying
+	use the deployed server's url 
+	refer this: https://stackoverflow.com/questions/78243400/backend-and-frontend-work-seperately-fine-but-why-frontend-not-load-backend-dat
