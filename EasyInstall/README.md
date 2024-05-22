@@ -3,6 +3,8 @@
 Aim of this app is to make the task of installing several applications easy. This app allows user to select desired applications and then generate a batch file. On running that batch file, the selected applications will be installed, hence saving a lot of time.
 For windows the script users "winget" to download the applications.
 
+DEMO -> https://easy-install.vercel.app/
+
 ### How to use
 
 - Select the desire application by clicking the checkbox against it. As selections are made, the cart at the top right corner gets updated.
