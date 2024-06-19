@@ -128,17 +128,3 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
-sample-app/.eslintrc.cjs
-sample-app/.gitignore
-sample-app/index.html
-sample-app/package-lock.json
-sample-app/package.json
-sample-app/README.md
-sample-app/vite.config.js
-sample-app/public/vite.svg
-sample-app/src/App.css
-sample-app/src/App.jsx
-sample-app/src/index.css
-sample-app/src/main.jsx
-sample-app/src/assets/react.svg
-sample-app/src/Components/List.jsx

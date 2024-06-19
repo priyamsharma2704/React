@@ -87,3 +87,11 @@
 									.
 								</li>))
 	```
+
+## refer to this video: https://www.youtube.com/watch?v=nbAaUpNDhRY&list=PLZPZq0r_RZOMQArzyI32mVndGBZ3D99XQ&index=11&ab_channel=BroCode
+
+	React batches all the state updates together for performance reasons.
+	That is why it is advised to use th update function instead of 
+				setCounter(counter+1)
+        
+        
