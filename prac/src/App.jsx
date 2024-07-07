@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState, createContext} from "react";
 import Component1 from './Components/component1.jsx';
-const testContext = createContext(null)
+const testContext = createContext(null);
 
 function App() {
   const [users, setUsers] = useState([]);
