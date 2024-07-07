@@ -11,7 +11,7 @@ function useDebounce(value, delay)
         }, delay);
 
         return  ()=>{
-            clearInterval(timer);
+            clearTimeout(timer);
         }
     },[value, value]);
     return debounceValue;
