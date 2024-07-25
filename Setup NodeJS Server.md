@@ -1,16 +1,19 @@
-##Setup NodeJS Server.md
+
+## Setup NodeJS Server.md
 
 	1. create a "Server/Backend" folder.
 	2. pnpm init : it will make a package.json file
 	3. pnpm express noemon cors
 	4. in the package.json, add these lines
-
+```
 		"main": "server.js",
 		  "scripts": {
 		    "test": "echo \"Error: no test specified\" && exit 1",
 		    "start": "node server",
 		    "dev": "nodemon server"
 		  },
+```
+```
 	5. create a server.js file inside BAckend/Server folder with the following content
 
 		const express = require("express");
@@ -27,20 +30,43 @@
 		app.listen(5000, ()=>{
 			console.log("Server started at 5000");
 		})
-
+```
 	6. pnpm run dev : to start the server.
 
 ## On the front end side in REACT
-	
-	inside useEffect hook, you can fetch the data
 
+	inside useEffect hook, you can fetch the data
+```
+	const getData = async() =>
+    {
+        let resp = await fetch('http://localhost:4000/api');
+        let data = await resp.json();
+        
+        //return the data and set the state in the UseEffect hook.
+        return data;
+    }
+```
+```
+    const getData2 = async() =>
+    {
+        let resp = await fetch('http://localhost:4000/api');
+        let data = await resp.json();
+
+        console.log(data);
+
+        //set the state here itself
+    }
+```
+```
 	useEffect(()=>{
-		fetch("http://localhost:5000/api").then((response) =>{
-			return response.json()
-		}).then((data)=>{
-			console.log(data);
-		})
-	});
+       getData().then((resp)=>console.log(resp));
+
+       getData2(); // here we dont need to do anything after calling getData2 as state will be set in getData2()
+    });
+```
+## CORS error: Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource at https://localhost:4000/api. (Reason: CORS request did not succeed). Status code: (null).
+
+Resolution -> Dont use "https" on the front end side. USe "Http"
 
 ## MongoDB collection name
 	Inside MongoDB, the collection name should start with small letter should also be plural.

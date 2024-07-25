@@ -8,7 +8,7 @@ function App() {
   const [people, setPeople] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [show, setShow] = useState(true);
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([])
 
 
   let getUsers = async () => {
