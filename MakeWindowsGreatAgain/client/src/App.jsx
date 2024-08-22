@@ -10,6 +10,7 @@ import Col from 'react-bootstrap/Col';
 
 function App() 
 {
+    const c = 0;
     return(
       
         <Container fluid="md">
