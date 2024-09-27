@@ -79,4 +79,42 @@ namespace MyWebApi.Controllers
         public string Name { get; set; }
         public decimal Price { get; set; }
     }
+
+    public class FixWindows
+    {
+        TaskBar taskbar = new TaskBar();
+        var location = taskBar.Location;
+        var size = taskBar.Size;
+        var widgetButton = taskBar.WidgetButton;
+        var chatButton = taskkbar.ChatButton;
+        var keyboardSwitcher = taskkbar.ShowKeyboardSwitcher;
+    }
+
+    public class TaskBar:FixWindows
+    {
+        public string Location
+        {
+            get; set;
+        }
+
+        public string Size
+        {
+            get; set;
+        }
+
+        public bool WidgetButton
+        {
+            get; set;
+        }
+
+        public bool ChatButton
+        {
+            get; set;
+        }
+
+        public bool ShowKeyboardSwitcher
+        {
+            get; set;
+        }
+    }
 }
