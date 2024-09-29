@@ -34,7 +34,8 @@ function Search()
         setSearchTerm(e.target.value);
     }
 
-    const filterNames = names.filter((name)=>(name.toLowerCase().includes(searchTerm.toLowerCase())));
+    const filterNames = names.filter((name)=>(
+        name.toLowerCase().includes(searchTerm.toLowerCase())));
 
     return(
         <>
