@@ -1,86 +1,98 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.container {
+    display: inline;
+    justify-content: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.header {
+    background-color: rgb(70, 69, 69);
+    border-radius: 5px;
+    height: 100px;
+    margin: 10px;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.mainBody {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.chart {
+    height: 500px;
+    min-width: 500px;
+    width: 100%;
+    background-color: rgb(70, 69, 69);
+    border-radius: 5px;
+    padding-top: 10px;
 }
 
-.card {
-  padding: 2em;
+.rightSideBar {
+    height: 600px;
+    width: 450px;
+    float: right;
+    background-color: rgb(70, 69, 69);
+    border-radius: 5px;
+    margin-right: 10px;
+    padding-top: 10px;
 }
 
-.read-the-docs {
-  color: #888;
+.leftSideBar {
+    height: 400px;
+    width: 250px;
+    float: left;
+    background-color: rgb(70, 69, 69);
+    border-radius: 5px;
+    margin-left: 10px;
+    padding-top: 10px;
 }
 
-.inputDetials{
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
+input {
+    padding: 5px;
+    margin-left: 15px;
+    width: 80%;
+    border-radius: 5px;
+    border: none;
+    background-color: rgb(40, 39, 39);
+    margin-bottom: 5px;
 }
 
-.expenseList
-{
-  text-align: left;
+.inputDetials {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
 
-.listItem
-{
+.btnAddExpense {
+    /* margin-top: 20px; */
+    margin: auto;
+    display: block;
+}
+
+.expenseList {
+    text-align: left;
+}
+
+.listItem {
     line-height: 40px;
 }
 
-.btnEdit
-{
-  float: right;
+.btnEdit {
+    float: right;
 }
 
-.btnDelete
-{
-  float: right;
+.btnDelete {
+    float: right;
 }
 
-.spanItemCategory
-{
-  margin-left: 20px;
-  text-align: left;
-  float: inline-start;
+.spanItemCategory {
+    margin-left: 20px;
+    text-align: left;
+    float: inline-start;
 }
-.spanItemPrice
-{
-  margin-left: 5px;
-  float: inline-start;
+.spanItemPrice {
+    margin-left: 5px;
+    float: inline-start;
 }
-.spanItemDate
-{
-  margin-left: 20px;
-  text-align: right;
-  float: inline-start;
+.spanItemDate {
+    margin-left: 20px;
+    text-align: right;
+    float: inline-start;
 }
