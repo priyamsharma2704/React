@@ -1,12 +1,14 @@
 import React from "react";
-import { useExpensesListStore } from "../Store/store";
+import { useExpensesListStore, useShowExpenseModalStore } from "../Store/store";
 import { useState } from "react";
 
 function ExpenseModal() {
     const { addExpense } = useExpensesListStore();
-    const [price, setPrice] = useState(null);
-    const [category, setCategory] = useState(null);
-    const [date, setDate] = useState(null);
+    const { setShowExpenseModal } = useShowExpenseModalStore();
+
+    const [price, setPrice] = useState("");
+    const [category, setCategory] = useState("");
+    const [date, setDate] = useState("");
 
     function handlePriceOnChange(e) {
         setPrice(e.target.value);
@@ -27,6 +29,11 @@ function ExpenseModal() {
          */
         let newExpense = { price, category, date };
         addExpense(newExpense);
+
+        setPrice("");
+        setCategory("");
+        setDate("");
+        setShowExpenseModal();
     }
     return (
         <>
@@ -35,6 +42,7 @@ function ExpenseModal() {
                     id="id_input"
                     className="inputDetials"
                     type="number"
+                    value={price}
                     placeholder="Enter the Price"
                     onChange={(event) => {
                         handlePriceOnChange(event);
@@ -45,6 +53,7 @@ function ExpenseModal() {
                     id="id_category"
                     className="inputDetials"
                     type="text"
+                    value={category}
                     placeholder="Enter the Category"
                     onChange={(event) => {
                         handleCategoryOnChange(event);
@@ -55,6 +64,7 @@ function ExpenseModal() {
                     id="id_date"
                     className="inputDetials"
                     type="date"
+                    value={date}
                     name="category"
                     min="2018-01-01"
                     max="2099-12-31"

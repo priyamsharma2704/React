@@ -24,7 +24,7 @@ function ExpenseList() {
             <div></div>
             {/* TODO: Add Edit and Delete buttons */}
             {expenseList.map((expense, idx) => (
-                <div className="div_expense">
+                <div key={idx} className="div_expense">
                     <span className="category">{expense.category}</span>
                     <span className="price">${expense.price}</span>
                     <div className="date">{expense.date} </div>
