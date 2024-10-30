@@ -1,4 +1,6 @@
 import React from "react";
+import deleteImg from "../assets/delete.svg";
+import editImg from "../assets/edit.svg";
 import { useState } from "react";
 import ExpenseModal from "./ExpenseModal";
 import {
@@ -28,6 +30,11 @@ function ExpenseList() {
                     <span className="category">{expense.category}</span>
                     <span className="price">${expense.price}</span>
                     <div className="date">{expense.date} </div>
+                    <div className="controls">
+                        {/* <span className="date">{expense.date}</span> */}
+                        <img className="image" src={deleteImg} />
+                        <img className="image" src={editImg} />
+                    </div>
                 </div>
             ))}
             <button className="btnAddExpense" onClick={() => handleAdd()}>

@@ -111,6 +111,15 @@ input {
     font-style: oblique;
 }
 
+.controls {
+    display: flex;
+    justify-content: flex-end;
+}
+.image {
+    width: 24px;
+    height: 24px;
+}
+
 /* --------------------------------------------- */
 .listItem {
     line-height: 40px;

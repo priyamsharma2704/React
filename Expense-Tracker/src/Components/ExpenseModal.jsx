@@ -23,7 +23,7 @@ function ExpenseModal() {
     }
 
     function handleAddExpense() {
-        /*TODO:
+        /*TODO: - DONE
         1. clear all the fields after hitting Add
         2. Hide the modal
          */
