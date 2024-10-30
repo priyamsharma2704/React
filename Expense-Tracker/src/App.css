@@ -1,3 +1,8 @@
+/* ----- MAIN ----- */
+
+body {
+    min-width: 1000px;
+}
 .container {
     display: inline;
     justify-content: center;
@@ -44,6 +49,8 @@
     padding-top: 10px;
 }
 
+/* ------- Add Expense Modal -------*/
+
 input {
     padding: 5px;
     margin-left: 15px;
@@ -54,6 +61,19 @@ input {
     margin-bottom: 5px;
 }
 
+.expenseModal {
+    display: inline-block;
+    justify-content: center;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    background-color: rgb(49, 48, 48);
+    padding: 20px;
+    border-radius: 5px;
+    margin: 5px;
+}
+
 .inputDetials {
     margin-left: auto;
     margin-right: auto;
@@ -61,15 +81,37 @@ input {
 }
 
 .btnAddExpense {
-    /* margin-top: 20px; */
     margin: auto;
     display: block;
 }
 
-.expenseList {
-    text-align: left;
+/* ---- Expense List ----*/
+
+.div_expense {
+    background-color: rgb(49, 48, 48);
+    margin: 5px;
+    border-radius: 5px;
+    padding: 5px;
+    display: block;
+}
+.category {
+    font-weight: 500;
+    float: left;
 }
 
+.price {
+    float: right;
+}
+
+.date {
+    margin-top: 10%;
+    margin-left: 5px;
+    font-size: small;
+    font-weight: 100;
+    font-style: oblique;
+}
+
+/* --------------------------------------------- */
 .listItem {
     line-height: 40px;
 }

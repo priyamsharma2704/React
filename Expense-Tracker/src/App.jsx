@@ -1,27 +1,17 @@
-import Details from "./Components/Details.jsx";
-import List from "./Components/List.jsx";
-import Charts from "./Components/Chart.jsx";
 import ExpenseList from "./Components/ExpenseList.jsx";
 import "./App.css";
 import React, { useState, useEffect } from "react";
+import ExpenseModal from "./Components/ExpenseModal.jsx";
+import { useShowExpenseModalStore } from "./Store/store.js";
 function App() {
-    const [details, setDetails] = useState([]);
-
-    //to print the details info
-    useEffect(() => {
-        console.log(details);
-    }, [details]);
-
+    const { showExpenseModal } = useShowExpenseModalStore();
+    console.log(showExpenseModal);
     /*TODO: 
              - Right Side Bar: Add a component to show the expenses in a list
              - Below that display a btn to Add an Expense. It will open a modal dialog that will allow to add new expense
-             - 
+             - Category should be a drop down. A new item should get added to the drop down list
     */
 
-    function handleOpenAddExpenseDialog() {
-        //TODO: Open Add Expense Modal Dialog
-        console.log("open Modal");
-    }
     return (
         <>
             <div className="container">
@@ -30,17 +20,15 @@ function App() {
                     <div className="leftSideBar">left</div>
                     <div className="chart">chart</div>
                     <div className="rightSideBar">
-                        <ExpenseList
-                            onClick={handleOpenAddExpenseDialog}
-                        ></ExpenseList>
+                        <ExpenseList></ExpenseList>
                     </div>
                 </div>
+                {showExpenseModal ? (
+                    <ExpenseModal></ExpenseModal>
+                ) : (
+                    <span></span>
+                )}
             </div>
-            {/* <Details setDetails={setDetails}></Details>
-
-           <hr></hr>
-           <List details={details}></List>
-           <Charts details={details}></Charts> */}
         </>
     );
 }
