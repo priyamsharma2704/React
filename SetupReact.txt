@@ -1,0 +1,9 @@
+1. Use Vite to setup react app boiler plate
+	
+		pnpm create vite@latest
+
+	and follow the steps
+
+2. To run a react app : 
+	
+	pnpm run dev
