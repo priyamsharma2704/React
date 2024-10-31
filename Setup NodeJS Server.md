@@ -2,7 +2,7 @@
 
 	1. create a "Server/Backend" folder.
 	2. pnpm init : it will make a package.json file
-	3. pnpm express noemon cors
+	3. pnpm express noemon cors mongoose
 	4. in the package.json, add these lines
 
 		"main": "server.js",

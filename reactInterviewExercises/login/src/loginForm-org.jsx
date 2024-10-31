@@ -1,9 +1,9 @@
-import { useState } from 'react'
+import { useState } from "react";
 import { login } from "./utils";
 import "./styles.css";
 
 // ================ LOGIN FORM ====================
-// 
+//
 // Guidelines:
 // * You have an incomplete login form.
 // * You are not allowed to add any additional HTML elements.
@@ -20,57 +20,53 @@ export default function LoginForm()
 {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState("");
- 
-    function handlePasswordChange(e)
-    {
-        setPassword(e.target.value);
-    }
+    const [isLoading, setIsLoading] = useState(false);
 
-    function handleEmailChange(e)
+    function handleEmailInput(e)
     {
         setEmail(e.target.value);
     }
 
-    async function handleLogin()
+    function handlePasswordInput(e)
+    {
+        setPassword(e.target.value);
+    }
+
+    async function handleBtnClick()
     {
         setError(null);
         setIsLoading(true);
         try{
-            login({email,password}).then(()=>setIsLoading(false)).catch((e)=>setError(e.message));
-            //await login({email,password});
-            //setIsLoading(false);
-            
+            await login({email, password});
+            setIsLoading(false);
         }
-        catch(error)
+        catch(e)
         {
-            console.log("failed")
-            setError(error.message);
+            console.log(e);
+            setError(e.message);
             setIsLoading(false);
         }
     }
 
-    let x = isLoading;
-    //console.log(x);
-    let isDisabled = !email || password.length < 6 || isLoading?true:false;
+    let disableButton = !email || password.length < 6 || isLoading? true : false;
 
     return (
         <div className="wrapper">
         <div className="row">
             <label htmlFor={"email"}>Email</label>
-            <input id={"email"} type={"email"} onChange={(e)=>handleEmailChange(e)}/>
+            <input id={"email"} type={"email"} onChange={(e)=>handleEmailInput(e)}/>
         </div>
         <div className="row">
             <label htmlFor={"password"}>Password</label>
-            <input id={"password"} type={"password"} onChange={(e)=>handlePasswordChange(e)}/>
+            <input id={"password"} type={"password"} onChange={(e)=>handlePasswordInput(e)}/>
         </div>
 
         {/* Place login error inside this div. Show the div ONLY if there are login errors. */}
         <div className="errorMessage">{error}</div>
 
         <div className="button">
-            <button onClick={handleLogin} disabled={isDisabled}>Login</button>
+            <button onClick={handleBtnClick} id="id_loginBtn" disabled={disableButton}>Login</button>
         </div>
         </div>
     );
