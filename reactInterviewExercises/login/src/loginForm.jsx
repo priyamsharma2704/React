@@ -20,24 +20,36 @@ export default function LoginForm()
 {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+<<<<<<< HEAD
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState("");
  
-    function handlePasswordChange(e)
-    {
-        setPassword(e.target.value);
-    }
-
+=======
+    const [loading, setLoading] = useState(false);
     function handleEmailChange(e)
     {
         setEmail(e.target.value);
     }
 
+>>>>>>> origin/main
+    function handlePasswordChange(e)
+    {
+        setPassword(e.target.value);
+    }
+
+<<<<<<< HEAD
+    function handleEmailChange(e)
+    {
+        setEmail(e.target.value);
+    }
+
+=======
+>>>>>>> origin/main
     async function handleLogin()
     {
-        setError(null);
-        setIsLoading(true);
+        setLoading(true);
         try{
+<<<<<<< HEAD
             login({email,password}).then(()=>setIsLoading(false)).catch((e)=>setError(e.message));
             //await login({email,password});
             //setIsLoading(false);
@@ -65,13 +77,44 @@ export default function LoginForm()
             <label htmlFor={"password"}>Password</label>
             <input id={"password"} type={"password"} onChange={(e)=>handlePasswordChange(e)}/>
         </div>
+=======
+            login({email, password});
+            setLoading(false);
+        }
+        catch{
+            setLoading(false);
+        }
+    }
 
-        {/* Place login error inside this div. Show the div ONLY if there are login errors. */}
-        <div className="errorMessage">{error}</div>
+    let isDisabled = !email || password.length < 6 || loading ? true : false;
 
+  return (
+    <div className="wrapper">
+      <div className="row">
+        <label htmlFor={"email"}>Email</label>
+        <input id={"email"} type={"email"} onChange={(e)=>handleEmailChange(e)}/>
+      </div>
+      <div className="row">
+        <label htmlFor={"password"}>Password</label>
+        <input id={"password"} type={"password"} onChange={(e)=>handlePasswordChange(e)}/>
+      </div>
+>>>>>>> origin/main
+
+      {/* Place login error inside this div. Show the div ONLY if there are login errors. */}
+      <div className="errorMessage"></div>
+
+<<<<<<< HEAD
         <div className="button">
             <button onClick={handleLogin} disabled={isDisabled}>Login</button>
         </div>
         </div>
     );
 }
+=======
+      <div className="button">
+        <button onClick={handleLogin} disabled={isDisabled}>Login</button>
+      </div>
+    </div>
+  );
+}
+>>>>>>> origin/main

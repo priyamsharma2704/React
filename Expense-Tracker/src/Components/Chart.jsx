@@ -26,8 +26,8 @@ function Charts({details})
         <>
             <Chart
                 chartType="PieChart"
-                width="100%"
-                height="100px"
+                width="70%"
+                height="200px"
                 data={result}
                 options={options}
             />
