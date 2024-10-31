@@ -23,9 +23,10 @@ function ExpenseModal() {
     }
 
     function handleAddExpense() {
-        /*TODO: - DONE
-        1. clear all the fields after hitting Add
-        2. Hide the modal
+        /*TODO: 
+        1. DONE : clear all the fields after hitting Add
+        2. DONE: Hide the modal
+        3. If input fields are empty, then dont add and throw an error
          */
         let newExpense = { price, category, date };
         addExpense(newExpense);

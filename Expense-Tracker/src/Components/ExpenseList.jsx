@@ -23,7 +23,9 @@ function ExpenseList() {
         deleteExpense(id);
     }
 
-    function handleEditExpense() {}
+    function handleEditExpense() {
+        setShowExpenseModal();
+    }
 
     function handlePrice() {}
     function handleCategory() {}

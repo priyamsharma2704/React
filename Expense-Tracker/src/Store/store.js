@@ -20,3 +20,15 @@ export const useExpensesListStore = create((set) => ({
         return { expenseList: state.expenseList };
     })
 }))
+
+export const useExpenseDetailsStore = create((set) =>
+({
+    price: "",
+    category: "",
+    date: "",
+    setPrice: (prc) => set((state) => {
+        return { price: prc };
+    }),
+    setCategory: (cat) => set((state) => ({ category: cat })),
+    setDate: (dte) => set((state) => ({ date: dte }))
+}))
