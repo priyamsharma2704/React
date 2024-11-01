@@ -1,8 +1,11 @@
 import deleteImg from "../assets/delete.svg";
 import editImg from "../assets/edit.svg";
+import ExpenseModal from "./ExpenseModal.jsx";
+import { useState } from "react";
 import {
     useShowExpenseModalStore,
     useExpensesListStore,
+    useExpenseDetailsStore,
 } from "../Store/store.js";
 function ExpenseCard({ id, expense }) {
     const { showExpenseModal, setShowExpenseModal } =
@@ -10,13 +13,25 @@ function ExpenseCard({ id, expense }) {
 
     const { expenseList, deleteExpense, updateExpense } =
         useExpensesListStore();
+    const { setCategory, setPrice, setDate } = useExpenseDetailsStore();
+
+    const [isInEditMode, setIsInEditMode] = useState(false);
     function handleDeleteExpense(id) {
         console.log(id);
         deleteExpense(id);
     }
 
     function handleEditExpense() {
-        setShowExpenseModal(!showExpenseModal);
+        console.log(expense);
+        setPrice(expense.price);
+        setCategory(expense.category);
+        setDate(expense.date);
+        // setShowExpenseModal(!showExpenseModal);
+        setIsInEditMode(!isInEditMode);
+    }
+
+    function closeModal() {
+        setIsInEditMode(false);
     }
     return (
         <>
@@ -33,10 +48,20 @@ function ExpenseCard({ id, expense }) {
                     <img
                         className="image"
                         src={editImg}
-                        onClick={handleEditExpense}
+                        onClick={() => handleEditExpense()}
                     />
                 </div>
             </div>
+
+            {isInEditMode ? (
+                <ExpenseModal
+                    id={id}
+                    expense={expense}
+                    closeModal={closeModal}
+                ></ExpenseModal>
+            ) : (
+                <span></span>
+            )}
         </>
     );
 }

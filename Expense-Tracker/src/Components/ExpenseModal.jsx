@@ -4,10 +4,11 @@ import {
     useShowExpenseModalStore,
     useExpenseDetailsStore,
 } from "../Store/store";
-import { useState } from "react";
+import { useEffect } from "react";
 
-function ExpenseModal() {
-    const { addExpense } = useExpensesListStore();
+function ExpenseModal({ id, expense, closeModal }) {
+    console.log(closeModal);
+    const { addExpense, updateExpense } = useExpensesListStore();
     const { showExpenseModal, setShowExpenseModal } =
         useShowExpenseModalStore();
     const { price, category, date, setCategory, setPrice, setDate } =
@@ -33,16 +34,37 @@ function ExpenseModal() {
         4. Add a Close button
          */
         let newExpense = { price, category, date };
-        addExpense(newExpense);
+        if (id != null) updateExpense(expense, id);
+        else addExpense(newExpense);
 
         setPrice("");
         setCategory("");
         setDate("");
         setShowExpenseModal(!showExpenseModal);
+        closeModal();
     }
+
+    function handleCloseModal() {
+        // console.log("Asd");
+        closeModal();
+    }
+
+    useEffect(() => {
+        if (expense != null) {
+            setPrice(expense.price);
+            setCategory(expense.category);
+            setDate(expense.date);
+        } else if (!id) {
+            setPrice("");
+            setCategory("");
+            setDate("");
+        }
+    }, [expense]);
+
     return (
         <>
             <div className="expenseModal">
+                <span onClick={handleCloseModal}>x</span>
                 <input
                     id="id_input"
                     className="inputDetials"

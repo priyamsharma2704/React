@@ -1,11 +1,11 @@
 import ExpenseList from "./Components/ExpenseList.jsx";
 import "./App.css";
 import React, { useState, useEffect } from "react";
-import ExpenseModal from "./Components/ExpenseModal.jsx";
-import { useShowExpenseModalStore } from "./Store/store.js";
+// import ExpenseModal from "./Components/ExpenseModal.jsx";
+// import { useShowExpenseModalStore } from "./Store/store.js";
 function App() {
-    const { showExpenseModal } = useShowExpenseModalStore();
-    console.log(showExpenseModal);
+    // const { showExpenseModal } = useShowExpenseModalStore();
+    // console.log(showExpenseModal);
     /*TODO: 
              - Right Side Bar: Add a component to show the expenses in a list
              - Below that display a btn to Add an Expense. It will open a modal dialog that will allow to add new expense
@@ -23,11 +23,11 @@ function App() {
                         <ExpenseList></ExpenseList>
                     </div>
                 </div>
-                {showExpenseModal ? (
+                {/* {showExpenseModal ? (
                     <ExpenseModal></ExpenseModal>
                 ) : (
                     <span></span>
-                )}
+                )} */}
             </div>
         </>
     );
