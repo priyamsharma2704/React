@@ -1,5 +1,5 @@
-import deleteImg from "../assets/delete.svg";
-import editImg from "../assets/edit.svg";
+import deleteImg from "../assets/delete.png";
+import editImg from "../assets/edit.png";
 import ExpenseModal from "./ExpenseModal.jsx";
 import { useState } from "react";
 import {
@@ -42,13 +42,13 @@ function ExpenseCard({ id, expense }) {
                 <div className="controls">
                     <img
                         className="image"
-                        src={deleteImg}
-                        onClick={() => handleDeleteExpense(id)}
+                        src={editImg}
+                        onClick={() => handleEditExpense()}
                     />
                     <img
                         className="image"
-                        src={editImg}
-                        onClick={() => handleEditExpense()}
+                        src={deleteImg}
+                        onClick={() => handleDeleteExpense(id)}
                     />
                 </div>
             </div>

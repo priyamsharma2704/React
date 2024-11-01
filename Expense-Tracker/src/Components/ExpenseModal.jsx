@@ -5,6 +5,7 @@ import {
     useExpenseDetailsStore,
 } from "../Store/store";
 import { useEffect } from "react";
+import close from "../assets/close.png";
 
 function ExpenseModal({ id, expense, closeModal }) {
     console.log(closeModal);
@@ -64,7 +65,9 @@ function ExpenseModal({ id, expense, closeModal }) {
     return (
         <>
             <div className="expenseModal">
-                <span onClick={handleCloseModal}>x</span>
+                <div className="closeSpan" onClick={handleCloseModal}>
+                    <img className="closeImg" src={close} height="20"></img>
+                </div>
                 <input
                     id="id_input"
                     className="inputDetials"
