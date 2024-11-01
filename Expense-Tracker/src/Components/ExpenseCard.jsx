@@ -16,7 +16,7 @@ function ExpenseCard({ id, expense }) {
     }
 
     function handleEditExpense() {
-        setShowExpenseModal();
+        setShowExpenseModal(!showExpenseModal);
     }
     return (
         <>
@@ -25,7 +25,6 @@ function ExpenseCard({ id, expense }) {
                 <span className="price">${expense.price}</span>
                 <div className="date">{expense.date} </div>
                 <div className="controls">
-                    {/* <span className="date">{expense.date}</span> */}
                     <img
                         className="image"
                         src={deleteImg}

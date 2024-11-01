@@ -1,14 +1,17 @@
 import React from "react";
-import { useExpensesListStore, useShowExpenseModalStore } from "../Store/store";
+import {
+    useExpensesListStore,
+    useShowExpenseModalStore,
+    useExpenseDetailsStore,
+} from "../Store/store";
 import { useState } from "react";
 
 function ExpenseModal() {
     const { addExpense } = useExpensesListStore();
-    const { setShowExpenseModal } = useShowExpenseModalStore();
-
-    const [price, setPrice] = useState("");
-    const [category, setCategory] = useState("");
-    const [date, setDate] = useState("");
+    const { showExpenseModal, setShowExpenseModal } =
+        useShowExpenseModalStore();
+    const { price, category, date, setCategory, setPrice, setDate } =
+        useExpenseDetailsStore();
 
     function handlePriceOnChange(e) {
         setPrice(e.target.value);
@@ -27,6 +30,7 @@ function ExpenseModal() {
         1. DONE : clear all the fields after hitting Add
         2. DONE: Hide the modal
         3. If input fields are empty, then dont add and throw an error
+        4. Add a Close button
          */
         let newExpense = { price, category, date };
         addExpense(newExpense);
@@ -34,7 +38,7 @@ function ExpenseModal() {
         setPrice("");
         setCategory("");
         setDate("");
-        setShowExpenseModal();
+        setShowExpenseModal(!showExpenseModal);
     }
     return (
         <>

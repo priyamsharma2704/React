@@ -17,7 +17,6 @@ function ExpenseList() {
     return (
         <>
             <div></div>
-            {/* TODO: Add Edit and Delete buttons */}
             {expenseList.map((expense, idx) => (
                 <ExpenseCard key={idx} id={idx} expense={expense}></ExpenseCard>
             ))}
