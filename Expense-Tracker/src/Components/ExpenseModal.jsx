@@ -29,11 +29,15 @@ function ExpenseModal({ id, expense, closeModal }) {
 
     function handleAddExpense() {
         /*TODO: 
-        1. DONE : clear all the fields after hitting Add
-        2. DONE: Hide the modal
-        3. If input fields are empty, then dont add and throw an error
-        4. Add a Close button
+        1. DONE - clear all the fields after hitting Add
+        2. DONE - Hide the modal
+        3. DONE - If input fields are empty, then dont add and throw an error
+        4. DONE - Add a Close button
          */
+        if (!price && !category && !date) {
+            alert("Please enter Price, category and Date");
+            return;
+        }
         let newExpense = { price, category, date };
         if (id != null) updateExpense(expense, id);
         else addExpense(newExpense);
@@ -42,11 +46,11 @@ function ExpenseModal({ id, expense, closeModal }) {
         setCategory("");
         setDate("");
         setShowExpenseModal(!showExpenseModal);
-        closeModal();
+        //closeModal();
     }
 
     function handleCloseModal() {
-        // console.log("Asd");
+        //console.log("Asd");
         closeModal();
     }
 

@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import ExpenseCard from "./ExpenseCard.jsx";
 import ExpenseModal from "./ExpenseModal.jsx";
 import {
@@ -12,12 +13,18 @@ function ExpenseList() {
         useShowExpenseModalStore();
     const { expenseList } = useExpensesListStore();
     const { setCategory, setPrice, setDate } = useExpenseDetailsStore();
+    const [isInEditMode, setIsInEditMode] = useState(false);
 
     function handleAdd() {
         // setPrice("");
         // setCategory("");
         // setDate("");
         setShowExpenseModal(!showExpenseModal);
+        setIsInEditMode(!isInEditMode);
+    }
+
+    function closeModal() {
+        setIsInEditMode(false);
     }
 
     return (
@@ -30,7 +37,9 @@ function ExpenseList() {
                 Add Expense
             </button>
 
-            {showExpenseModal && <ExpenseModal></ExpenseModal>}
+            {isInEditMode && (
+                <ExpenseModal closeModal={closeModal}></ExpenseModal>
+            )}
         </>
     );
 }
