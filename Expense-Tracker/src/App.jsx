@@ -1,6 +1,7 @@
 import ExpenseList from "./Components/ExpenseList.jsx";
 import "./App.css";
 import React, { useState, useEffect } from "react";
+import Chart from "./Components/Chart.jsx";
 // import ExpenseModal from "./Components/ExpenseModal.jsx";
 // import { useShowExpenseModalStore } from "./Store/store.js";
 function App() {
@@ -18,7 +19,9 @@ function App() {
                 <div className="header">header</div>
                 <div className="mainBody">
                     <div className="leftSideBar">left</div>
-                    <div className="chart">chart</div>
+                    <div className="chart">
+                        <Chart></Chart>
+                    </div>
                     <div className="rightSideBar">
                         <ExpenseList></ExpenseList>
                     </div>

@@ -39,18 +39,16 @@ function ExpenseModal({ id, expense, closeModal }) {
             return;
         }
         let newExpense = { price, category, date };
-        if (id != null) updateExpense(expense, id);
+        if (id != null) updateExpense(newExpense, id);
         else addExpense(newExpense);
 
         setPrice("");
         setCategory("");
         setDate("");
         setShowExpenseModal(!showExpenseModal);
-        //closeModal();
     }
 
     function handleCloseModal() {
-        //console.log("Asd");
         closeModal();
     }
 

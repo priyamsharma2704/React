@@ -1,38 +1,44 @@
-import { Chart } from "react-google-charts";
-function Charts({details})
-{
-    // Create an object to accumulate prices for each category
-    let categoryPrices = {};
+import * as React from "react";
+import { PieChart } from "@mui/x-charts/PieChart";
+import { useExpensesListStore } from "../Store/store";
+import { useEffect } from "react";
+import { useState } from "react";
 
-    // Iterate over the array and accumulate prices for each category
-    details.forEach(item => {
-        const { category, price } = item;
-        categoryPrices[category] = (categoryPrices[category] || 0) + parseInt(price);
-    });
+export default function Chart() {
+    const [chartData, setChartData] = useState([]);
 
-    // Convert the object into the desired format [["Category","Price"],["food", 1254], ["insurance", 123], ["mortgage", 3224]]
-    let result = Object.entries(categoryPrices).map(([category, price]) => [category, price]);
+    const { expenseList } = useExpensesListStore();
 
-    // Add the header row ["Category", "Price"]
-    result.unshift(["Category", "Price"]);
+    useEffect(() => {
+        let dataArr = [];
+        for (let expense in expenseList) {
+            let chartDetail = {
+                id: parseInt(expense),
+                value: parseInt(expenseList[expense].price),
+                label: expenseList[expense].category,
+            };
+            dataArr.push(chartDetail);
+        }
+        setChartData(dataArr);
+    }, [expenseList]);
 
-    const options = {
-        title: "Expense-Tracker",
-        pieHole: 0.4,
-        is3D: false,
-    };
-
-    return(
-        <>
-            <Chart
-                chartType="PieChart"
-                width="70%"
-                height="200px"
-                data={result}
-                options={options}
-            />
-        </>
+    return (
+        <PieChart
+            series={[
+                {
+                    data: chartData,
+                    innerRadius: 30,
+                    outerRadius: 100,
+                    paddingAngle: 5,
+                    cornerRadius: 5,
+                    startAngle: -45,
+                    endAngle: 225,
+                    cx: 150,
+                    cy: 150,
+                },
+            ]}
+            width={400}
+            height={400}
+        />
     );
 }
-
-export default Charts;

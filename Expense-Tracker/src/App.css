@@ -21,12 +21,13 @@ body {
 }
 
 .chart {
+    display: flex;
+    justify-content: center;
     height: 500px;
     min-width: 500px;
     width: 100%;
     background-color: rgb(70, 69, 69);
     border-radius: 5px;
-    padding-top: 10px;
 }
 
 .rightSideBar {

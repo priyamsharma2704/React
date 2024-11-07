@@ -16,9 +16,6 @@ function ExpenseList() {
     const [isInEditMode, setIsInEditMode] = useState(false);
 
     function handleAdd() {
-        // setPrice("");
-        // setCategory("");
-        // setDate("");
         setShowExpenseModal(!showExpenseModal);
         setIsInEditMode(!isInEditMode);
     }
