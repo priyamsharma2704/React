@@ -15,8 +15,9 @@ export const useExpensesListStore = create((set) => ({
     }),
     updateExpense: (expense, id) => set((state) =>
     {
-        state.expenseList[id] = expense;
-        return { expenseList: state.expenseList };
+        let newList = [...state.expenseList];
+        newList[id] = expense;
+        return { expenseList: newList };
     })
 }))
 

@@ -8,7 +8,6 @@ import { useEffect } from "react";
 import close from "../assets/close.png";
 
 function ExpenseModal({ id, expense, closeModal, isInEditMode }) {
-    console.log(closeModal);
     const { addExpense, updateExpense } = useExpensesListStore();
     const { showExpenseModal, setShowExpenseModal } =
         useShowExpenseModalStore();

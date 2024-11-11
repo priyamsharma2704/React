@@ -23,7 +23,6 @@ function ExpenseCard({ id, expense }) {
 
     function handleEditExpense() {
         //TODO : actually update the expense details on submitting
-        console.log(expense);
         setPrice(expense.price);
         setCategory(expense.category);
         setDate(expense.date);
