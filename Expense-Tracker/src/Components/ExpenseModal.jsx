@@ -45,7 +45,8 @@ function ExpenseModal({ id, expense, closeModal }) {
         setPrice("");
         setCategory("");
         setDate("");
-        setShowExpenseModal(!showExpenseModal);
+        setShowExpenseModal(false);
+        closeModal();
     }
 
     function handleCloseModal() {
