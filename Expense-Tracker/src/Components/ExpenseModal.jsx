@@ -7,7 +7,7 @@ import {
 import { useEffect } from "react";
 import close from "../assets/close.png";
 
-function ExpenseModal({ id, expense, closeModal }) {
+function ExpenseModal({ id, expense, closeModal, isInEditMode }) {
     console.log(closeModal);
     const { addExpense, updateExpense } = useExpensesListStore();
     const { showExpenseModal, setShowExpenseModal } =
@@ -107,7 +107,7 @@ function ExpenseModal({ id, expense, closeModal }) {
                 />
                 <br />
                 <button className="btnAddExpense" onClick={handleAddExpense}>
-                    Add Expense
+                    {isInEditMode == false ? "Add Expense" : "Update Expense"}
                 </button>
             </div>
         </>

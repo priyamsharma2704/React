@@ -35,7 +35,10 @@ function ExpenseList() {
             </button>
 
             {isInEditMode && (
-                <ExpenseModal closeModal={closeModal}></ExpenseModal>
+                <ExpenseModal
+                    isInEditMode={isInEditMode}
+                    closeModal={closeModal}
+                ></ExpenseModal>
             )}
         </>
     );
