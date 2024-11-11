@@ -18,6 +18,7 @@ function ExpenseList() {
     function handleAdd() {
         setShowExpenseModal(!showExpenseModal);
         setIsInEditMode(!isInEditMode);
+        console.log(isInEditMode);
     }
 
     function closeModal() {

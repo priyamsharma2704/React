@@ -106,7 +106,7 @@ function ExpenseModal({ id, expense, closeModal, isInEditMode }) {
                 />
                 <br />
                 <button className="btnAddExpense" onClick={handleAddExpense}>
-                    {isInEditMode == false ? "Add Expense" : "Update Expense"}
+                    {isInEditMode == true ? "Add Expense" : "Update Expense"}
                 </button>
             </div>
         </>
