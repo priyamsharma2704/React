@@ -2,6 +2,7 @@ import ExpenseList from "./Components/ExpenseList.jsx";
 import "./App.css";
 import React, { useState, useEffect } from "react";
 import Chart from "./Components/Chart.jsx";
+import Left from "./Components/LeftBar.jsx";
 function App() {
     /*TODO: 
              - Right Side Bar: Add a component to show the expenses in a list
@@ -14,7 +15,9 @@ function App() {
             <div className="container">
                 <div className="header">header</div>
                 <div className="mainBody">
-                    <div className="leftSideBar">left</div>
+                    <div className="leftSideBar">
+                        <Left></Left>
+                    </div>
                     <div className="chart">
                         <Chart></Chart>
                     </div>

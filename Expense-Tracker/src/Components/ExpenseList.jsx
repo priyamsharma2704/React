@@ -27,10 +27,15 @@ function ExpenseList() {
 
     return (
         <>
-            <div></div>
-            {expenseList.map((expense, idx) => (
-                <ExpenseCard key={idx} id={idx} expense={expense}></ExpenseCard>
-            ))}
+            <div className="expenseList">
+                {expenseList.map((expense, idx) => (
+                    <ExpenseCard
+                        key={idx}
+                        id={idx}
+                        expense={expense}
+                    ></ExpenseCard>
+                ))}
+            </div>
             <button className="btnAddExpense" onClick={() => handleAdd()}>
                 Add Expense
             </button>

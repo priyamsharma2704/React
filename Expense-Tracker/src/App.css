@@ -38,6 +38,10 @@ body {
     border-radius: 5px;
     margin-right: 10px;
     padding-top: 10px;
+    /* overflow-y: auto; */
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
 }
 
 .leftSideBar {
@@ -47,7 +51,9 @@ body {
     background-color: rgb(70, 69, 69);
     border-radius: 5px;
     margin-left: 10px;
-    padding-top: 10px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
 }
 
 /* ------- Add Expense Modal -------*/
@@ -83,7 +89,10 @@ input {
 
 .btnAddExpense {
     margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
     display: block;
+    align-self: flex-end;
 }
 
 .closeSpan {
@@ -130,6 +139,11 @@ input {
     width: 20px;
     height: 20px;
     margin: 10px;
+}
+
+.expenseList {
+    flex: 1; /* Allows the list to grow and take up available space */
+    overflow-y: auto; /* Adds a scroll bar if content overflows */
 }
 
 /* --------------------------------------------- */
