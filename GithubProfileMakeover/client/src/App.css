@@ -4,18 +4,65 @@
 
 .container {
     display: flex;
-    justify-content: center;
     gap: 10px;
 }
 
 .form {
-    width: 50%;
-    border: 2px solid black;
+    border: 2px solid rgb(134, 132, 132);
     border-radius: 5px;
+    background-color: rgba(51, 65, 85, 255);
 }
 
 .preview {
-    width: 50%;
-    border: 2px solid black;
+    border: 2px solid rgb(134, 132, 132);
     border-radius: 5px;
+}
+
+input {
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(55, 65, 81, 255);
+    margin-bottom: 15px;
+}
+
+button {
+    background-color: rgba(31, 41, 55, 255);
+    margin: 2px;
+}
+/* ---------- Profile Container -------------- */
+.profileContainer {
+    padding: 10px;
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+}
+
+.profile {
+    width: 50%;
+}
+
+.sectionHeading {
+    font-weight: 400px;
+    font-size: 22px;
+}
+
+.sectionDesc {
+    font-weight: 300;
+    font-size: 18px;
+    color: rgba(156, 163, 175, 255);
+}
+
+.label {
+    color: rgba(55, 65, 81, 255);
+}
+
+.profileInputs {
+    background-color: rgba(100, 116, 139, 255);
+    font-weight: 300;
+    font-size: 18px;
+    display: felx;
+    justify-content: left;
+    flex-wrap: wrap;
+    padding: 15px;
+    margin: 5px;
 }
