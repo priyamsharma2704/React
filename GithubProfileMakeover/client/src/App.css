@@ -1,0 +1,21 @@
+#root {
+    padding: 2rem;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.form {
+    width: 50%;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.preview {
+    width: 50%;
+    border: 2px solid black;
+    border-radius: 5px;
+}
