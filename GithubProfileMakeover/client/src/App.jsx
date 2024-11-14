@@ -17,6 +17,10 @@ function App() {
                     asdsadasd123131312312312asdasdasdasdasda1231221312312313asdasdasdasdadas
                 </div>
             </div>
+            <div className="navigation">
+                <button>Prev</button>
+                <button>Next</button>
+            </div>
         </>
     );
 }

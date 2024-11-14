@@ -30,6 +30,14 @@ button {
     background-color: rgba(31, 41, 55, 255);
     margin: 2px;
 }
+
+.navigation {
+    margin-right: 60%;
+    float: right;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
 /* ---------- Profile Container -------------- */
 .profileContainer {
     padding: 10px;
