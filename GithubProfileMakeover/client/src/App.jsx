@@ -12,7 +12,10 @@ function App() {
                 <div className="form">
                     <Form></Form>
                 </div>
-                <div className="preview">Preview</div>
+                <div className="preview">
+                    Preview
+                    asdsadasd123131312312312asdasdasdasdasda1231221312312313asdasdasdasdadas
+                </div>
             </div>
         </>
     );

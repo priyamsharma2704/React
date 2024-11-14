@@ -17,7 +17,7 @@ function Form() {
                     <br></br>
                     <span className="label">Title</span>
                     <br></br>
-                    <input type="text" placeholder="Hi, I'm"></input>
+                    <input type="text" placeholder="Hi, I'm..."></input>
                     <br></br>
                     <span className="label">SubTitle</span>
                     <br></br>

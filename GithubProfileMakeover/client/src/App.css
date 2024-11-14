@@ -23,6 +23,7 @@ input {
     border-radius: 5px;
     background-color: rgba(55, 65, 81, 255);
     margin-bottom: 15px;
+    width: 90%;
 }
 
 button {
@@ -33,12 +34,12 @@ button {
 .profileContainer {
     padding: 10px;
     display: flex;
-    justify-content: left;
+    justify-content: space-around;
     flex-wrap: wrap;
 }
 
 .profile {
-    width: 50%;
+    width: 30%;
 }
 
 .sectionHeading {
@@ -60,9 +61,20 @@ button {
     background-color: rgba(100, 116, 139, 255);
     font-weight: 300;
     font-size: 18px;
-    display: felx;
-    justify-content: left;
+    display: block;
     flex-wrap: wrap;
     padding: 15px;
     margin: 5px;
+    width: 50%;
 }
+
+/* @media (max-width: 768px) {
+    .container {
+        flex-direction: column; 
+    }
+
+    .profile,
+    .profileInputs {
+        width: 100%;
+    }
+} */
