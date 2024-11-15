@@ -4,6 +4,7 @@ import Form from "./Components/Form.jsx";
 import ProfileStats from "./Components/ProfileStats.jsx";
 import ProfileStreak from "./Components/ProfileStreak.jsx";
 import ProfileChart from "./Components/ProfileChart.jsx";
+import Preview from "./Components/Preview.jsx";
 function App() {
     const [step, setStep] = useState(0);
     const steps = [
@@ -24,17 +25,12 @@ function App() {
     return (
         <>
             <span>
-                {/* TODO:change this heading */}
                 <h1> GitHub Profile Readme Generator </h1>
             </span>
             <div className="container">
-                <div className="form">
-                    {/* <Form></Form> */}
-                    {steps[step]}
-                </div>
+                <div className="form">{steps[step]}</div>
                 <div className="preview">
-                    Preview
-                    asdsadasd123131312312312asdasdasdasdasda1231221312312313asdasdasdasdadas
+                    <Preview></Preview>
                 </div>
             </div>
             <div className="navigation">
