@@ -7,11 +7,43 @@ import ProfileChart from "./Components/ProfileChart.jsx";
 import Preview from "./Components/Preview.jsx";
 function App() {
     const [step, setStep] = useState(0);
+    const [formData, setformData] = useState({});
+    const [profileStats, setProfileStats] = useState({});
+    const [profileStreak, setProfileStreak] = useState({});
+    const [profileChart, setProfileChart] = useState({});
+
     const steps = [
-        <Form></Form>,
-        <ProfileStats></ProfileStats>,
-        <ProfileStreak></ProfileStreak>,
-        <ProfileChart></ProfileChart>,
+        {
+            component: <Form data={formData} setData={setformData}></Form>,
+            preview: formData,
+        },
+        {
+            component: (
+                <ProfileStats
+                    data={profileStats}
+                    setData={setProfileStats}
+                ></ProfileStats>
+            ),
+            preview: profileStats,
+        },
+        {
+            component: (
+                <ProfileStreak
+                    data={profileStreak}
+                    setData={setProfileStreak}
+                ></ProfileStreak>
+            ),
+            preview: profileStreak,
+        },
+        {
+            component: (
+                <ProfileChart
+                    data={profileChart}
+                    setData={setProfileChart}
+                ></ProfileChart>
+            ),
+            preview: profileChart,
+        },
     ];
 
     function handleNext() {
@@ -28,9 +60,12 @@ function App() {
                 <h1> GitHub Profile Readme Generator </h1>
             </span>
             <div className="container">
-                <div className="form">{steps[step]}</div>
+                <div className="form">{steps[step].component}</div>
                 <div className="preview">
-                    <Preview></Preview>
+                    <Preview
+                        stepNum={step}
+                        data={steps[step].preview}
+                    ></Preview>
                 </div>
             </div>
             <div className="navigation">

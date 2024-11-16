@@ -41,12 +41,13 @@
 
 import React from "react";
 
-function Preview() {
+function Preview({ stepNum, data }) {
+    console.log(data);
     return (
-        <div>
-            Previewasdasdasdaads asdasdsad asdasdasdas dasdasdas dasdasdas
-            dasdasd asdasd asdasd sad
-        </div>
+        <>
+            <div>{data.Name}</div>
+            <div>{data.Title}</div>
+        </>
     );
 }
 

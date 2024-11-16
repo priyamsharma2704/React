@@ -1,4 +1,9 @@
-function Form() {
+function Form({ data, setData }) {
+    function handleInput(event) {
+        const { name, value } = event.target;
+        setData((prevData) => ({ ...prevData, [name]: value.trim() }));
+    }
+
     return (
         <>
             <div className="profileContainer">
@@ -13,30 +18,45 @@ function Form() {
                 <div className="profileInputs">
                     <span className="label">Username</span>
                     <br></br>
-                    <input type="text"></input>
+                    <input
+                        type="text"
+                        onChange={handleInput}
+                        name="Name"
+                    ></input>
                     <br></br>
                     <span className="label">Title</span>
                     <br></br>
-                    <input type="text" placeholder="Hi, I'm..."></input>
-                    <br></br>
-                    <span className="label">SubTitle</span>
-                    <br></br>
                     <input
                         type="text"
-                        placeholder="A passionate developer..."
+                        placeholder="Hi, I'm..."
+                        name="Title"
+                        onChange={handleInput}
                     ></input>
                     <br></br>
                     <span className="label">I'm based in</span>
                     <br></br>
-                    <input type="text" placeholder="New York"></input>
+                    <input
+                        type="text"
+                        placeholder="New York"
+                        name="Location"
+                        onChange={handleInput}
+                    ></input>
                     <br></br>
                     <span className="label">Email</span>
                     <br></br>
-                    <input type="text"></input>
+                    <input
+                        type="text"
+                        name="Email"
+                        onChange={handleInput}
+                    ></input>
                     <br></br>
                     <span className="label">Current Project</span>
                     <br></br>
-                    <input type="text"></input>
+                    <input
+                        type="text"
+                        name="CurrentProject"
+                        onChange={handleInput}
+                    ></input>
                     <br></br>
                 </div>
 
@@ -51,23 +71,43 @@ function Form() {
                 <div className="profileInputs">
                     <span className="label">Twitter</span>
                     <br></br>
-                    <input type="text"></input>
+                    <input
+                        type="text"
+                        name="Twitter"
+                        onChange={handleInput}
+                    ></input>
                     <br></br>
                     <span className="label">Linkedin</span>
                     <br></br>
-                    <input type="text"></input>
+                    <input
+                        type="text"
+                        name="LinkedIn"
+                        onChange={handleInput}
+                    ></input>
                     <br></br>
                     <span className="label">Instagram</span>
                     <br></br>
-                    <input type="text"></input>
+                    <input
+                        type="text"
+                        name="Instagram"
+                        onChange={handleInput}
+                    ></input>
                     <br></br>
                     <span className="label">Youtube</span>
                     <br></br>
-                    <input type="text"></input>
+                    <input
+                        type="text"
+                        name="Youtube"
+                        onChange={handleInput}
+                    ></input>
                     <br></br>
                     <span className="label">Stackoverflow</span>
                     <br></br>
-                    <input type="text"></input>
+                    <input
+                        type="text"
+                        name="StackOverFlow"
+                        onChange={handleInput}
+                    ></input>
                     <br></br>
                 </div>
 
