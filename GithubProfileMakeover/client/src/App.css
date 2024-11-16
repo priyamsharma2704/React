@@ -1,21 +1,53 @@
 #root {
     padding: 2rem;
+    width: 100%;
+}
+
+.app-container {
+    width: 100%;
+    position: relative;
+}
+
+.header {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: fit-content;
+    margin-bottom: 2rem;
+    z-index: 2;
+}
+
+h1 {
+    margin: 0;
+    white-space: nowrap;
 }
 
 .container {
     display: flex;
-    gap: 10px;
+    gap: 2rem;
+    justify-content: center;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
 }
 
 .form {
+    flex: 1;
     border: 2px solid rgb(134, 132, 132);
     border-radius: 5px;
     background-color: rgba(51, 65, 85, 255);
+    position: relative;
+    z-index: 1;
 }
 
 .preview {
+    flex: 1;
     border: 2px solid rgb(134, 132, 132);
     border-radius: 5px;
+    position: relative;
+    z-index: 1;
 }
 
 input {
@@ -40,7 +72,7 @@ button {
 }
 /* ---------- Profile Container -------------- */
 .profileContainer {
-    padding: 10px;
+    padding: 5px;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;

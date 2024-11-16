@@ -5,6 +5,7 @@ import ProfileStats from "./Components/ProfileStats.jsx";
 import ProfileStreak from "./Components/ProfileStreak.jsx";
 import ProfileChart from "./Components/ProfileChart.jsx";
 import Preview from "./Components/Preview.jsx";
+
 function App() {
     const [step, setStep] = useState(0);
     const [formData, setformData] = useState({});
@@ -55,10 +56,10 @@ function App() {
     }
 
     return (
-        <>
-            <span>
-                <h1> GitHub Profile Readme Generator </h1>
-            </span>
+        <div className="app-container">
+            <div className="header">
+                <h1>GitHub Profile Readme Generator</h1>
+            </div>
             <div className="container">
                 <div className="form">{steps[step].component}</div>
                 <div className="preview">
@@ -72,7 +73,7 @@ function App() {
                 <button onClick={handlePrev}>Prev</button>
                 <button onClick={handleNext}>Next</button>
             </div>
-        </>
+        </div>
     );
 }
 
