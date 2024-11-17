@@ -1,17 +1,17 @@
-import React from "react";
+import React, { useSyncExternalStore } from "react";
 import { useState, useEffect } from "react";
 
 /*
     Data will contain the github stats link
     https://github-readme-stats.vercel.app/api?username=priyamsharma2704
 
-    - show/hide indivisual stats : https://github-readme-stats.vercel.app/api?username=priyamsharma2704&hide=contribs,prs
+    - DONE: show/hide indivisual stats : &hide=contribs,prs
 
-    - show/hide additional stats : https://github-readme-stats.vercel.app/api?username=priyamsharma2704&show=reviews,discussions_started,discussions_answered,prs_merged,prs_merged_percentage
+    - DONE : show/hide additional stats : &show=reviews,discussions_started,discussions_answered,prs_merged,prs_merged_percentage
 
-    - show/hide icons : https://github-readme-stats.vercel.app/api?username=priyamsharma2704&show_icons=true
+    - show/hide icons : &show_icons=true
 
-    - themes : https://github-readme-stats.vercel.app/api?username=priyamsharma2704&show_icons=true&theme=radical
+    - themes : &theme=radical
      */
 
 function ProfileStats({ data, setData }) {
@@ -21,7 +21,7 @@ function ProfileStats({ data, setData }) {
             setData((prevData) => ({
                 ...prevData,
                 statsUrl:
-                    "https://github-readme-stats.vercel.app/api?username=priyamsharma2704&hide=contribs,prs",
+                    "https://github-readme-stats.vercel.app/api?username=priyamsharma2704&hide=contribs,prs&show_icons=true",
             }));
         }
     }, [data]);
@@ -29,19 +29,23 @@ function ProfileStats({ data, setData }) {
     const [isIndividualStatsChecked, setIsIndividualStatsChecked] =
         useState(true);
     const [isAdditionalStatsChecked, setIsAdditionalStatsChecked] =
-        useState(false);
+        useState(true);
+    const [isHideIconsChecked, setIsHideIconsChecked] = useState(false);
 
     function handleIsIndividualStatsChecked() {
         let statsStr =
             data.statsUrl ||
             "https://github-readme-stats.vercel.app/api?username=priyamsharma2704";
 
+        // if prev state was true, then hide the stats
         if (isIndividualStatsChecked) {
             statsStr = statsStr.replace("&hide=contribs,prs", "");
         } else {
+            //show stats
             if (!statsStr.includes("&hide=contribs,prs"))
                 statsStr += "&hide=contribs,prs";
         }
+
         setData((prevData) => ({
             ...prevData,
             statsUrl: statsStr,
@@ -52,26 +56,53 @@ function ProfileStats({ data, setData }) {
     function handleAdditionalStatsChecked() {
         let statsStr = data.statsUrl;
 
-        if (isAdditionalStatsChecked) {
+        //if prev state was false, then hide the stats
+        if (!isAdditionalStatsChecked) {
             statsStr = statsStr.replace(
-                "show=reviews,discussions_started,discussions_answered,prs_merged,prs_merged_percentage",
+                "&show=reviews,discussions_started,discussions_answered,prs_merged,prs_merged_percentage",
                 ""
             );
         } else {
+            //show the stats
             if (
                 !statsStr.includes(
-                    "show=reviews,discussions_started,discussions_answered,prs_merged,prs_merged_percentage"
+                    "&show=reviews,discussions_started,discussions_answered,prs_merged,prs_merged_percentage"
                 )
             )
                 statsStr +=
                     "&show=reviews,discussions_started,discussions_answered,prs_merged,prs_merged_percentage";
         }
-        console.log(statsStr);
+
         setIsAdditionalStatsChecked(!isAdditionalStatsChecked);
         setData((prevData) => ({
             ...prevData,
             statsUrl: statsStr,
         }));
+    }
+
+    function handleHideIconsChecked() {
+        let statsStr = data.statsUrl;
+
+        //if prev state was false, then Hide the icons
+        if (!isHideIconsChecked) {
+            statsStr = statsStr.replace(
+                "&show_icons=true",
+                "&show_icons=false"
+            );
+        } else {
+            //show icons
+            if (statsStr.includes("&show_icons=false"))
+                statsStr = statsStr.replace(
+                    "&show_icons=false",
+                    "&show_icons=true"
+                );
+        }
+
+        setData((prevData) => ({
+            ...prevData,
+            statsUrl: statsStr,
+        }));
+        setIsHideIconsChecked(!isHideIconsChecked);
     }
 
     return (
@@ -84,25 +115,27 @@ function ProfileStats({ data, setData }) {
             </div>
             <div className="profileInputs">
                 <span className="label">
-                    Hide individual stats
+                    Hide Individual Stats
                     <input
                         type="checkbox"
-                        id="vehicle1"
-                        name="vehicle1"
-                        value="Bike"
                         onChange={handleIsIndividualStatsChecked}
                         checked={isIndividualStatsChecked}
                     />
                 </span>
                 <span className="label">
-                    Hide additional stats
+                    Hide Additional Stats
                     <input
                         type="checkbox"
-                        id="vehicle1"
-                        name="vehicle1"
-                        value="Bike"
                         onChange={handleAdditionalStatsChecked}
                         checked={isAdditionalStatsChecked}
+                    />
+                </span>
+                <span className="label">
+                    Hide Icons
+                    <input
+                        type="checkbox"
+                        onChange={handleHideIconsChecked}
+                        checked={isHideIconsChecked}
                     />
                 </span>
             </div>
