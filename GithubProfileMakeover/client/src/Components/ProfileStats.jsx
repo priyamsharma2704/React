@@ -14,7 +14,16 @@ import { useState, useEffect } from "react";
     - DONE : themes : &theme=radical
      */
 
-function ProfileStats({ data, setData }) {
+function ProfileStats({
+    data,
+    setData,
+    isAdditionalStatsChecked,
+    setIsAdditionalStatsChecked,
+    isHideIconsChecked,
+    setIsHideIconsChecked,
+    isIndividualStatsChecked,
+    setIsIndividualStatsChecked,
+}) {
     //UseEffect is settting the states assuming the HiddenStates is True
     useEffect(() => {
         if (!data.statsUrl) {
@@ -25,12 +34,6 @@ function ProfileStats({ data, setData }) {
             }));
         }
     }, [data]);
-
-    const [isIndividualStatsChecked, setIsIndividualStatsChecked] =
-        useState(true);
-    const [isAdditionalStatsChecked, setIsAdditionalStatsChecked] =
-        useState(true);
-    const [isHideIconsChecked, setIsHideIconsChecked] = useState(false);
 
     let themes = [
         "Default",

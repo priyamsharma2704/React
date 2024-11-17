@@ -19,6 +19,10 @@ function App() {
     const [profileStreakTheme, setProfileStreakTheme] = useState("default");
     const [hideBorderChecked, setHideBorderChecked] = useState(true);
 
+    const [individualStatsChecked, setIndividualStatsChecked] = useState(true);
+    const [additionalStatsChecked, setAdditionalStatsChecked] = useState(true);
+    const [hideIconsChecked, setHideIconsChecked] = useState(false);
+
     const steps = [
         {
             component: <Form data={formData} setData={setformData}></Form>,
@@ -29,6 +33,12 @@ function App() {
                 <ProfileStats
                     data={profileStats}
                     setData={setProfileStats}
+                    isIndividualStatsChecked={individualStatsChecked}
+                    setIsIndividualStatsChecked={setIndividualStatsChecked}
+                    isAdditionalStatsChecked={additionalStatsChecked}
+                    setIsAdditionalStatsChecked={setAdditionalStatsChecked}
+                    isHideIconsChecked={hideIconsChecked}
+                    setIsHideIconsChecked={setHideIconsChecked}
                 ></ProfileStats>
             ),
             preview: profileStats,
