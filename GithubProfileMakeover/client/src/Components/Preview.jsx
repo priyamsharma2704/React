@@ -44,10 +44,22 @@ import React from "react";
 function Preview({ stepNum, data }) {
     console.log(data);
     return (
-        <>
-            <div>{data.Name}</div>
-            <div>{data.Title}</div>
-        </>
+        <div className={`preview-content ${stepNum === 0 ? 'preview-form' : 'preview-stats'}`}>
+            {stepNum == 0 && (
+                <>
+                    <div>{data.Name}</div>
+                    <div>{data.Title}</div>
+                </>
+            )}
+
+            {stepNum == 1 && (
+                <>
+                    <div>
+                        <img className="profileStats" src={data.statsUrl} />
+                    </div>
+                </>
+            )}
+        </div>
     );
 }
 
