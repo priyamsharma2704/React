@@ -9,7 +9,7 @@ import { useState, useEffect } from "react";
 
     - DONE : show/hide additional stats : &show=reviews,discussions_started,discussions_answered,prs_merged,prs_merged_percentage
 
-    - show/hide icons : &show_icons=true
+    - DONE : show/hide icons : &show_icons=true
 
     - themes : &theme=radical
      */
@@ -21,7 +21,7 @@ function ProfileStats({ data, setData }) {
             setData((prevData) => ({
                 ...prevData,
                 statsUrl:
-                    "https://github-readme-stats.vercel.app/api?username=priyamsharma2704&hide=contribs,prs&show_icons=true",
+                    "https://github-readme-stats.vercel.app/api?username=priyamsharma2704&hide=contribs,prs&show_icons=true&theme=default",
             }));
         }
     }, [data]);
@@ -31,6 +31,19 @@ function ProfileStats({ data, setData }) {
     const [isAdditionalStatsChecked, setIsAdditionalStatsChecked] =
         useState(true);
     const [isHideIconsChecked, setIsHideIconsChecked] = useState(false);
+    let themes = [
+        "Default",
+        "Dark",
+        "Radical",
+        "Merko",
+        "Gruvbox",
+        "Tokyonight",
+        "Onedark",
+        "Cobalt",
+        "Synthwave",
+        "Highcontrast",
+        "Dracula",
+    ];
 
     function handleIsIndividualStatsChecked() {
         let statsStr =
@@ -105,6 +118,28 @@ function ProfileStats({ data, setData }) {
         setIsHideIconsChecked(!isHideIconsChecked);
     }
 
+    function handleThemeSelect() {
+        let selectedTheme = event.target.value.toLowerCase();
+        console.log(selectedTheme);
+
+        let statsStr = data.statsUrl;
+
+        // Replace existing theme or add new theme if none exists
+        if (statsStr.includes("&theme=")) {
+            statsStr = statsStr.replace(
+                /&theme=[^&]+/,
+                `&theme=${selectedTheme}`
+            );
+        } else {
+            statsStr += `&theme=${selectedTheme}`;
+        }
+
+        setData((prevData) => ({
+            ...prevData,
+            statsUrl: statsStr,
+        }));
+    }
+
     return (
         <div className="profileContainer">
             {/* ----------- GITHUB STATS ----------- */}
@@ -137,6 +172,18 @@ function ProfileStats({ data, setData }) {
                         onChange={handleHideIconsChecked}
                         checked={isHideIconsChecked}
                     />
+                </span>
+                <span className="label">
+                    Theme
+                    <select
+                        name="theme"
+                        type="checkbox"
+                        onChange={handleThemeSelect}
+                    >
+                        {themes.map((theme, idx) => (
+                            <option key={idx}>{theme}</option>
+                        ))}
+                    </select>
                 </span>
             </div>
         </div>
