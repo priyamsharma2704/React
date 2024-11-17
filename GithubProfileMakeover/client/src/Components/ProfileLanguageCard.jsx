@@ -1,6 +1,14 @@
 import React from "react";
 import { useState, useEffect } from "react";
-function ProfileLanguageCard({ data, setData }) {
+
+function ProfileLanguageCard({
+    data,
+    setData,
+    selectedLayout,
+    setSelectedLayout,
+    isHideProgressBarsChecked,
+    setIsHideProgressBarsChecked,
+}) {
     useEffect(() => {
         setData((prevData) => ({
             ...prevData,
@@ -10,20 +18,13 @@ function ProfileLanguageCard({ data, setData }) {
     }, []);
 
     const cardLayouts = ["Compact", "Donut", "Donut-Vertical", "Pie"];
-    const [isHideProgressBarsChecked, setIsHideProgressBarsChecked] =
-        useState(false);
-    const [selectedLayout, setSelectedLayout] = useState("compact");
 
-    function handleLayoutSelect() {
-        const selectedLayout = event.target.value.toLowerCase();
-        let cardStr = data.languageCard;
+    function handleLayoutSelect(event) {
+        const newLayout = event.target.value.toLowerCase();
+        const cardStr = `https://github-readme-stats.vercel.app/api/top-langs/?username=priyamsharma2704&layout=${newLayout}&hide_progress=${isHideProgressBarsChecked}`;
 
-        cardStr = `https://github-readme-stats.vercel.app/api/top-langs/?username=priyamsharma2704&layout=${selectedLayout}&hide_progress=false`;
-
-        console.log(cardStr);
-
-        setSelectedLayout(selectedLayout);
-
+        setSelectedLayout(newLayout);
+        if (newLayout != "compact") setIsHideProgressBarsChecked(false);
         setData((prevData) => ({
             ...prevData,
             languageCard: cardStr,

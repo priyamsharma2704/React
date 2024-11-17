@@ -12,6 +12,8 @@ function App() {
     const [profileStats, setProfileStats] = useState({});
     const [profileStreak, setProfileStreak] = useState({});
     const [profileLanguageCard, setProfileLanguageCard] = useState({});
+    const [languageCardLayout, setLanguageCardLayout] = useState("compact");
+    const [hideProgressBars, setHideProgressBars] = useState(false);
 
     const steps = [
         {
@@ -41,6 +43,10 @@ function App() {
                 <ProfileLanguageCard
                     data={profileLanguageCard}
                     setData={setProfileLanguageCard}
+                    selectedLayout={languageCardLayout}
+                    setSelectedLayout={setLanguageCardLayout}
+                    isHideProgressBarsChecked={hideProgressBars}
+                    setIsHideProgressBarsChecked={setHideProgressBars}
                 ></ProfileLanguageCard>
             ),
             preview: profileLanguageCard,
