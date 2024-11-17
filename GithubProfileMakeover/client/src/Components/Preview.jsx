@@ -42,7 +42,6 @@
 import React from "react";
 
 function Preview({ stepNum, data }) {
-    console.log(data);
     return (
         <div
             className={`preview-content ${

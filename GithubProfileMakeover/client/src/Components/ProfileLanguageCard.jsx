@@ -12,20 +12,17 @@ function ProfileLanguageCard({ data, setData }) {
     const cardLayouts = ["Compact", "Donut", "Donut-Vertical", "Pie"];
     const [isHideProgressBarsChecked, setIsHideProgressBarsChecked] =
         useState(false);
+    const [selectedLayout, setSelectedLayout] = useState("compact");
 
     function handleLayoutSelect() {
         const selectedLayout = event.target.value.toLowerCase();
         let cardStr = data.languageCard;
 
-        // Replace existing theme or add new theme if none exists
-        if (cardStr.includes("&layout=")) {
-            cardStr = cardStr.replace(
-                /&layout=[^&]+/,
-                `&layout=${selectedLayout}`
-            );
-        } else {
-            cardStr += `&layout=${selectedLayout}`;
-        }
+        cardStr = `https://github-readme-stats.vercel.app/api/top-langs/?username=priyamsharma2704&layout=${selectedLayout}&hide_progress=false`;
+
+        console.log(cardStr);
+
+        setSelectedLayout(selectedLayout);
 
         setData((prevData) => ({
             ...prevData,
@@ -34,29 +31,21 @@ function ProfileLanguageCard({ data, setData }) {
     }
 
     function handleHideProgressBarsChecked() {
-        let cardStr = data.languageCard;
+        setIsHideProgressBarsChecked(!isHideProgressBarsChecked);
 
-        //if prev state is false, hide the progress bars
+        const newLayout = !isHideProgressBarsChecked
+            ? "compact"
+            : selectedLayout;
         if (!isHideProgressBarsChecked) {
-            cardStr = cardStr.replace(
-                "&hide_progress=false",
-                "&hide_progress=true"
-            );
-        } else {
-            if (cardStr.includes("&hide_progress=true")) {
-                cardStr = cardStr.replace(
-                    "&hide_progress=true",
-                    "&hide_progress=false"
-                );
-            }
+            setSelectedLayout("compact");
         }
+
+        const cardStr = `https://github-readme-stats.vercel.app/api/top-langs/?username=priyamsharma2704&layout=${newLayout}&hide_progress=${!isHideProgressBarsChecked}`;
 
         setData((prevData) => ({
             ...prevData,
             languageCard: cardStr,
         }));
-
-        setIsHideProgressBarsChecked(!isHideProgressBarsChecked);
     }
 
     return (
@@ -78,7 +67,14 @@ function ProfileLanguageCard({ data, setData }) {
                         onChange={handleLayoutSelect}
                     >
                         {cardLayouts.map((layout, idx) => (
-                            <option key={idx}>{layout}</option>
+                            <option
+                                key={idx}
+                                selected={
+                                    layout.toLowerCase() === selectedLayout
+                                }
+                            >
+                                {layout}
+                            </option>
                         ))}
                     </select>
                 </span>
@@ -90,6 +86,10 @@ function ProfileLanguageCard({ data, setData }) {
                         checked={isHideProgressBarsChecked}
                     />
                 </span>
+                <h6>
+                    * Note: Hiding progress bars will automatically switch to
+                    compact layout
+                </h6>
             </div>
         </div>
     );
