@@ -1,19 +1,6 @@
 import React, { useSyncExternalStore } from "react";
 import { useState, useEffect } from "react";
 
-/*
-    Data will contain the github stats link
-    https://github-readme-stats.vercel.app/api?username=priyamsharma2704
-
-    - DONE: show/hide indivisual stats : &hide=contribs,prs
-
-    - DONE : show/hide additional stats : &show=reviews,discussions_started,discussions_answered,prs_merged,prs_merged_percentage
-
-    - DONE : show/hide icons : &show_icons=true
-
-    - DONE : themes : &theme=radical
-     */
-
 function ProfileStats({
     data,
     setData,
@@ -23,6 +10,8 @@ function ProfileStats({
     setIsHideIconsChecked,
     isIndividualStatsChecked,
     setIsIndividualStatsChecked,
+    selectedTheme,
+    setSelectedTheme,
 }) {
     //UseEffect is settting the states assuming the HiddenStates is True
     useEffect(() => {
@@ -136,18 +125,19 @@ function ProfileStats({
 
     function handleThemeSelect() {
         let selectedTheme = event.target.value.toLowerCase();
-
+        setSelectedTheme(selectedTheme);
         let statsStr = data.statsUrl;
 
         // Replace existing theme or add new theme if none exists
-        if (statsStr.includes("&theme=")) {
-            statsStr = statsStr.replace(
-                /&theme=[^&]+/,
-                `&theme=${selectedTheme}`
-            );
-        } else {
-            statsStr += `&theme=${selectedTheme}`;
-        }
+        statsStr = `https://github-readme-stats.vercel.app/api?username=priyamsharma2704&hide=contribs,prs&show_icons=true&theme=${selectedTheme}`;
+        // if (statsStr.includes("&theme=")) {
+        //     statsStr = statsStr.replace(
+        //         /&theme=[^&]+/,
+        //         `&theme=${selectedTheme}`
+        //     );
+        // } else {
+        //     statsStr += `&theme=${selectedTheme}`;
+        // }
 
         setData((prevData) => ({
             ...prevData,
@@ -196,7 +186,12 @@ function ProfileStats({
                         onChange={handleThemeSelect}
                     >
                         {themes.map((theme, idx) => (
-                            <option key={idx}>{theme}</option>
+                            <option
+                                key={idx}
+                                selected={theme.toLowerCase() == selectedTheme}
+                            >
+                                {theme}
+                            </option>
                         ))}
                     </select>
                 </span>

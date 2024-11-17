@@ -22,6 +22,7 @@ function App() {
     const [individualStatsChecked, setIndividualStatsChecked] = useState(true);
     const [additionalStatsChecked, setAdditionalStatsChecked] = useState(true);
     const [hideIconsChecked, setHideIconsChecked] = useState(false);
+    const [theme, setTheme] = useState("default");
 
     const steps = [
         {
@@ -39,6 +40,8 @@ function App() {
                     setIsAdditionalStatsChecked={setAdditionalStatsChecked}
                     isHideIconsChecked={hideIconsChecked}
                     setIsHideIconsChecked={setHideIconsChecked}
+                    selectedTheme={theme}
+                    setSelectedTheme={setTheme}
                 ></ProfileStats>
             ),
             preview: profileStats,
