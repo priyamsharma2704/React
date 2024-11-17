@@ -31,6 +31,7 @@ function ProfileStats({ data, setData }) {
     const [isAdditionalStatsChecked, setIsAdditionalStatsChecked] =
         useState(true);
     const [isHideIconsChecked, setIsHideIconsChecked] = useState(false);
+
     let themes = [
         "Default",
         "Dark",

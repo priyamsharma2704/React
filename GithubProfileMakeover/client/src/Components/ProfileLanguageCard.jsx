@@ -5,10 +5,13 @@ function ProfileLanguageCard({ data, setData }) {
         setData((prevData) => ({
             ...prevData,
             languageCard:
-                "https://github-readme-stats.vercel.app/api/top-langs/?username=priyamsharma2704&layout=compact",
+                "https://github-readme-stats.vercel.app/api/top-langs/?username=priyamsharma2704&layout=compact&hide_progress=false",
         }));
     }, []);
+
     const cardLayouts = ["Compact", "Donut", "Donut-Vertical", "Pie"];
+    const [isHideProgressBarsChecked, setIsHideProgressBarsChecked] =
+        useState(false);
 
     function handleLayoutSelect() {
         const selectedLayout = event.target.value.toLowerCase();
@@ -28,6 +31,32 @@ function ProfileLanguageCard({ data, setData }) {
             ...prevData,
             languageCard: cardStr,
         }));
+    }
+
+    function handleHideProgressBarsChecked() {
+        let cardStr = data.languageCard;
+
+        //if prev state is false, hide the progress bars
+        if (!isHideProgressBarsChecked) {
+            cardStr = cardStr.replace(
+                "&hide_progress=false",
+                "&hide_progress=true"
+            );
+        } else {
+            if (cardStr.includes("&hide_progress=true")) {
+                cardStr = cardStr.replace(
+                    "&hide_progress=true",
+                    "&hide_progress=false"
+                );
+            }
+        }
+
+        setData((prevData) => ({
+            ...prevData,
+            languageCard: cardStr,
+        }));
+
+        setIsHideProgressBarsChecked(!isHideProgressBarsChecked);
     }
 
     return (
@@ -52,6 +81,14 @@ function ProfileLanguageCard({ data, setData }) {
                             <option key={idx}>{layout}</option>
                         ))}
                     </select>
+                </span>
+                <span className="label">
+                    Hide Progress Bars
+                    <input
+                        type="checkbox"
+                        onChange={handleHideProgressBarsChecked}
+                        checked={isHideProgressBarsChecked}
+                    />
                 </span>
             </div>
         </div>
