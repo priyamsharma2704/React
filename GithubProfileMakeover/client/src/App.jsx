@@ -3,7 +3,7 @@ import "./App.css";
 import Form from "./Components/Form.jsx";
 import ProfileStats from "./Components/ProfileStats.jsx";
 import ProfileStreak from "./Components/ProfileStreak.jsx";
-import ProfileChart from "./Components/ProfileChart.jsx";
+import ProfileLanguageCard from "./Components/ProfileLanguageCard.jsx";
 import Preview from "./Components/Preview.jsx";
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
     const [formData, setformData] = useState({});
     const [profileStats, setProfileStats] = useState({});
     const [profileStreak, setProfileStreak] = useState({});
-    const [profileChart, setProfileChart] = useState({});
+    const [profileLanguageCard, setProfileLanguageCard] = useState({});
 
     const steps = [
         {
@@ -38,12 +38,12 @@ function App() {
         },
         {
             component: (
-                <ProfileChart
-                    data={profileChart}
-                    setData={setProfileChart}
-                ></ProfileChart>
+                <ProfileLanguageCard
+                    data={profileLanguageCard}
+                    setData={setProfileLanguageCard}
+                ></ProfileLanguageCard>
             ),
-            preview: profileChart,
+            preview: profileLanguageCard,
         },
     ];
 

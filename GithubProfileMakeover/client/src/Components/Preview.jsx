@@ -71,6 +71,14 @@ function Preview({ stepNum, data }) {
                     </div>
                 </>
             )}
+
+            {stepNum == 3 && (
+                <>
+                    <div>
+                        <img className="profileStats" src={data.languageCard} />
+                    </div>
+                </>
+            )}
         </div>
     );
 }
