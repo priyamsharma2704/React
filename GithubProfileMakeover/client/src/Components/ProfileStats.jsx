@@ -130,14 +130,6 @@ function ProfileStats({
 
         // Replace existing theme or add new theme if none exists
         statsStr = `https://github-readme-stats.vercel.app/api?username=priyamsharma2704&hide=contribs,prs&show_icons=true&theme=${selectedTheme}`;
-        // if (statsStr.includes("&theme=")) {
-        //     statsStr = statsStr.replace(
-        //         /&theme=[^&]+/,
-        //         `&theme=${selectedTheme}`
-        //     );
-        // } else {
-        //     statsStr += `&theme=${selectedTheme}`;
-        // }
 
         setData((prevData) => ({
             ...prevData,

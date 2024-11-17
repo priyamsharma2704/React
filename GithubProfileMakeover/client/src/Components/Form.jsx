@@ -1,7 +1,10 @@
 function Form({ data, setData }) {
     function handleInput(event) {
         const { name, value } = event.target;
-        setData((prevData) => ({ ...prevData, [name]: value.trim() }));
+        setData((prevData) => ({
+            ...prevData,
+            [name]: value.trim(),
+        }));
     }
 
     return (
@@ -22,6 +25,7 @@ function Form({ data, setData }) {
                         type="text"
                         onChange={handleInput}
                         name="Name"
+                        value={data.Name || ""}
                     ></input>
                     <br></br>
                     <span className="label">Title</span>
@@ -31,6 +35,7 @@ function Form({ data, setData }) {
                         placeholder="Hi, I'm..."
                         name="Title"
                         onChange={handleInput}
+                        value={data.Title || ""}
                     ></input>
                     <br></br>
                     <span className="label">I'm based in</span>
@@ -40,6 +45,7 @@ function Form({ data, setData }) {
                         placeholder="New York"
                         name="Location"
                         onChange={handleInput}
+                        value={data.Location || ""}
                     ></input>
                     <br></br>
                     <span className="label">Email</span>
@@ -48,6 +54,7 @@ function Form({ data, setData }) {
                         type="text"
                         name="Email"
                         onChange={handleInput}
+                        value={data.Email || ""}
                     ></input>
                     <br></br>
                     <span className="label">Current Project</span>
@@ -56,6 +63,7 @@ function Form({ data, setData }) {
                         type="text"
                         name="CurrentProject"
                         onChange={handleInput}
+                        value={data.CurrentProject || ""}
                     ></input>
                     <br></br>
                 </div>
@@ -75,6 +83,7 @@ function Form({ data, setData }) {
                         type="text"
                         name="Twitter"
                         onChange={handleInput}
+                        value={data.Twitter || ""}
                     ></input>
                     <br></br>
                     <span className="label">Linkedin</span>
@@ -83,6 +92,7 @@ function Form({ data, setData }) {
                         type="text"
                         name="LinkedIn"
                         onChange={handleInput}
+                        value={data.LinkedIn || ""}
                     ></input>
                     <br></br>
                     <span className="label">Instagram</span>
@@ -91,6 +101,7 @@ function Form({ data, setData }) {
                         type="text"
                         name="Instagram"
                         onChange={handleInput}
+                        value={data.Instagram || ""}
                     ></input>
                     <br></br>
                     <span className="label">Youtube</span>
@@ -99,6 +110,7 @@ function Form({ data, setData }) {
                         type="text"
                         name="Youtube"
                         onChange={handleInput}
+                        value={data.Youtube || ""}
                     ></input>
                     <br></br>
                     <span className="label">Stackoverflow</span>
@@ -107,6 +119,7 @@ function Form({ data, setData }) {
                         type="text"
                         name="StackOverFlow"
                         onChange={handleInput}
+                        value={data.StackOverFlow || ""}
                     ></input>
                     <br></br>
                 </div>
