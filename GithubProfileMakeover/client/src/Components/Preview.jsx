@@ -44,7 +44,11 @@ import React from "react";
 function Preview({ stepNum, data }) {
     console.log(data);
     return (
-        <div className={`preview-content ${stepNum === 0 ? 'preview-form' : 'preview-stats'}`}>
+        <div
+            className={`preview-content ${
+                stepNum === 0 ? "preview-form" : "preview-stats"
+            }`}
+        >
             {stepNum == 0 && (
                 <>
                     <div>{data.Name}</div>
@@ -56,6 +60,14 @@ function Preview({ stepNum, data }) {
                 <>
                     <div>
                         <img className="profileStats" src={data.statsUrl} />
+                    </div>
+                </>
+            )}
+
+            {stepNum == 2 && (
+                <>
+                    <div>
+                        <img className="profileStats" src={data.statsStreak} />
                     </div>
                 </>
             )}

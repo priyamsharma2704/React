@@ -11,11 +11,11 @@ import { useState, useEffect } from "react";
 
     - DONE : show/hide icons : &show_icons=true
 
-    - themes : &theme=radical
+    - DONE : themes : &theme=radical
      */
 
 function ProfileStats({ data, setData }) {
-    //UseEffect is settting the states aassuming the HiddenStates is True
+    //UseEffect is settting the states assuming the HiddenStates is True
     useEffect(() => {
         if (!data.statsUrl) {
             setData((prevData) => ({
@@ -43,6 +43,18 @@ function ProfileStats({ data, setData }) {
         "Synthwave",
         "Highcontrast",
         "Dracula",
+        "Shadow_Blue",
+        "Great-Gatsby",
+        "Solarized-Dark",
+        "Material-Palenight",
+        "Flag-India",
+        "Slateorange",
+        "Outrun",
+        "Kacho_Ga",
+        "Panda",
+        "Rose",
+        "Date_Night",
+        "Apprentice",
     ];
 
     function handleIsIndividualStatsChecked() {
@@ -120,7 +132,6 @@ function ProfileStats({ data, setData }) {
 
     function handleThemeSelect() {
         let selectedTheme = event.target.value.toLowerCase();
-        console.log(selectedTheme);
 
         let statsStr = data.statsUrl;
 
