@@ -15,6 +15,7 @@ import { useState, useEffect } from "react";
      */
 
 function ProfileStats({ data, setData }) {
+    //UseEffect is settting the states aassuming the HiddenStates is True
     useEffect(() => {
         if (!data.statsUrl) {
             setData((prevData) => ({
@@ -26,7 +27,7 @@ function ProfileStats({ data, setData }) {
     }, [data]);
 
     const [isIndividualStatsChecked, setIsIndividualStatsChecked] =
-        useState(false);
+        useState(true);
     const [isAdditionalStatsChecked, setIsAdditionalStatsChecked] =
         useState(false);
 
@@ -63,7 +64,7 @@ function ProfileStats({ data, setData }) {
                 )
             )
                 statsStr +=
-                    "show=reviews,discussions_started,discussions_answered,prs_merged,prs_merged_percentage";
+                    "&show=reviews,discussions_started,discussions_answered,prs_merged,prs_merged_percentage";
         }
         console.log(statsStr);
         setIsAdditionalStatsChecked(!isAdditionalStatsChecked);
