@@ -12,8 +12,12 @@ function App() {
     const [profileStats, setProfileStats] = useState({});
     const [profileStreak, setProfileStreak] = useState({});
     const [profileLanguageCard, setProfileLanguageCard] = useState({});
+
     const [languageCardLayout, setLanguageCardLayout] = useState("compact");
     const [hideProgressBars, setHideProgressBars] = useState(false);
+
+    const [profileStreakTheme, setProfileStreakTheme] = useState("default");
+    const [hideBorderChecked, setHideBorderChecked] = useState(true);
 
     const steps = [
         {
@@ -34,6 +38,10 @@ function App() {
                 <ProfileStreak
                     data={profileStreak}
                     setData={setProfileStreak}
+                    profileStreakTheme={profileStreakTheme}
+                    setProfileStreakTheme={setProfileStreakTheme}
+                    isHideBorderChecked={hideBorderChecked}
+                    setIsHideBorderChecked={setHideBorderChecked}
                 ></ProfileStreak>
             ),
             preview: profileStreak,

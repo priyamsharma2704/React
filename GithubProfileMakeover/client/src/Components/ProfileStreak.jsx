@@ -1,15 +1,22 @@
 import { useState, useEffect } from "react";
 import React from "react";
 
-function ProfileStreak({ data, setData }) {
-    const [isHideBorderChecked, setIsHideBorderChecked] = useState(false);
+function ProfileStreak({
+    data,
+    setData,
+    isHideBorderChecked,
+    setIsHideBorderChecked,
+    profileStreakTheme,
+    setProfileStreakTheme,
+}) {
+    //const [isHideBorderChecked, setIsHideBorderChecked] = useState(false);
 
     useEffect(() => {
         if (!data.statsStreak) {
             setData((prevData) => ({
                 ...prevData,
                 statsStreak:
-                    "https://streak-stats.demolab.com/?user=priyamsharma2704&theme=deafult&hide_border=true",
+                    "https://streak-stats.demolab.com/?user=priyamsharma2704&theme=default",
             }));
         }
     }, [data]);
@@ -42,17 +49,8 @@ function ProfileStreak({ data, setData }) {
 
     function handleThemeSelect() {
         let selectedTheme = event.target.value.toLowerCase();
-        let statsStreakStr = data.statsStreak;
-
-        // Replace existing theme or add new theme if none exists
-        if (statsStreakStr.includes("&theme=")) {
-            statsStreakStr = statsStreakStr.replace(
-                /&theme=[^&]+/,
-                `&theme=${selectedTheme}`
-            );
-        } else {
-            statsStreakStr += `&theme=${selectedTheme}`;
-        }
+        setProfileStreakTheme(selectedTheme);
+        let statsStreakStr = `https://streak-stats.demolab.com/?user=priyamsharma2704&theme=${selectedTheme}&hide_border=${isHideBorderChecked}`;
 
         setData((prevData) => ({
             ...prevData,
@@ -63,13 +61,14 @@ function ProfileStreak({ data, setData }) {
     function handleHideBorderChecked() {
         let statsStreakStr = data.statsStreak;
 
-        //if prev state was false, then hide the border
+        //if prev state was true, then show the border
         if (!isHideBorderChecked) {
-            statsStreakStr = statsStreakStr.replace("&hide_border=true", "");
-        } else {
             if (!statsStreakStr.includes("&hide_border=true")) {
                 statsStreakStr += "&hide_border=true";
             }
+        } else {
+            //hide borders
+            statsStreakStr = statsStreakStr.replace("&hide_border=true", "");
         }
 
         setData((prevData) => ({
@@ -99,7 +98,14 @@ function ProfileStreak({ data, setData }) {
                         onChange={handleThemeSelect}
                     >
                         {themes.map((theme, idx) => (
-                            <option key={idx}>{theme}</option>
+                            <option
+                                key={idx}
+                                selected={
+                                    theme.toLowerCase() === profileStreakTheme
+                                }
+                            >
+                                {theme}
+                            </option>
                         ))}
                     </select>
                 </span>
