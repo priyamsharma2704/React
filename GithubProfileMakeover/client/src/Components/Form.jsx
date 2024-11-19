@@ -3,7 +3,7 @@ function Form({ data, setData }) {
         const { name, value } = event.target;
         setData((prevData) => ({
             ...prevData,
-            [name]: value.trim(),
+            [name]: value
         }));
     }
 

@@ -42,17 +42,45 @@
 import React from "react";
 
 function Preview({ stepNum, data }) {
+    const markdown = `
+Hi, **I'm** ${data.Name}
+I work as a ${data.Title}
+Currently I am working on ${data.CurrentProject}
+
+I am situated in ${data.Location}
+
+## Contact:
+- Email: ${data.Email}
+- LinkedIn: ${data.Linkedin}
+- Twitter: ${data.Twitter}
+    `;
     return (
-        <div
-            className={`preview-content ${
-                stepNum === 0 ? "preview-form" : "preview-stats"
-            }`}
-        >
+        <div>
             {stepNum == 0 && (
-                <>
-                    <div>{data.Name}</div>
-                    <div>{data.Title}</div>
-                </>
+                <div className="formPreview">
+                    <h1>Hi 👋, my name is {data.Name}</h1>
+                    <hr></hr>
+                    <h2>{data.Title}</h2>
+                    <hr></hr>
+                    <ul>
+                        <li>I'm based in {data.Location}</li>
+                        <li>{data.Email}</li>
+                        <li>{data.CurrentProject}</li>
+                    </ul>
+                    <a
+                        href="https://www.github.com/priyamsharma2704"
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        <img src="https://img.shields.io/github/followers/priyamsharma2704?logo=github&style=for-the-badge&color=64748b&labelColor=27272a" />
+                    </a>
+                    <hr></hr>
+                    <h2>Socials</h2>
+                    add links >>>> LinkedIn | Twitter | Instagram | Stack
+                    overflow
+                    <hr></hr>
+                    <h2>Skills</h2>
+                </div>
             )}
 
             {stepNum == 1 && (
