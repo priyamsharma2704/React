@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 
 function ProfileLanguageCard({
+    formData,
     data,
     setData,
     selectedLayout,
@@ -12,16 +13,17 @@ function ProfileLanguageCard({
     useEffect(() => {
         setData((prevData) => ({
             ...prevData,
-            languageCard:
-                "https://github-readme-stats.vercel.app/api/top-langs/?username=priyamsharma2704&layout=compact&hide_progress=false",
+            languageCard: formData.UserName
+                ? `https://github-readme-stats.vercel.app/api/top-langs/?username=${formData.UserName}&layout=compact&hide_progress=false`
+                : "",
         }));
-    }, []);
+    }, [formData.UserName]);
 
     const cardLayouts = ["Compact", "Donut", "Donut-Vertical", "Pie"];
 
     function handleLayoutSelect(event) {
         const newLayout = event.target.value.toLowerCase();
-        const cardStr = `https://github-readme-stats.vercel.app/api/top-langs/?username=priyamsharma2704&layout=${newLayout}&hide_progress=${isHideProgressBarsChecked}`;
+        const cardStr = `https://github-readme-stats.vercel.app/api/top-langs/?username=${formData.UserName}&layout=${newLayout}&hide_progress=${isHideProgressBarsChecked}`;
 
         setSelectedLayout(newLayout);
         if (newLayout != "compact") setIsHideProgressBarsChecked(false);

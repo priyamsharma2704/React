@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import React from "react";
 
 function ProfileStreak({
+    formData,
     data,
     setData,
     isHideBorderChecked,
@@ -15,11 +16,12 @@ function ProfileStreak({
         if (!data.statsStreak) {
             setData((prevData) => ({
                 ...prevData,
-                statsStreak:
-                    "https://streak-stats.demolab.com/?user=priyamsharma2704&theme=default",
+                statsStreak: formData.UserName
+                    ? `https://streak-stats.demolab.com/?user=${formData.UserName}&theme=default`
+                    : "",
             }));
         }
-    }, [data]);
+    }, [formData.UserName]);
 
     let themes = [
         "Default",
@@ -50,7 +52,7 @@ function ProfileStreak({
     function handleThemeSelect() {
         let selectedTheme = event.target.value.toLowerCase();
         setProfileStreakTheme(selectedTheme);
-        let statsStreakStr = `https://streak-stats.demolab.com/?user=priyamsharma2704&theme=${selectedTheme}&hide_border=${isHideBorderChecked}`;
+        let statsStreakStr = `https://streak-stats.demolab.com/?user=${formData.UserName}&theme=${selectedTheme}&hide_border=${isHideBorderChecked}`;
 
         setData((prevData) => ({
             ...prevData,

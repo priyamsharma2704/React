@@ -16,14 +16,13 @@ function ProfileStats({
 }) {
     //UseEffect is settting the states assuming the HiddenStates is True
     useEffect(() => {
-        console.log(formData.UserName);
-        if (!data.statsUrl) {
-            setData((prevData) => ({
-                ...prevData,
-                statsUrl: `https://github-readme-stats.vercel.app/api?username=${formData.UserName}&hide=contribs,prs&show_icons=true&theme=default`,
-            }));
-        }
-    }, [data, formData]);
+        setData((prev) => ({
+            ...prev,
+            statsUrl: formData.UserName
+                ? `https://github-readme-stats.vercel.app/api?username=${formData.UserName}&hide=contribs,prs&show_icons=true&theme=default`
+                : "",
+        }));
+    }, [formData.UserName]);
 
     let themes = [
         "Default",

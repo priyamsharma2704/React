@@ -50,6 +50,7 @@ function App() {
         {
             component: (
                 <ProfileStreak
+                    formData={formData}
                     data={profileStreak}
                     setData={setProfileStreak}
                     profileStreakTheme={profileStreakTheme}
@@ -63,6 +64,7 @@ function App() {
         {
             component: (
                 <ProfileLanguageCard
+                    formData={formData}
                     data={profileLanguageCard}
                     setData={setProfileLanguageCard}
                     selectedLayout={languageCardLayout}
@@ -77,9 +79,12 @@ function App() {
 
     function handleNext() {
         if (step < steps.length - 1) {
-            if (step == 0 && formData.UserName != undefined)
-                setStep((prevStep) => prevStep + 1);
-            else alert("UserName is empty");
+            //if (step == 0 && formData.UserName != undefined)
+            if (step == 0 && formData.UserName == undefined) {
+                alert("UserName is empty");
+                return;
+            }
+            setStep((prevStep) => prevStep + 1);
         }
     }
 
