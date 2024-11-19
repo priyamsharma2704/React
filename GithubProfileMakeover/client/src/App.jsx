@@ -32,6 +32,7 @@ function App() {
         {
             component: (
                 <ProfileStats
+                    formData={formData}
                     data={profileStats}
                     setData={setProfileStats}
                     isIndividualStatsChecked={individualStatsChecked}
@@ -75,7 +76,11 @@ function App() {
     ];
 
     function handleNext() {
-        if (step < steps.length - 1) setStep((prevStep) => prevStep + 1);
+        if (step < steps.length - 1) {
+            if (step == 0 && formData.UserName != undefined)
+                setStep((prevStep) => prevStep + 1);
+            else alert("UserName is empty");
+        }
     }
 
     function handlePrev() {

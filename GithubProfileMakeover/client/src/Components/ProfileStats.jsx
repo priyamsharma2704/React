@@ -2,6 +2,7 @@ import React, { useSyncExternalStore } from "react";
 import { useState, useEffect } from "react";
 
 function ProfileStats({
+    formData,
     data,
     setData,
     isAdditionalStatsChecked,
@@ -15,14 +16,14 @@ function ProfileStats({
 }) {
     //UseEffect is settting the states assuming the HiddenStates is True
     useEffect(() => {
+        console.log(formData.UserName);
         if (!data.statsUrl) {
             setData((prevData) => ({
                 ...prevData,
-                statsUrl:
-                    "https://github-readme-stats.vercel.app/api?username=priyamsharma2704&hide=contribs,prs&show_icons=true&theme=default",
+                statsUrl: `https://github-readme-stats.vercel.app/api?username=${formData.UserName}&hide=contribs,prs&show_icons=true&theme=default`,
             }));
         }
-    }, [data]);
+    }, [data, formData]);
 
     let themes = [
         "Default",
@@ -53,7 +54,7 @@ function ProfileStats({
     function handleIsIndividualStatsChecked() {
         let statsStr =
             data.statsUrl ||
-            "https://github-readme-stats.vercel.app/api?username=priyamsharma2704";
+            `https://github-readme-stats.vercel.app/api?username=${formData.UserName}`;
 
         // if prev state was true, then hide the stats
         if (isIndividualStatsChecked) {
@@ -129,7 +130,7 @@ function ProfileStats({
         let statsStr = data.statsUrl;
 
         // Replace existing theme or add new theme if none exists
-        statsStr = `https://github-readme-stats.vercel.app/api?username=priyamsharma2704&hide=contribs,prs&show_icons=true&theme=${selectedTheme}`;
+        statsStr = `https://github-readme-stats.vercel.app/api?username=${formData.UserName}&hide=contribs,prs&show_icons=true&theme=${selectedTheme}`;
 
         setData((prevData) => ({
             ...prevData,

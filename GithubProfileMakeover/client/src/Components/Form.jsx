@@ -3,7 +3,7 @@ function Form({ data, setData }) {
         const { name, value } = event.target;
         setData((prevData) => ({
             ...prevData,
-            [name]: value
+            [name]: value,
         }));
     }
 
@@ -19,8 +19,16 @@ function Form({ data, setData }) {
                     </span>
                 </div>
                 <div className="profileInputs">
-                    <span className="label">Username</span>
+                    <span className="label">Github Username</span>
+                    <input
+                        type="text"
+                        onChange={handleInput}
+                        name="UserName"
+                        value={data.UserName || ""}
+                    ></input>
                     <br></br>
+
+                    <span className="label">Name</span>
                     <input
                         type="text"
                         onChange={handleInput}
@@ -28,8 +36,8 @@ function Form({ data, setData }) {
                         value={data.Name || ""}
                     ></input>
                     <br></br>
+
                     <span className="label">Title</span>
-                    <br></br>
                     <input
                         type="text"
                         placeholder="Hi, I'm..."
@@ -38,8 +46,8 @@ function Form({ data, setData }) {
                         value={data.Title || ""}
                     ></input>
                     <br></br>
+
                     <span className="label">I'm based in</span>
-                    <br></br>
                     <input
                         type="text"
                         placeholder="New York"
@@ -48,8 +56,8 @@ function Form({ data, setData }) {
                         value={data.Location || ""}
                     ></input>
                     <br></br>
+
                     <span className="label">Email</span>
-                    <br></br>
                     <input
                         type="text"
                         name="Email"
@@ -57,8 +65,8 @@ function Form({ data, setData }) {
                         value={data.Email || ""}
                     ></input>
                     <br></br>
+
                     <span className="label">Current Project</span>
-                    <br></br>
                     <input
                         type="text"
                         name="CurrentProject"
@@ -78,7 +86,6 @@ function Form({ data, setData }) {
                 </div>
                 <div className="profileInputs">
                     <span className="label">Twitter</span>
-                    <br></br>
                     <input
                         type="text"
                         name="Twitter"
@@ -86,8 +93,8 @@ function Form({ data, setData }) {
                         value={data.Twitter || ""}
                     ></input>
                     <br></br>
+
                     <span className="label">Linkedin</span>
-                    <br></br>
                     <input
                         type="text"
                         name="LinkedIn"
@@ -95,8 +102,8 @@ function Form({ data, setData }) {
                         value={data.LinkedIn || ""}
                     ></input>
                     <br></br>
+
                     <span className="label">Instagram</span>
-                    <br></br>
                     <input
                         type="text"
                         name="Instagram"
@@ -104,8 +111,8 @@ function Form({ data, setData }) {
                         value={data.Instagram || ""}
                     ></input>
                     <br></br>
+
                     <span className="label">Youtube</span>
-                    <br></br>
                     <input
                         type="text"
                         name="Youtube"
@@ -113,8 +120,8 @@ function Form({ data, setData }) {
                         value={data.Youtube || ""}
                     ></input>
                     <br></br>
+
                     <span className="label">Stackoverflow</span>
-                    <br></br>
                     <input
                         type="text"
                         name="StackOverFlow"
