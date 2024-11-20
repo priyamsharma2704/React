@@ -1,59 +1,6 @@
-// // src/components/MarkdownGenerator.js
-// import React from "react";
-
-// function MarkdownGenerator({ profileData }) {
-//     const markdown = `
-// # ${profileData.name}
-
-// ${profileData.bio}
-
-// ## Skills:
-// ${profileData.skills.map((skill) => `- ${skill}`).join("\n")}
-
-// ## Projects:
-// ${profileData.projects
-//     .map((project) => `- **${project.name}**: ${project.description}`)
-//     .join("\n")}
-
-// ## Contact:
-// - Email: ${profileData.contact.email}
-// - LinkedIn: ${profileData.contact.linkedin}
-// - Twitter: ${profileData.contact.twitter}
-//   `;
-
-//     return (
-//         <div className="MarkdownGenerator">
-//             <h2>Generated Markdown</h2>
-//             <pre>{markdown}</pre>
-//             <button
-//                 onClick={() => {
-//                     navigator.clipboard.writeText(markdown);
-//                     alert("Markdown code copied to clipboard!");
-//                 }}
-//             >
-//                 Copy Markdown
-//             </button>
-//         </div>
-//     );
-// }
-
-// export default MarkdownGenerator;
-
 import React from "react";
 
 function Preview({ stepNum, data }) {
-    const markdown = `
-Hi, **I'm** ${data.Name}
-I work as a ${data.Title}
-Currently I am working on ${data.CurrentProject}
-
-I am situated in ${data.Location}
-
-## Contact:
-- Email: ${data.Email}
-- LinkedIn: ${data.Linkedin}
-- Twitter: ${data.Twitter}
-    `;
     return (
         <div>
             {stepNum == 0 && (
@@ -76,11 +23,13 @@ I am situated in ${data.Location}
                     )}
                     {data.UserName && (
                         <a
-                            href="https://www.github.com/priyamsharma2704"
+                            href={`https://www.github.com/${data.UserName}`}
                             target="_blank"
                             rel="noreferrer"
                         >
-                            <img src="https://img.shields.io/github/followers/priyamsharma2704?logo=github&style=for-the-badge&color=64748b&labelColor=27272a" />
+                            <img
+                                src={`https://img.shields.io/github/followers/${data.UserName}?logo=github&style=for-the-badge&color=64748b&labelColor=27272a`}
+                            />
                         </a>
                     )}
                     <hr></hr>
