@@ -47,6 +47,16 @@ function Form({ data, setData }) {
                     ></input>
                     <br></br>
 
+                    <span className="label">About me</span>
+                    <input
+                        type="text"
+                        placeholder="About me..."
+                        name="AboutMe"
+                        onChange={handleInput}
+                        value={data.AboutMe || ""}
+                    ></input>
+                    <br></br>
+
                     <span className="label">I'm based in</span>
                     <input
                         type="text"

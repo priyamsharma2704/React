@@ -58,22 +58,31 @@ I am situated in ${data.Location}
         <div>
             {stepNum == 0 && (
                 <div className="formPreview">
-                    <h1>Hi 👋, my name is {data.Name}</h1>
-                    <hr></hr>
-                    <h2>{data.Title}</h2>
-                    <hr></hr>
-                    <ul>
-                        <li>I'm based in {data.Location}</li>
-                        <li>{data.Email}</li>
-                        <li>{data.CurrentProject}</li>
-                    </ul>
-                    <a
-                        href="https://www.github.com/priyamsharma2704"
-                        target="_blank"
-                        rel="noreferrer"
-                    >
-                        <img src="https://img.shields.io/github/followers/priyamsharma2704?logo=github&style=for-the-badge&color=64748b&labelColor=27272a" />
-                    </a>
+                    {data.Name && <h1>Hi 👋, my name is {data.Name}</h1>}
+                    {(data.Name || data.Title) && <hr />}
+                    {data.Title && <h2>I work as a {data.Title}</h2>}
+                    {(data.Title || data.AboutMe) && <hr />}
+                    {data.AboutMe && <p>{data.AboutMe}</p>}
+                    {(data.Location || data.Email || data.CurrentProject) && (
+                        <ul>
+                            {data.Location && (
+                                <li>I'm based in {data.Location}</li>
+                            )}
+                            {data.Email && <li>{data.Email}</li>}
+                            {data.CurrentProject && (
+                                <li>{data.CurrentProject}</li>
+                            )}
+                        </ul>
+                    )}
+                    {data.UserName && (
+                        <a
+                            href="https://www.github.com/priyamsharma2704"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            <img src="https://img.shields.io/github/followers/priyamsharma2704?logo=github&style=for-the-badge&color=64748b&labelColor=27272a" />
+                        </a>
+                    )}
                     <hr></hr>
                     <h2>Socials</h2>
                     add links >>>> LinkedIn | Twitter | Instagram | Stack
