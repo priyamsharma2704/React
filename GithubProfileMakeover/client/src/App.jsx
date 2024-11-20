@@ -5,6 +5,7 @@ import ProfileStats from "./Components/ProfileStats.jsx";
 import ProfileStreak from "./Components/ProfileStreak.jsx";
 import ProfileLanguageCard from "./Components/ProfileLanguageCard.jsx";
 import Preview from "./Components/Preview.jsx";
+import ProfilePreview from "./Components/ProfilePreview.jsx";
 
 function App() {
     const [step, setStep] = useState(0);
@@ -75,11 +76,20 @@ function App() {
             ),
             preview: profileLanguageCard,
         },
+        {
+            component: (
+                <ProfilePreview
+                    formData={formData}
+                    profileStats={profileStats}
+                    profileStreak={profileStreak}
+                    profileLanguageCard={profileLanguageCard}
+                ></ProfilePreview>
+            ),
+        },
     ];
 
     function handleNext() {
         if (step < steps.length - 1) {
-            //if (step == 0 && formData.UserName != undefined)
             if (step == 0 && formData.UserName == undefined) {
                 alert("UserName is empty");
                 return;
@@ -108,7 +118,9 @@ function App() {
             </div>
             <div className="navigation">
                 <button onClick={handlePrev}>Prev</button>
-                <button onClick={handleNext}>Next</button>
+                <button onClick={handleNext}>
+                    {step != 3 ? "Next" : "Generate Preview"}
+                </button>
             </div>
         </div>
     );
