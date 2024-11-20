@@ -25,6 +25,8 @@ function App() {
     const [hideIconsChecked, setHideIconsChecked] = useState(false);
     const [theme, setTheme] = useState("default");
 
+    const [generatePreview, setGeneratePreview] = useState(false);
+
     const steps = [
         {
             component: <Form data={formData} setData={setformData}></Form>,
@@ -94,12 +96,21 @@ function App() {
                 alert("UserName is empty");
                 return;
             }
+            if (step === 3) {
+                setGeneratePreview(true);
+            }
             setStep((prevStep) => prevStep + 1);
         }
     }
 
     function handlePrev() {
-        if (step > 0) setStep((prevStep) => prevStep - 1);
+        if (step > 0) {
+            const newStep = step - 1;
+            setStep(newStep);
+            if (step === 4) {
+                setGeneratePreview(false);
+            }
+        }
     }
 
     return (
@@ -108,19 +119,32 @@ function App() {
                 <h1>GitHub Profile Readme Generator</h1>
             </div>
             <div className="container">
-                <div className="form">{steps[step].component}</div>
-                <div className="preview">
-                    <Preview
-                        stepNum={step}
-                        data={steps[step].preview}
-                    ></Preview>
-                </div>
+                {!generatePreview ? (
+                    <>
+                        <div className="form">{steps[step].component}</div>
+                        <div className="preview">
+                            <Preview
+                                stepNum={step}
+                                data={steps[step].preview}
+                            ></Preview>
+                        </div>
+                    </>
+                ) : (
+                    <ProfilePreview
+                        formData={formData}
+                        profileStats={profileStats}
+                        profileStreak={profileStreak}
+                        profileLanguageCard={profileLanguageCard}
+                    />
+                )}
             </div>
             <div className="navigation">
                 <button onClick={handlePrev}>Prev</button>
-                <button onClick={handleNext}>
-                    {step != 3 ? "Next" : "Generate Preview"}
-                </button>
+                {!generatePreview && (
+                    <button onClick={handleNext}>
+                        {step !== 3 ? "Next" : "Generate Preview"}
+                    </button>
+                )}
             </div>
         </div>
     );
