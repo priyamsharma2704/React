@@ -3,3 +3,10 @@ https://github.com/anuraghazra/github-readme-stats - for customizing Github prof
 https://github.com/DenverCoder1/github-readme-streak-stats - for customizing Github profile streaks card
 
 DEMO - https://streak-stats.demolab.com/demo/
+
+Github Charts
+Use this URL https://ghchart.rshah.org/<username> and replace <username> by yours.
+
+
+Trophies:
+https://github.com/ryo-ma/github-profile-trophy

@@ -1,0 +1,161 @@
+#root {
+    padding: 2rem;
+    width: 100%;
+}
+
+.app-container {
+    width: 100%;
+    position: relative;
+}
+
+.header {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: fit-content;
+    margin-bottom: 2rem;
+    z-index: 2;
+}
+
+h1 {
+    margin: 0;
+    white-space: nowrap;
+}
+
+.container {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    width: 100%;
+    max-width: 1900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.form {
+    flex: 1;
+    border: 2px solid rgb(134, 132, 132);
+    border-radius: 5px;
+    background-color: rgba(51, 65, 85, 255);
+    position: relative;
+    z-index: 1;
+}
+
+.preview {
+    flex: 1;
+    border: 2px solid rgb(134, 132, 132);
+    border-radius: 5px;
+    position: relative;
+    z-index: 1;
+}
+
+input {
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(55, 65, 81, 255);
+    margin-bottom: 15px;
+    width: 90%;
+}
+
+button {
+    background-color: rgba(31, 41, 55, 255);
+    margin: 2px;
+}
+
+.navigation {
+    margin-right: 60%;
+    float: right;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+/* ---------- Profile Container -------------- */
+.profileContainer {
+    padding: 5px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.profile {
+    width: 40%;
+}
+
+.sectionHeading {
+    font-weight: 400px;
+    font-size: 22px;
+}
+
+.sectionDesc {
+    font-weight: 300;
+    font-size: 18px;
+    color: rgba(156, 163, 175, 255);
+}
+
+.label {
+    color: rgba(55, 65, 81, 255);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+}
+
+.label input[type="checkbox"] {
+    margin: 0;
+    width: auto;
+    order: 2;
+}
+
+.profileInputs {
+    background-color: rgba(100, 116, 139, 255);
+    font-weight: 300;
+    font-size: 18px;
+    display: block;
+    flex-wrap: wrap;
+    padding: 15px;
+    margin: 5px;
+    width: 50%;
+}
+
+/* -----Preview ------*/
+
+.preview {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.preview-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.preview-form {
+    align-items: flex-start;
+    padding-top: 40px;
+}
+
+.preview-form div {
+    text-align: left;
+    margin-bottom: 15px;
+    font-size: 1.1em;
+}
+
+.preview-stats {
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.preview img.profileStats {
+    max-width: 100%;
+    height: auto;
+}
+
+.preview div {
+    text-align: justify;
+    width: 100%;
+    margin: 5px 0;
+}
