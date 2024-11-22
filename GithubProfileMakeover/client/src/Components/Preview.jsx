@@ -1,6 +1,11 @@
 import React from "react";
-
+import Twitter from "../assets/twitter.png";
+import Linkedin from "../assets/linkedin.png";
+import Youtube from "../assets/yt.png";
+import StackOverflow from "../assets/stack-of.png";
+import Instagram from "../assets/insta.png";
 function Preview({ stepNum, data }) {
+    console.log(data);
     return (
         <div>
             {stepNum == 0 && (
@@ -34,8 +39,31 @@ function Preview({ stepNum, data }) {
                     )}
                     <hr></hr>
                     <h2>Socials</h2>
-                    add links >>>> LinkedIn | Twitter | Instagram | Stack
-                    overflow
+                    {data.Twitter && (
+                        <a href={data.Twitter}>
+                            <img src={Twitter} className="logo"></img>
+                        </a>
+                    )}
+                    {data.LinkedIn && (
+                        <a href={data.Linkedin}>
+                            <img src={Linkedin} className="logo"></img>
+                        </a>
+                    )}
+                    {data.Instagram && (
+                        <a href={data.Instagram}>
+                            <img src={Instagram} className="logo"></img>
+                        </a>
+                    )}
+                    {data.Youtube && (
+                        <a href={data.Youtube}>
+                            <img src={Youtube} className="logo"></img>
+                        </a>
+                    )}
+                    {data.StackOverFlow && (
+                        <a href={data.StackOverFlow}>
+                            <img src={StackOverflow} className="logo"></img>
+                        </a>
+                    )}
                     <hr></hr>
                     <h2>Skills</h2>
                 </div>
