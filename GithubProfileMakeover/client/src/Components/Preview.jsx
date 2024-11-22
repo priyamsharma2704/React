@@ -37,8 +37,11 @@ function Preview({ stepNum, data }) {
                             />
                         </a>
                     )}
-                    <hr></hr>
-                    <h2>Socials</h2>
+                    {data.UserName && <hr></hr>}
+                    {(data.Twitter ||
+                        data.Instagram ||
+                        data.Youtube ||
+                        data.StackOverFlow) && <h2>Socials</h2>}
                     {data.Twitter && (
                         <a href={data.Twitter}>
                             <img src={Twitter} className="logo"></img>
