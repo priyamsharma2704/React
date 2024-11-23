@@ -94,7 +94,7 @@ button {
 }
 
 .label {
-    color: rgba(55, 65, 81, 255);
+    color: rgb(211, 213, 218);
     display: flex;
     align-items: center;
     justify-content: space-between;

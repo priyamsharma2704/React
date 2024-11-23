@@ -1,4 +1,132 @@
 function Form({ data, setData }) {
+    let programmingLanguages = [
+        "JavaScript",
+        "Python",
+        "Java",
+        "C#",
+        "C++",
+        "Ruby",
+        "Go",
+        "Rust",
+        "Kotlin",
+        "Swift",
+        "PHP",
+        "TypeScript",
+    ];
+
+    const frontEndFrameworks = [
+        "React",
+        "Angular",
+        "Vue.js",
+        "Svelte",
+        "Next.js",
+        "Nuxt.js",
+        "Ember.js",
+        "Preact",
+        "Gatsby",
+    ];
+
+    const backEndFrameworks = [
+        "Node.js",
+        "Django",
+        "Flask",
+        "Ruby on Rails",
+        "Spring Boot",
+        "ASP.NET",
+        "Express.js",
+        "FastAPI",
+        "NestJS",
+        "Laravel",
+    ];
+
+    const testingFrameworks = [
+        "Jest",
+        "Mocha",
+        "Chai",
+        "Cypress",
+        "Puppeteer",
+        "Playwright",
+        "Karma",
+        "Enzyme",
+        "Testing Library",
+        "RSpec",
+        "JUnit",
+    ];
+
+    const cloudTechnologies = [
+        "AWS",
+        "Azure",
+        "Google Cloud Platform (GCP)",
+        "IBM Cloud",
+        "Oracle Cloud",
+        "DigitalOcean",
+        "Heroku",
+        "Netlify",
+        "Vercel",
+    ];
+
+    const mobileAppTechnologies = [
+        "React Native",
+        "Flutter",
+        "Swift",
+        "Kotlin",
+        "Ionic",
+        "Cordova",
+        "Xamarin",
+        "NativeScript",
+    ];
+
+    const aiMlTechnologies = [
+        "TensorFlow",
+        "PyTorch",
+        "Keras",
+        "Scikit-learn",
+        "OpenAI API",
+        "Hugging Face Transformers",
+        "Google ML Kit",
+        "Azure AI",
+        "IBM Watson",
+    ];
+
+    const databases = [
+        "MySQL",
+        "PostgreSQL",
+        "MongoDB",
+        "SQLite",
+        "Oracle Database",
+        "Firebase Realtime Database",
+        "Redis",
+        "Cassandra",
+        "DynamoDB",
+        "MariaDB",
+    ];
+
+    const devOpsTechnologies = [
+        "Docker",
+        "Kubernetes",
+        "Terraform",
+        "Ansible",
+        "Jenkins",
+        "CircleCI",
+        "GitLab CI/CD",
+        "AWS CodePipeline",
+        "Prometheus",
+        "Grafana",
+    ];
+
+    const operatingSystems = [
+        "Windows",
+        "macOS",
+        "Linux",
+        "Ubuntu",
+        "Fedora",
+        "Debian",
+        "CentOS",
+        "Red Hat",
+        "Android",
+        "iOS",
+    ];
+
     function handleInput(event) {
         const { name, value } = event.target;
         setData((prevData) => ({
@@ -148,10 +276,64 @@ function Form({ data, setData }) {
                     <span className="sectionDesc">Showcase your skills</span>
                 </div>
                 <div className="profileInputs">
-                    <button>C++</button>
-                    <button>C#</button>
-                    <button>JS</button>
-                    <button>React</button>
+                    <span className="label">Programming Languages</span>
+                    {programmingLanguages.map((pl, idx) => (
+                        <button>{pl}</button>
+                    ))}
+
+                    <p></p>
+                    <span className="label">FrontEnd Frameworks</span>
+                    {frontEndFrameworks.map((frontend, idx) => (
+                        <button>{frontend}</button>
+                    ))}
+
+                    <p></p>
+                    <span className="label">Backend Frameworks</span>
+                    {backEndFrameworks.map((backend, idx) => (
+                        <button>{backend}</button>
+                    ))}
+
+                    <p></p>
+                    <span className="label">Testing Frameworks</span>
+                    {testingFrameworks.map((testing) => (
+                        <button>{testing}</button>
+                    ))}
+
+                    <p></p>
+                    <span className="label">Cloud Technologies</span>
+                    {cloudTechnologies.map((cloud) => (
+                        <button>{cloud}</button>
+                    ))}
+
+                    <p></p>
+                    <span className="label">Mobile App Technologies</span>
+                    {mobileAppTechnologies.map((tech) => (
+                        <button>{tech}</button>
+                    ))}
+
+                    <p></p>
+                    <span className="label">AI/ML Technologies</span>
+                    {aiMlTechnologies.map((ai) => (
+                        <button>{ai}</button>
+                    ))}
+
+                    <p></p>
+                    <span className="label">Databases</span>
+                    {databases.map((db) => (
+                        <button>{db}</button>
+                    ))}
+
+                    <p></p>
+                    <span className="label">DevOps Technologies</span>
+                    {devOpsTechnologies.map((devops) => (
+                        <button>{devops}</button>
+                    ))}
+
+                    <p></p>
+                    <span className="label">Operating Systems</span>
+                    {operatingSystems.map((os) => (
+                        <button>{os}</button>
+                    ))}
                 </div>
             </div>
         </>
