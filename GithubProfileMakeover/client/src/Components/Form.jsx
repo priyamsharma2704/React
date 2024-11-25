@@ -142,18 +142,14 @@ function Form({ data, setData }) {
         let updatedSelectedSkills = { ...selectedSkills };
 
         if (!updatedSelectedSkills[category]) {
-            //category doesn't exist, so add it
             updatedSelectedSkills[category] = [];
             updatedSelectedSkills[category].push(skill);
         } else {
-            //category exists...
             if (updatedSelectedSkills[category].includes(skill)) {
-                // Remove the skill if it exists
-                updatedSelectedSkills[category] = updatedSelectedSkills[category].filter(
-                    (selectedSkill) => selectedSkill !== skill
-                );
+                updatedSelectedSkills[category] = updatedSelectedSkills[
+                    category
+                ].filter((selectedSkill) => selectedSkill !== skill);
             } else {
-                // Add the skill if it doesn't exist
                 updatedSelectedSkills[category].push(skill);
             }
         }
@@ -306,6 +302,7 @@ function Form({ data, setData }) {
                     <span className="label">Programming Languages</span>
                     {programmingLanguages.map((pl, idx) => (
                         <button
+                            classname={`selected ${isSelected && active}`}
                             onClick={() =>
                                 handleSkillsClick("programmingLanguages", pl)
                             }
@@ -317,55 +314,91 @@ function Form({ data, setData }) {
                     <p></p>
                     <span className="label">FrontEnd Frameworks</span>
                     {frontEndFrameworks.map((frontend, idx) => (
-                        <button>{frontend}</button>
+                        <button
+                            onClick={() =>
+                                handleSkillsClick("frontend", frontend)
+                            }
+                        >
+                            {frontend}
+                        </button>
                     ))}
 
                     <p></p>
                     <span className="label">Backend Frameworks</span>
                     {backEndFrameworks.map((backend, idx) => (
-                        <button>{backend}</button>
+                        <button
+                            onClick={() =>
+                                handleSkillsClick("backend", backend)
+                            }
+                        >
+                            {backend}
+                        </button>
                     ))}
 
                     <p></p>
                     <span className="label">Testing Frameworks</span>
                     {testingFrameworks.map((testing) => (
-                        <button>{testing}</button>
+                        <button
+                            onClick={() =>
+                                handleSkillsClick("testing", testing)
+                            }
+                        >
+                            {testing}
+                        </button>
                     ))}
 
                     <p></p>
                     <span className="label">Cloud Technologies</span>
                     {cloudTechnologies.map((cloud) => (
-                        <button>{cloud}</button>
+                        <button
+                            onClick={() => handleSkillsClick("cloud", cloud)}
+                        >
+                            {cloud}
+                        </button>
                     ))}
 
                     <p></p>
                     <span className="label">Mobile App Technologies</span>
-                    {mobileAppTechnologies.map((tech) => (
-                        <button>{tech}</button>
+                    {mobileAppTechnologies.map((mobile) => (
+                        <button
+                            onClick={() => handleSkillsClick("mobile", mobile)}
+                        >
+                            {mobile}
+                        </button>
                     ))}
 
                     <p></p>
                     <span className="label">AI/ML Technologies</span>
                     {aiMlTechnologies.map((ai) => (
-                        <button>{ai}</button>
+                        <button onClick={() => handleSkillsClick("ai", ai)}>
+                            {ai}
+                        </button>
                     ))}
 
                     <p></p>
                     <span className="label">Databases</span>
                     {databases.map((db) => (
-                        <button>{db}</button>
+                        <button onClick={() => handleSkillsClick("db", db)}>
+                            {db}
+                        </button>
                     ))}
 
                     <p></p>
                     <span className="label">DevOps Technologies</span>
                     {devOpsTechnologies.map((devops) => (
-                        <button>{devops}</button>
+                        <button
+                            onClick={() => handleSkillsClick("devops", devops)}
+                        >
+                            {devops}
+                        </button>
                     ))}
 
                     <p></p>
                     <span className="label">Operating Systems</span>
                     {operatingSystems.map((os) => (
-                        <button>{os}</button>
+                        <button onClick={() => handleSkillsClick("os", os)}>
+                            {os}
+                        </button>
                     ))}
                 </div>
             </div>
