@@ -1,4 +1,6 @@
+import { useState } from "react";
 function Form({ data, setData }) {
+    const [selectedSkills, setSelectedSkills] = useState({});
     let programmingLanguages = [
         "JavaScript",
         "Python",
@@ -133,6 +135,31 @@ function Form({ data, setData }) {
             ...prevData,
             [name]: value,
         }));
+    }
+
+    function handleSkillsClick(category, skill) {
+        console.log(category, skill);
+        let updatedSelectedSkills = { ...selectedSkills };
+
+        if (!updatedSelectedSkills[category]) {
+            //category doesn't exist, so add it
+            updatedSelectedSkills[category] = [];
+            updatedSelectedSkills[category].push(skill);
+        } else {
+            //category exists...
+            if (updatedSelectedSkills[category].includes(skill)) {
+                // Remove the skill if it exists
+                updatedSelectedSkills[category] = updatedSelectedSkills[category].filter(
+                    (selectedSkill) => selectedSkill !== skill
+                );
+            } else {
+                // Add the skill if it doesn't exist
+                updatedSelectedSkills[category].push(skill);
+            }
+        }
+
+        setSelectedSkills(updatedSelectedSkills);
+        setData((prevData) => ({ ...prevData, skills: updatedSelectedSkills }));
     }
 
     return (
@@ -278,7 +305,13 @@ function Form({ data, setData }) {
                 <div className="profileInputs">
                     <span className="label">Programming Languages</span>
                     {programmingLanguages.map((pl, idx) => (
-                        <button>{pl}</button>
+                        <button
+                            onClick={() =>
+                                handleSkillsClick("programmingLanguages", pl)
+                            }
+                        >
+                            {pl}
+                        </button>
                     ))}
 
                     <p></p>
