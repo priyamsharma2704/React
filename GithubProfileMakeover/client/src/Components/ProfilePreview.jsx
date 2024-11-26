@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./ProfilePreview.css";
 
 function ProfilePreview({
@@ -7,9 +7,77 @@ function ProfilePreview({
     profileStreak,
     profileLanguageCard,
 }) {
-    console.log(formData.skills);
+    const [copied, setCopied] = useState(false);
+
+    const generateMarkdown = () => {
+        let markdown = "";
+        
+        // Header section
+        if (formData.Name) markdown += `# Hi 👋, my name is ${formData.Name}\n`;
+        if (formData.Title) markdown += `## I work as a ${formData.Title}\n`;
+        if (formData.AboutMe) markdown += `\n${formData.AboutMe}\n`;
+        
+        // Location, Email, Current Project
+        if (formData.Location || formData.Email || formData.CurrentProject) {
+            markdown += "\n";
+            if (formData.Location) markdown += `- 🌍 I'm based in ${formData.Location}\n`;
+            if (formData.Email) markdown += `- ✉️ ${formData.Email}\n`;
+            if (formData.CurrentProject) markdown += `- 🚀 Currently working on ${formData.CurrentProject}\n`;
+        }
+
+        // Skills section
+        if (formData.skills) {
+            const hasSkills = Object.values(formData.skills).some(skillArray => skillArray.length > 0);
+            if (hasSkills) {
+                markdown += "\n### Skills\n\n";
+                Object.keys(formData.skills).forEach(category => {
+                    const skillsInCategory = formData.skills[category];
+                    if (skillsInCategory && skillsInCategory.length > 0) {
+                        markdown += `\n#### ${category.toUpperCase()}\n\n`;
+                        skillsInCategory.forEach(skill => {
+                            markdown += `- ${skill}\n`;
+                        });
+                    }
+                });
+            }
+        }
+
+        // GitHub Stats section
+        if (formData.UserName) {
+            markdown += "\n### GitHub Stats\n\n";
+            if (profileStats.statsUrl) {
+                markdown += `![GitHub Stats](${profileStats.statsUrl})\n\n`;
+            }
+            if (profileStreak.statsStreak) {
+                markdown += `![GitHub Streak](${profileStreak.statsStreak})\n\n`;
+            }
+            if (profileLanguageCard.languageCard) {
+                markdown += `![Top Languages](${profileLanguageCard.languageCard})\n`;
+            }
+        }
+
+        return markdown;
+    };
+
+    const handleCopy = async () => {
+        const markdown = generateMarkdown();
+        try {
+            await navigator.clipboard.writeText(markdown);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000); // Reset after 2 seconds
+        } catch (err) {
+            console.error('Failed to copy:', err);
+        }
+    };
+
     return (
         <div className="profile-preview-container">
+            <button 
+                className={`copy-button ${copied ? 'copied' : ''}`}
+                onClick={handleCopy}
+            >
+                {copied ? 'Copied!' : 'Copy Markdown'}
+            </button>
             <div className="profile-header">
                 {formData.Name && <h1>Hi 👋, my name is {formData.Name}</h1>}
                 {formData.Title && <h2>I work as a {formData.Title}</h2>}
