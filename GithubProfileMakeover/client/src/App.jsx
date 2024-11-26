@@ -13,6 +13,7 @@ function App() {
     const [profileStats, setProfileStats] = useState({});
     const [profileStreak, setProfileStreak] = useState({});
     const [profileLanguageCard, setProfileLanguageCard] = useState({});
+    const [skills, setSkills] = useState({});
 
     const [languageCardLayout, setLanguageCardLayout] = useState("compact");
     const [hideProgressBars, setHideProgressBars] = useState(false);
@@ -29,7 +30,14 @@ function App() {
 
     const steps = [
         {
-            component: <Form data={formData} setData={setformData}></Form>,
+            component: (
+                <Form
+                    data={formData}
+                    setData={setformData}
+                    selectedSkills={skills}
+                    setSelectedSkills={setSkills}
+                ></Form>
+            ),
             preview: formData,
         },
         {

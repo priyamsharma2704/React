@@ -1,6 +1,5 @@
 import { useState } from "react";
-function Form({ data, setData }) {
-    const [selectedSkills, setSelectedSkills] = useState({});
+function Form({ data, setData, selectedSkills, setSelectedSkills }) {
     let programmingLanguages = [
         "JavaScript",
         "Python",
@@ -327,9 +326,7 @@ function Form({ data, setData }) {
                     {frontEndFrameworks.map((frontend, idx) => (
                         <button
                             className={`selected ${
-                                isSelected("frontend", frontend)
-                                    ? "active"
-                                    : ""
+                                isSelected("frontend", frontend) ? "active" : ""
                             }`}
                             onClick={() =>
                                 handleSkillsClick("frontend", frontend)
@@ -344,9 +341,7 @@ function Form({ data, setData }) {
                     {backEndFrameworks.map((backend, idx) => (
                         <button
                             className={`selected ${
-                                isSelected("backend", backend)
-                                    ? "active"
-                                    : ""
+                                isSelected("backend", backend) ? "active" : ""
                             }`}
                             onClick={() =>
                                 handleSkillsClick("backend", backend)
@@ -361,9 +356,7 @@ function Form({ data, setData }) {
                     {testingFrameworks.map((testing) => (
                         <button
                             className={`selected ${
-                                isSelected("testing", testing)
-                                    ? "active"
-                                    : ""
+                                isSelected("testing", testing) ? "active" : ""
                             }`}
                             onClick={() =>
                                 handleSkillsClick("testing", testing)
