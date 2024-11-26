@@ -42,11 +42,14 @@ function Preview({ stepNum, data }) {
                             />
                         </a>
                     )}
+
                     {data.UserName && <hr></hr>}
+
                     {(data.Twitter ||
                         data.Instagram ||
                         data.Youtube ||
                         data.StackOverFlow) && <h2>Socials</h2>}
+
                     {data.Twitter && (
                         <a href={data.Twitter}>
                             <img src={Twitter} className="logo"></img>
@@ -73,6 +76,11 @@ function Preview({ stepNum, data }) {
                         </a>
                     )}
 
+                    {data.skills &&
+                        Object.values(data.skills).some(
+                            (skillArray) => skillArray.length > 0
+                        ) && <hr></hr>}
+
                     <div className="skills">
                         {data.skills &&
                             // Loop through each skill category
@@ -90,8 +98,6 @@ function Preview({ stepNum, data }) {
                                             key={category}
                                             className="skill-category"
                                         >
-                                            <hr></hr>
-                                            <h2>Skills</h2>
                                             <h3>{category}</h3>
                                             <div className="skill-list">
                                                 {skillsInCategory.map(
