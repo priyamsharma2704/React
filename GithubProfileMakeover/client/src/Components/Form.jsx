@@ -158,6 +158,13 @@ function Form({ data, setData }) {
         setData((prevData) => ({ ...prevData, skills: updatedSelectedSkills }));
     }
 
+    function isSelected(category, skill) {
+        if (selectedSkills[category]) {
+            if (selectedSkills[category].includes(skill)) return true;
+        }
+        return false;
+    }
+
     return (
         <>
             <div className="profileContainer">
@@ -302,7 +309,11 @@ function Form({ data, setData }) {
                     <span className="label">Programming Languages</span>
                     {programmingLanguages.map((pl, idx) => (
                         <button
-                            classname={`selected ${isSelected && active}`}
+                            className={`selected ${
+                                isSelected("programmingLanguages", pl)
+                                    ? "active"
+                                    : ""
+                            }`}
                             onClick={() =>
                                 handleSkillsClick("programmingLanguages", pl)
                             }
@@ -315,6 +326,11 @@ function Form({ data, setData }) {
                     <span className="label">FrontEnd Frameworks</span>
                     {frontEndFrameworks.map((frontend, idx) => (
                         <button
+                            className={`selected ${
+                                isSelected("frontend", frontend)
+                                    ? "active"
+                                    : ""
+                            }`}
                             onClick={() =>
                                 handleSkillsClick("frontend", frontend)
                             }
@@ -327,6 +343,11 @@ function Form({ data, setData }) {
                     <span className="label">Backend Frameworks</span>
                     {backEndFrameworks.map((backend, idx) => (
                         <button
+                            className={`selected ${
+                                isSelected("backend", backend)
+                                    ? "active"
+                                    : ""
+                            }`}
                             onClick={() =>
                                 handleSkillsClick("backend", backend)
                             }
@@ -339,6 +360,11 @@ function Form({ data, setData }) {
                     <span className="label">Testing Frameworks</span>
                     {testingFrameworks.map((testing) => (
                         <button
+                            className={`selected ${
+                                isSelected("testing", testing)
+                                    ? "active"
+                                    : ""
+                            }`}
                             onClick={() =>
                                 handleSkillsClick("testing", testing)
                             }
@@ -351,6 +377,9 @@ function Form({ data, setData }) {
                     <span className="label">Cloud Technologies</span>
                     {cloudTechnologies.map((cloud) => (
                         <button
+                            className={`selected ${
+                                isSelected("cloud", cloud) ? "active" : ""
+                            }`}
                             onClick={() => handleSkillsClick("cloud", cloud)}
                         >
                             {cloud}
@@ -361,6 +390,9 @@ function Form({ data, setData }) {
                     <span className="label">Mobile App Technologies</span>
                     {mobileAppTechnologies.map((mobile) => (
                         <button
+                            className={`selected ${
+                                isSelected("mobile", mobile) ? "active" : ""
+                            }`}
                             onClick={() => handleSkillsClick("mobile", mobile)}
                         >
                             {mobile}
@@ -370,7 +402,12 @@ function Form({ data, setData }) {
                     <p></p>
                     <span className="label">AI/ML Technologies</span>
                     {aiMlTechnologies.map((ai) => (
-                        <button onClick={() => handleSkillsClick("ai", ai)}>
+                        <button
+                            className={`selected ${
+                                isSelected("ai", ai) ? "active" : ""
+                            }`}
+                            onClick={() => handleSkillsClick("ai", ai)}
+                        >
                             {ai}
                         </button>
                     ))}
@@ -378,7 +415,12 @@ function Form({ data, setData }) {
                     <p></p>
                     <span className="label">Databases</span>
                     {databases.map((db) => (
-                        <button onClick={() => handleSkillsClick("db", db)}>
+                        <button
+                            className={`selected ${
+                                isSelected("db", db) ? "active" : ""
+                            }`}
+                            onClick={() => handleSkillsClick("db", db)}
+                        >
                             {db}
                         </button>
                     ))}
@@ -387,6 +429,9 @@ function Form({ data, setData }) {
                     <span className="label">DevOps Technologies</span>
                     {devOpsTechnologies.map((devops) => (
                         <button
+                            className={`selected ${
+                                isSelected("devops", devops) ? "active" : ""
+                            }`}
                             onClick={() => handleSkillsClick("devops", devops)}
                         >
                             {devops}
@@ -396,7 +441,12 @@ function Form({ data, setData }) {
                     <p></p>
                     <span className="label">Operating Systems</span>
                     {operatingSystems.map((os) => (
-                        <button onClick={() => handleSkillsClick("os", os)}>
+                        <button
+                            className={`selected ${
+                                isSelected("os", os) ? "active" : ""
+                            }`}
+                            onClick={() => handleSkillsClick("os", os)}
+                        >
                             {os}
                         </button>
                     ))}

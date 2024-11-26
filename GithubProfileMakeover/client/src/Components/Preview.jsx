@@ -20,9 +20,14 @@ function Preview({ stepNum, data }) {
                             {data.Location && (
                                 <li>I'm based in {data.Location}</li>
                             )}
-                            {data.Email && <li>{data.Email}</li>}
+                            {data.Email && (
+                                <li>You can reach me at {data.Email}</li>
+                            )}
                             {data.CurrentProject && (
-                                <li>{data.CurrentProject}</li>
+                                <li>
+                                    I am currently working on{" "}
+                                    <strong>{data.CurrentProject}</strong>
+                                </li>
                             )}
                         </ul>
                     )}
@@ -67,8 +72,45 @@ function Preview({ stepNum, data }) {
                             <img src={StackOverflow} className="logo"></img>
                         </a>
                     )}
-                    <hr></hr>
-                    <h2>Skills</h2>
+
+                    <div className="skills">
+                        {data.skills &&
+                            // Loop through each skill category
+                            Object.keys(data.skills).map((category) => {
+                                // Get skills for this category
+                                const skillsInCategory = data.skills[category];
+
+                                // Only show category if it has skills
+                                if (
+                                    skillsInCategory &&
+                                    skillsInCategory.length > 0
+                                ) {
+                                    return (
+                                        <div
+                                            key={category}
+                                            className="skill-category"
+                                        >
+                                            <hr></hr>
+                                            <h2>Skills</h2>
+                                            <h3>{category}</h3>
+                                            <div className="skill-list">
+                                                {skillsInCategory.map(
+                                                    (skill, index) => (
+                                                        <span
+                                                            key={index}
+                                                            className="skill-item"
+                                                        >
+                                                            {skill}
+                                                        </span>
+                                                    )
+                                                )}
+                                            </div>
+                                        </div>
+                                    );
+                                }
+                                return null;
+                            })}
+                    </div>
                 </div>
             )}
 
