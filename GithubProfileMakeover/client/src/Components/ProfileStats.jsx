@@ -16,12 +16,34 @@ function ProfileStats({
 }) {
     //UseEffect is settting the states assuming the HiddenStates is True
     useEffect(() => {
-        setData((prev) => ({
-            ...prev,
-            statsUrl: formData.UserName
-                ? `https://github-readme-stats.vercel.app/api?username=${formData.UserName}&hide=contribs,prs&show_icons=true&theme=default`
-                : "",
-        }));
+        if (!formData.UserName) {
+            setData(prev => ({ ...prev, statsUrl: "" }));
+            return;
+        }
+
+        // Only set initial URL if statsUrl doesn't exist
+        if (!data.statsUrl) {
+            let url = `https://github-readme-stats.vercel.app/api?username=${formData.UserName}`;
+            
+            // Add parameters based on current states
+            if (isIndividualStatsChecked) {
+                url += "&hide=contribs,prs";
+            }
+            
+            if (isHideIconsChecked) {
+                url += "&show_icons=false";
+            } else {
+                url += "&show_icons=true";
+            }
+            
+            if (isAdditionalStatsChecked) {
+                url += "&show=reviews,discussions_started,discussions_answered,prs_merged,prs_merged_percentage";
+            }
+            
+            url += `&theme=${selectedTheme}`;
+            
+            setData(prev => ({ ...prev, statsUrl: url }));
+        }
     }, [formData.UserName]);
 
     let themes = [
