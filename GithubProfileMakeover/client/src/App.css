@@ -94,7 +94,7 @@ button {
 }
 
 .label {
-    color: rgba(55, 65, 81, 255);
+    color: rgb(211, 213, 218);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -158,4 +158,65 @@ button {
     text-align: justify;
     width: 100%;
     margin: 5px 0;
+}
+
+.logo {
+    width: 35px;
+    height: 35px;
+    margin: 10px;
+}
+
+/* ------------- SKILLS --------------- */
+button .selected {
+    margin: 5px;
+    padding: 8px 16px;
+    border: 1px solid #ffffff;
+    border-radius: 20px;
+    /* background-color: rgb(36, 3, 114); */
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.selected:hover {
+    background-color: #afa9a9;
+    transform: translateY(-1px);
+}
+
+.selected.active {
+    background-color: #cacfd4;
+    color: #333;
+    /* border-color: #7fc52f; */
+}
+
+.selected.active:hover {
+    background-color: #989c98;
+}
+
+/* ------------- SKILLS PREVIEW --------------- */
+.skills {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.skill-category h3 {
+    color: #666;
+    text-transform: capitalize;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.skill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.skill-item {
+    background-color: #f0f0f0;
+    color: #333;
+    padding: 5px 15px;
+    border-radius: 15px;
+    font-size: 0.9rem;
 }

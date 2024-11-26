@@ -1,6 +1,11 @@
 import React from "react";
-
+import Twitter from "../assets/twitter.png";
+import Linkedin from "../assets/linkedin.png";
+import Youtube from "../assets/yt.png";
+import StackOverflow from "../assets/stack-of.png";
+import Instagram from "../assets/insta.png";
 function Preview({ stepNum, data }) {
+    console.log(data);
     return (
         <div>
             {stepNum == 0 && (
@@ -15,9 +20,14 @@ function Preview({ stepNum, data }) {
                             {data.Location && (
                                 <li>I'm based in {data.Location}</li>
                             )}
-                            {data.Email && <li>{data.Email}</li>}
+                            {data.Email && (
+                                <li>You can reach me at {data.Email}</li>
+                            )}
                             {data.CurrentProject && (
-                                <li>{data.CurrentProject}</li>
+                                <li>
+                                    I am currently working on{" "}
+                                    <strong>{data.CurrentProject}</strong>
+                                </li>
                             )}
                         </ul>
                     )}
@@ -32,12 +42,81 @@ function Preview({ stepNum, data }) {
                             />
                         </a>
                     )}
-                    <hr></hr>
-                    <h2>Socials</h2>
-                    add links >>>> LinkedIn | Twitter | Instagram | Stack
-                    overflow
-                    <hr></hr>
-                    <h2>Skills</h2>
+
+                    {data.UserName && <hr></hr>}
+
+                    {(data.Twitter ||
+                        data.Instagram ||
+                        data.Youtube ||
+                        data.StackOverFlow) && <h2>Socials</h2>}
+
+                    {data.Twitter && (
+                        <a href={data.Twitter}>
+                            <img src={Twitter} className="logo"></img>
+                        </a>
+                    )}
+                    {data.LinkedIn && (
+                        <a href={data.Linkedin}>
+                            <img src={Linkedin} className="logo"></img>
+                        </a>
+                    )}
+                    {data.Instagram && (
+                        <a href={data.Instagram}>
+                            <img src={Instagram} className="logo"></img>
+                        </a>
+                    )}
+                    {data.Youtube && (
+                        <a href={data.Youtube}>
+                            <img src={Youtube} className="logo"></img>
+                        </a>
+                    )}
+                    {data.StackOverFlow && (
+                        <a href={data.StackOverFlow}>
+                            <img src={StackOverflow} className="logo"></img>
+                        </a>
+                    )}
+
+                    {data.skills &&
+                        Object.values(data.skills).some(
+                            (skillArray) => skillArray.length > 0
+                        ) && <hr></hr>}
+
+                    <div className="skills">
+                        {data.skills &&
+                            // Loop through each skill category
+                            Object.keys(data.skills).map((category) => {
+                                // Get skills for this category
+                                const skillsInCategory = data.skills[category];
+
+                                // Only show category if it has skills
+                                if (
+                                    skillsInCategory &&
+                                    skillsInCategory.length > 0
+                                ) {
+                                    return (
+                                        <div
+                                            key={category}
+                                            className="skill-category"
+                                        >
+                                            <h3>{category}</h3>
+                                            <div className="skill-list">
+                                                {skillsInCategory.map(
+                                                    (skill, index) => (
+                                                        <span
+                                                            key={index}
+                                                            className="skill-item"
+                                                        >
+                                                            {skill}
+                                                        </span>
+                                                    )
+                                                )}
+                                            </div>
+                                        </div>
+                                    );
+                                }
+                                return null;
+                            })}
+                    </div>
                 </div>
             )}
 
