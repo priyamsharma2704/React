@@ -1,0 +1,24 @@
+#root {
+    /* margin: 0 auto; */
+    padding: 2rem;
+}
+
+.container {
+    display: block;
+}
+
+.nav-bar {
+    display: flex;
+}
+
+.nav-item {
+    margin: 0 1rem;
+}
+
+.page {
+    margin: 0 1rem;
+}
+
+.inward-page {
+    margin: 0 1rem;
+}
