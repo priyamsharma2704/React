@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./ProfilePreview.css";
+import { marked } from "marked";
 
 function ProfilePreview({
     formData,
@@ -11,30 +12,34 @@ function ProfilePreview({
 
     const generateMarkdown = () => {
         let markdown = "";
-        
+
         // Header section
         if (formData.Name) markdown += `# Hi 👋, my name is ${formData.Name}\n`;
         if (formData.Title) markdown += `## I work as a ${formData.Title}\n`;
         if (formData.AboutMe) markdown += `\n${formData.AboutMe}\n`;
-        
+
         // Location, Email, Current Project
         if (formData.Location || formData.Email || formData.CurrentProject) {
             markdown += "\n";
-            if (formData.Location) markdown += `- 🌍 I'm based in ${formData.Location}\n`;
+            if (formData.Location)
+                markdown += `- 🌍 I'm based in ${formData.Location}\n`;
             if (formData.Email) markdown += `- ✉️ ${formData.Email}\n`;
-            if (formData.CurrentProject) markdown += `- 🚀 Currently working on ${formData.CurrentProject}\n`;
+            if (formData.CurrentProject)
+                markdown += `- 🚀 Currently working on ${formData.CurrentProject}\n`;
         }
 
         // Skills section
         if (formData.skills) {
-            const hasSkills = Object.values(formData.skills).some(skillArray => skillArray.length > 0);
+            const hasSkills = Object.values(formData.skills).some(
+                (skillArray) => skillArray.length > 0
+            );
             if (hasSkills) {
                 markdown += "\n### Skills\n\n";
-                Object.keys(formData.skills).forEach(category => {
+                Object.keys(formData.skills).forEach((category) => {
                     const skillsInCategory = formData.skills[category];
                     if (skillsInCategory && skillsInCategory.length > 0) {
                         markdown += `\n#### ${category.toUpperCase()}\n\n`;
-                        skillsInCategory.forEach(skill => {
+                        skillsInCategory.forEach((skill) => {
                             markdown += `- ${skill}\n`;
                         });
                     }
@@ -66,21 +71,38 @@ function ProfilePreview({
             setCopied(true);
             setTimeout(() => setCopied(false), 2000); // Reset after 2 seconds
         } catch (err) {
-            console.error('Failed to copy:', err);
+            console.error("Failed to copy:", err);
         }
     };
 
     return (
         <div className="profile-preview-container">
-            <button 
-                className={`copy-button ${copied ? 'copied' : ''}`}
+            <button
+                className={`copy-button ${copied ? "copied" : ""}`}
                 onClick={handleCopy}
             >
-                {copied ? 'Copied!' : 'Copy Markdown'}
+                {copied ? "Copied!" : "Copy Markdown"}
             </button>
-            <div className="profile-header">
-                {formData.Name && <h1>Hi 👋, my name is {formData.Name}</h1>}
-                {formData.Title && <h2>I work as a {formData.Title}</h2>}
+            {/* <pre>{generateMarkdown()}</pre> */}
+            <div
+                className="prose p-4 bg-gray-50 h-96 overflow-auto"
+                dangerouslySetInnerHTML={{
+                    __html: marked.parse(generateMarkdown()),
+                }}
+            />
+            {/* <div className="profile-header">
+                {formData.Name && (
+                    <h1>
+                        Hi 👋, my name is {formData.Name}
+                        <hr></hr>
+                    </h1>
+                )}
+                {formData.Title && (
+                    <h2>
+                        I work as a {formData.Title}
+                        <hr></hr>
+                    </h2>
+                )}
                 {formData.AboutMe && <p>{formData.AboutMe}</p>}
 
                 {(formData.Location ||
@@ -166,7 +188,7 @@ function ProfilePreview({
                         )}
                     </>
                 )}
-            </div>
+            </div> */}
         </div>
     );
 }
