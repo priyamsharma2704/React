@@ -2,24 +2,32 @@ import { useState } from "react";
 
 const Inward = () => {
     const rowData = {
-        itemName: "",
-        plot: "",
-        qty: "",
-        unit: "",
-        rate: "",
-        weight: "",
-        otherExpense: "",
-        sellerName: "",
+        "Item Name": "",
+        Plot: "",
+        QTY: "",
+        Unit: "",
+        Rate: "",
+        Weight: "",
+        "Other Expense": "",
+        "Seller Name": "",
     };
 
     const [data, setData] = useState([rowData]);
-    const [row, setRow] = useState({});
 
-    function handleInputChange(val, inputField, idx) {
-        console.log(val, inputField, idx);
+    function handleInputChange(val, key, idx) {
+        console.log(val, key, idx);
+        setData((prevData) => {
+            const gridData = [...prevData];
+            const rData = gridData[idx];
+
+            rData[key] = val;
+            gridData[idx] = rData;
+            return gridData;
+        });
     }
+
     function handleAddRow() {
-        setData((...prev) => [...data, rowData]);
+        setData((prev) => [...prev, rowData]);
     }
 
     return (
@@ -31,30 +39,28 @@ const Inward = () => {
             </div>
 
             <div className="grid">
-                {data.map((rData, idx) => (
-                    <div key={idx}>
-                        <input
-                            type="text"
-                            onChange={(e) =>
-                                handleInputChange(
-                                    e.target.value,
-                                    "itemName",
-                                    idx
-                                )
-                            }
-                            placeholder="Item Name"
-                        />
-                        <input type="text" placeholder={rData.plot} />
-                        <input type="text" placeholder={rData.qty} />
-                        <input type="text" placeholder={rData.unit} />
-                        <input type="text" placeholder={rData.rate} />
-                        <input type="text" placeholder={rData.weight} />
-                        <input type="text" placeholder={rData.otherExpense} />
-                        <input type="text" placeholder={rData.sellerName} />
+                {data.map((rData, index) => (
+                    <div key={index}>
+                        {Object.keys(rData).map((key, idx) => (
+                            <input
+                                key={idx}
+                                type="text"
+                                onChange={(e) =>
+                                    handleInputChange(
+                                        e.target.value,
+                                        key,
+                                        index
+                                    )
+                                }
+                                placeholder={key}
+                            />
+                        ))}
                     </div>
                 ))}
             </div>
-            <button onClick={handleAddRow}>Add Row</button>
+            <button className="btn-addRow" onClick={handleAddRow}>
+                Add Row
+            </button>
         </>
     );
 };
