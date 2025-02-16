@@ -12,10 +12,18 @@ const Inward = () => {
         "Seller Name": "",
     };
 
+    const numberTypes = [
+        "Plot",
+        "QTY",
+        "Unit",
+        "Rate",
+        "Weight",
+        "Other Expense",
+    ];
     const [data, setData] = useState([rowData]);
 
     function handleInputChange(val, key, idx) {
-        console.log(val, key, idx);
+        // console.log(val, key, idx);
         setData((prevData) => {
             const gridData = [...prevData];
             const rData = gridData[idx];
@@ -27,7 +35,16 @@ const Inward = () => {
     }
 
     function handleAddRow() {
-        setData((prev) => [...prev, rowData]);
+        setData((prev) => {
+            const dupData = [...prev];
+            if (
+                dupData[dupData.length - 1]["Seller Name"] == undefined ||
+                dupData[dupData.length - 1]["Seller Name"] == ""
+            ) {
+                alert("Seller Name is empty!");
+                return prev;
+            } else return [...prev, rowData];
+        });
     }
 
     return (
@@ -44,7 +61,11 @@ const Inward = () => {
                         {Object.keys(rData).map((key, idx) => (
                             <input
                                 key={idx}
-                                type="text"
+                                type={
+                                    numberTypes.includes(key)
+                                        ? "number"
+                                        : "text"
+                                }
                                 onChange={(e) =>
                                     handleInputChange(
                                         e.target.value,
