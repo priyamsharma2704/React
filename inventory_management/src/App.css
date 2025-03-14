@@ -20,5 +20,25 @@
 }
 
 .inward-page {
-    margin: 0 1rem;
+    margin: 1rem 1rem;
+}
+.inward-page input {
+    width: 7rem;
+    margin-right: 4px;
+}
+
+.grid {
+    margin-left: 1rem;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding-bottom: 5px;
+    padding-left: 0.3rem;
+}
+.grid input {
+    width: 7rem;
+    margin-right: 4px;
+}
+
+.btn-addRow {
+    margin: 1rem 1rem;
 }

@@ -1,23 +1,21 @@
 import { useState } from "react";
 import "./App.css";
 import NavBar from "./Components/NavBar";
-import Page from "./Components/Page";
 import Inward from "./pages/Inward";
+import Outward from "./pages/Outward";
+import { Routes, Route } from "react-router-dom";
 
-/*
-1. Implement Routing in this file
-2. After implementing the Routing, remove Inward from here
- */
 function App() {
-    const [count, setCount] = useState(0);
-
     return (
         <>
             <div className="container">
                 <NavBar></NavBar>
-                <Page></Page>
-                <Inward></Inward>
             </div>
+
+            <Routes>
+                <Route path="inward" element={<Inward></Inward>}></Route>
+                <Route path="outward" element={<Outward></Outward>}></Route>
+            </Routes>
         </>
     );
 }
