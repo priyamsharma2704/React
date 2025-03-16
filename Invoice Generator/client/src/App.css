@@ -4,80 +4,52 @@
     max-width: 1200px;
     margin: 0 auto;
 }
+input {
+    height: 25px;
+}
 
-.container {
-    width: 100%;
-    padding: 1rem;
+.conainer {
+    /* display: flex is already defined in index.css under body*/
+    justify-content: center;
+    gap: 20px;
 }
 
 .heading {
-    font-size: clamp(2rem, 5vw, 3.2rem);
-    margin-bottom: 2rem;
+    font-size: xx-large;
 }
 
 .info {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-    padding: 0.5rem;
-}
-
-.count {
-    margin-right: auto;
-}
-
-.count,
-.filter,
-.newInvoice {
-    padding: 0.5rem;
-    font-size: clamp(0.875rem, 2vw, 1rem);
 }
 
 .newInvoiceModal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 50%;
-    height: 80%;
+    background-color: rgb(72, 72, 72);
     border-radius: 5px;
-    background-color: rgb(17, 15, 15);
+    margin: 10px;
+    padding: 10px;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 10px;
 }
 
-/* Small screens (mobile) */
-@media screen and (max-width: 480px) {
-    #root {
-        padding: 1rem;
-    }
-
-    .info {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .count,
-    .filter,
-    .newInvoice {
-        width: 100%;
-    }
+.addressDiv {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
 }
 
-/* Medium screens (tablets) */
-@media screen and (min-width: 481px) and (max-width: 768px) {
-    .info {
-        justify-content: space-between;
-        padding: 0.75rem;
-    }
+.address {
+    width: 33%;
 }
 
-/* Large screens (desktops) */
-@media screen and (min-width: 769px) {
-    .container {
-        padding: 2rem;
-    }
+.dates {
+    display: flex;
+    justify-content: space-between;
+}
+
+.date,
+.dateValidity {
+    width: 45%;
 }
