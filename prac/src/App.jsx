@@ -1,16 +1,19 @@
-import { useContext, useEffect, useState, createContext} from "react";
-import Search from './Components/Search.jsx';
+import { useContext, useEffect, useState, createContext } from "react";
+import Search from "./Components/Search.jsx";
+import Hook from "./Components/hook.jsx";
+import Ansys from "./Components/Ansys.jsx";
 
-
-function App()
-{
-    return(
+function App() {
+    return (
         <>
-        <Search></Search>
+            {/* <Search></Search> */}
+
+            <Hook></Hook>
+
+            <Ansys></Ansys>
         </>
     );
 }
-
 
 // function App() {
 //   const [users, setUsers] = useState([]);
@@ -19,7 +22,6 @@ function App()
 //   const [searchTerm, setSearchTerm] = useState("");
 //   const [show, setShow] = useState(true);
 //   const [products, setProducts] = useState([]);
-
 
 //   let getUsers = async () => {
 //     let resp = await fetch("https://reqres.in/api/users?");
@@ -70,9 +72,9 @@ function App()
 //       ];
 
 //     setPeople(people);
-    
+
 //     getProducts();
-    
+
 //   }, []);
 
 //   //-----------------------------------------------------------------------------
@@ -96,7 +98,6 @@ function App()
 //         setProducts(data);
 //     }
 //   //--------------------------------------------------------------------------------------
-
 
 //   return (
 //     <>
@@ -137,13 +138,13 @@ function App()
 //       </ul>
 
 //       <hr></hr>
-      
+
 //       <testContext.Provider value="test 123">
 //         <Comp1></Comp1>
 //       </testContext.Provider>
 //       <hr></hr>
 //       <Component1></Component1>
-      
+
 //     </>
 //   );
 // }

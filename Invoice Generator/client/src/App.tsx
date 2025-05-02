@@ -32,7 +32,7 @@ function App() {
                     </div>
 
                     <input
-                        className="country"
+                        className="invoice-input"
                         type="text"
                         placeholder="Country"
                     />
@@ -57,9 +57,21 @@ function App() {
                     <div>
                         <span>Bill To</span>
                     </div>
-                    <input type="text" placeholder="Name" />
-                    <input type="text" placeholder="Email" />
-                    <input type="text" placeholder="Street Name" />
+                    <input
+                        className="invoice-input"
+                        type="text"
+                        placeholder="Name"
+                    />
+                    <input
+                        className="invoice-input"
+                        type="text"
+                        placeholder="Email"
+                    />
+                    <input
+                        className="invoice-input"
+                        type="text"
+                        placeholder="Street Name"
+                    />
                     <div className="addressDiv">
                         <input
                             type="text"
@@ -82,13 +94,27 @@ function App() {
                         <input className="dateValidity" type="text" />
                         {/* make it drop down */}
                     </div>
-                    <input type="text" placeholder="Project Description" />
+                    <input
+                        className="invoice-input"
+                        type="text"
+                        placeholder="Project Description"
+                    />
                     <br></br>
                     <div>
                         <span>Item List</span>
                     </div>
                     <button onClick={addItem}>Add Item</button>
-                    <div></div>
+                    <div>
+                        <span>asdsad</span>
+                        <p>asdsad</p>
+                        <p>asdsad</p>
+                        <p>asdsad</p>
+                        <p>asdsad</p>
+                        <p>asdsad</p>
+                        <p>asdsad</p>
+                        <p>asdsad</p>
+                        <p>asdsad</p>
+                    </div>
                 </div>
             ) : null}
         </>
