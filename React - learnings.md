@@ -97,4 +97,40 @@
     That is why it is advised to use th update function instead of
     			setCounter(counter+1)
 
+## Fetching APIs method 1
 
+    Here since getData is marked as async, it will always return a promise. Hence we have to use .then() while calling getData() inside useEffect().
+
+    ```
+    const getData = async () => {
+        const response = await fetch("http://localhost:5000/");
+        const result = await response.json();
+        return result;
+    };
+
+    useEffect(() => {
+        const getData2 = async () => {
+            //getData().then((data) => setData(data));
+            //or
+            const resp = await getData();
+            setData(resp);
+        };
+        getData2();
+    }, []);
+    ```
+
+## Fetching APIs method 2
+
+    Here we can directly call getData2() where we fetch the data from api and in the same fn we set the state as well.
+
+    ```
+    useEffect(() => {
+        async function getData2() {
+            const resp = await fetch("http://localhost:5000/");
+            const data = await resp.json();
+            console.log(data);
+            setData(data);
+        }
+        getData2();
+    }, []);
+    ```
