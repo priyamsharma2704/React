@@ -1,0 +1,35 @@
+:root {
+    display: flex;
+    justify-content: center;
+
+    /* OR
+    display: grid;
+    place-items: center; */
+}
+
+.addTaskInput {
+    margin: 10px;
+    padding: 5px;
+    font-size: 20px;
+}
+
+.divTask {
+    border: 1px white solid;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px;
+}
+
+.controls {
+    float: right;
+    padding-left: 10px;
+}
+
+.checkTask {
+    margin-left: 20px;
+}
+
+img {
+    height: 20px;
+    width: 20px;
+}
