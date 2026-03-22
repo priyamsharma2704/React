@@ -1,10 +1,10 @@
-const express = require("express");
-const cors = require("cors");
-const { table } = require("node:console");
-
+const express = require('express');
+const cors = require('cors');
+const { snapshot } = require('node:test');
 
 const app = express();
 app.use(cors());
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -12,48 +12,30 @@ app.use(express.urlencoded({ extended: true }));
 var store = {};
 var backup = {};
 
-function createTable(tableName)
-{
-    if (store[tableName])
-    {
-        console.log("table already exists")
-        return false;
-    }
-    store[tableName] = {};
-    return true;
-}
-
+//tableExists
 function tableExists(tableName)
 {
-    if (store[tableName])
-        return true;
-    return false;
-}
-
-function insert(tableName, id, data, expiry = null)
-{
-    if (!tableExists(tableName))
-    {
-        console.log("table does not exists");
+    if (!store[tableName])
         return false;
-    }
-
-    var expiryVal = expiry ? expiry + Date.now() : null;
-    var tableData = { expiryVal, data }
-    store[tableName][id] = tableData;
     return true;
 }
+//create
+function create(tableName)
+{
+    store[tableName] = {};
+}
 
-function getAll()
+//get
+function get()
 {
     var result = {};
-    for (var [tableName, table] of Object.entries(store))
+    for (var [tableName, tableData] of Object.entries(store))
     {
         var innerTable = {};
-        for (var [key, value] of Object.entries(table))
+        for (var [key, value] of Object.entries(tableData))
         {
-            if (isExpired(value.expiryVal))
-                delete table[key];
+            if (isExpired(value.expiry))
+                delete tableData[key];
             else
                 innerTable[key] = value;
         }
@@ -61,80 +43,113 @@ function getAll()
     }
     return result;
 }
-
-function isExpired(expiry)
+//update
+function update(tableName, id, updatedData)
 {
-    return expiry !== null && Date.now() > expiry;
-}
-
-function snapshot()
-{
-    for (var [tableName, tableData] of Object.entries(store))
+    if (!tableExists(tableName))
     {
-        backup[tableName] = {};
-        for (var [key, val] of Object.entries(tableData))
-            backup[tableName][key] = val;
+        console.log("table does not exists")
+        return false;
     }
+
+    var expiry = store[tableName][id][expiry];
+    var newData = { expiry, updatedData };
+    store[tableName][id] = newData;
+    return true;
 }
 
-function restore()
+//insert
+function insert(tableName, id, data, expiry)
 {
-    store = backup;
+    if (!tableExists(tableName))
+    {
+        console.log("table does not exists")
+        return false;
+    }
+
+    var expiry = expiry ? expiry + Date.now() : null;
+    store[tableName][id] = { expiry, data };
+    return true;
 }
 
+//delete
 function deleteData(tableName, id)
 {
     if (!tableExists(tableName))
-        console.log("table does not exists");
+    {
+        console.log("table does not exists")
+        return false;
+    }
 
     delete store[tableName][id];
     return true;
 }
-//----------------------------
-createTable("Prods");
-insert("Prods", 1, "phone", 10000);
-insert("Prods", 2, "cover", 10000);
-insert("Prods", 3, "book", 10000);
-insert("Prods", 4, "glasses", 10000);
 
-snapshot();
-console.log(getAll());
-deleteData("Prods", 1);
-console.log(getAll());
+//backup
+function backupDb()
+{
+    for (var [tableName, tableData] of Object.entries(store))
+    {
+        var innerData = {};
+        for (var [key, value] of Object.entries(tableData))
+        {
+            innerData[key] = value;
+        }
+        backup[tableName] = innerData;
+    }
+    return true;
+}
+//restore
+function restore()
+{
+    store = backup;
+}
+//isExpired
+function isExpired(expiry)
+{
+    return expiry != null && Date.now() > expiry;
+}
+create("books");
+insert("books", 1, "priyam", 7000);
+insert("books", 2, "sharma", 7000);
+insert("books", 3, "tillsong", 7000);
+insert("books", 4, "ontario", 7000);
+
+backupDb();
+deleteData("books", 2);
+console.log(get());
 restore();
+console.log(get());
 
-console.log("restore", getAll());
-
-
-
+app.put("/", (req, res) =>
+{
+    create("books");
+    insert("books", 1, "priyam", 7000);
+    insert("books", 2, "sharma", 7000);
+    insert("books", 3, "tillsong", 7000);
+    insert("books", 4, "ontario", 7000);
+    res.json("data added");
+});
 
 app.get("/", (req, res) =>
 {
-    insert("Prods", 1, "phone", 10000);
-    insert("Prods", 2, "cover", 10000);
-    insert("Prods", 3, "book", 10000);
-    insert("Prods", 4, "glasses", 10000);
-
-    res.json("data added")
+    var result = get();
+    if (result)
+        res.json(result)
+    else
+        res.status(400).json("add failed")
 });
 
-app.get("/prods", (req, res) =>
+app.delete("/", (req, res) =>
 {
-    var data = getAll();
-    res.json(data);
+    var success = deleteData("books", 2);
+    if (success)
+        res.json("deleted");
+    else
+        res.status(400).json("delete failed")
+});
+
+app.listen(5001, () =>
+{
+    console.log("Server is running on 5001")
 })
-
-app.put("/prods", (req, res) =>
-{
-    var param = req.body;
-    console.log(param)
-    var success = insert(param.table, param.id, param.data, param.expiry);
-    if (!success)
-        return res.status(400).json("cannot insert")
-    res.json("insert done")
-});
-
-app.listen(5000, () =>
-{
-    console.log("server is running");
-});
