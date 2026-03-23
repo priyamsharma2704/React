@@ -64,7 +64,8 @@ function insert(tableName, id, data, expiry = null) {
     }
 
     var expValue = expiry ? expiry + Date.now() : null;
-    store[tableName][id] = { expiry: expValue, data };
+    var dataValue = { ...data };
+    store[tableName][id] = { expiry: expValue, data: dataValue };
 }
 //delete
 function deleteData(tableName, id) {
@@ -98,16 +99,16 @@ function restore() {
 }
 
 createTable("books");
-insert("books", 1, "aaaa");
-insert("books", 2, "bbb");
-insert("books", 3, "ccc", 6000);
-insert("books", 4, "ddd");
-console.log(get());
+insert("books", 1, { author: "aaaa", year: 2006, title: "zzz" });
+insert("books", 2, { author: "bbb", year: 2005, title: "baa" });
+insert("books", 3, { author: "ccc", year: 2004, title: "caaa" }, 6000);
+insert("books", 4, { author: "ddd", year: 2003, title: "daaa" });
+console.dir(get(), { depth: null });
 
-update("books", 3, "CCCCCc");
-console.log(get());
+update("books", 3, { author: "CCCC", year: 2006, title: "CAAAA" });
+console.dir(get(), { depth: null });
 backupStore();
 deleteData("books", 3);
-console.log(get());
+console.dir(get(), { depth: null });
 restore();
-console.log(get());
+console.dir(get(), { depth: null });
