@@ -8,7 +8,7 @@ When the portfolio exceeds the target, highlight the total in red.
 
 Optimize re-renders so only the updated stock row re-renders.
 */
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 const initialStocks = [
     { symbol: "AAPL", price: 180, qty: 2 },
     { symbol: "MSFT", price: 320, qty: 1 },
@@ -17,10 +17,19 @@ const initialStocks = [
 
 function Stocks() {
     const [stocks, setStocks] = useState(initialStocks);
-    const [target, setTarget] = useState(0);
+    const [target, setTarget] = useState("");
+
+    var total = useMemo(() => {
+        return stocks.reduce((sum, stock) => {
+            return sum + stock.price * stock.qty;
+        }, 0);
+    }, [stocks]);
 
     // TODO: Mock API price updates every 5 seconds
 
+    function handleChange(value) {
+        setTarget(value);
+    }
     function updatePrices() {
         var copyStocks = [];
 
@@ -50,12 +59,21 @@ function Stocks() {
                 </div>
             ))}
 
-            <div>Total Value: {/* TODO */}</div>
+            <div
+                id="total"
+                style={{
+                    color: target !== "" && total > target ? "red" : "inherit",
+                }}
+            >
+                Total Value: {total}
+            </div>
 
             <input
                 type="number"
                 placeholder="Target portfolio value"
-                // TODO
+                onChange={(e) => {
+                    handleChange(e.target.value);
+                }}
             />
         </div>
     );
