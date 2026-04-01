@@ -1,32 +1,44 @@
 /*
-Tasks:
+Implement logic to update stock quantities.
 
-1. Increase/decrease quantity
-2. Prevent quantity > stock
-3. Show message if exceeded
+Compute total portfolio value using useMemo.
+
+Add a “target portfolio value” input.
+When the portfolio exceeds the target, highlight the total in red.
+
+Optimize re-renders so only the updated stock row re-renders.
 */
-
-import React, { useState } from "react";
-
-const products = [
-    { id: 1, name: "Phone", stock: 3, quantity: 1 },
-    { id: 2, name: "Tablet", stock: 2, quantity: 1 },
+const initialStocks = [
+    { symbol: "AAPL", price: 180, qty: 2 },
+    { symbol: "MSFT", price: 320, qty: 1 },
+    { symbol: "TSLA", price: 250, qty: 3 },
 ];
 
-export default function App() {
-    const [items, setItems] = useState(products);
+function Portfolio() {
+    const [stocks, setStocks] = useState(initialStocks);
+    const [target, setTarget] = (useState < number) | (null > null);
+
+    // TODO: Mock API price updates every 5 seconds
 
     return (
         <div>
-            {items.map((item) => (
-                <div key={item.id}>
-                    {item.name} (Stock: {item.stock})<button>-</button>
-                    {item.quantity}
+            {stocks.map((s) => (
+                <div key={s.symbol}>
+                    <span>{s.symbol}</span>
+                    <span>${s.price}</span>
+                    <button>-</button>
+                    {s.qty}
                     <button>+</button>
                 </div>
             ))}
 
-            {/* Show error message */}
+            <div>Total Value: {/* TODO */}</div>
+
+            <input
+                type="number"
+                placeholder="Target portfolio value"
+                // TODO
+            />
         </div>
     );
 }
