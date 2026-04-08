@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { usePokemons } from "../hooks/usePokemons";
 /*
 Practice goals:
 1) Display a list of Pokemon (name, type, stats)
@@ -51,15 +51,20 @@ const MOCK_POKEMONS = [
     },
 ];
 
-export default function PokemonExerciseTemplate() {
+export default function Pokemon1() {
     // TODO 1: Replace with data from your custom hook later.
-    const [pokemons] = useState(MOCK_POKEMONS);
-
+    const pokemons = usePokemons();
+    console.log(pokemons);
+    var typesSet = new Set();
+    typesSet.add("all");
+    for (var poke of pokemons) {
+        typesSet.add(poke.type);
+    }
     // TODO 2: Search by name.
     const [search, setSearch] = useState("");
 
     // TODO 3: Filter by type ("all", "fire", "water", etc.).
-    const [selectedType, setSelectedType] = useState("all");
+    const [selectedType, setSelectedType] = useState("");
 
     // TODO 4: Select a Pokemon and show details.
     const [selectedId, setSelectedId] = useState(null);
@@ -69,13 +74,21 @@ export default function PokemonExerciseTemplate() {
     const [sortMode, setSortMode] = useState("none");
 
     // TODO: Create a unique type list from pokemons.
-    const availableTypes = ["all"];
+    const availableTypes = Array.from(typesSet);
 
     // TODO: Build visiblePokemons by applying search, type filter, and optional sort.
-    const visiblePokemons = pokemons;
+    const filteredPokemons = pokemons.filter((pokemon) => {
+        return pokemon.name.toLowerCase().includes(search.toLowerCase()) && pokemon.type.includes(selectedType);
+    }).sort((a, b) => getTotalPower(a.stats) - getTotalPower(b.stats));
+
+    const visiblePokemons = [...filteredPokemons];
+    if (sortMode == "power-asc")
+        visiblePokemons.sort((a, b) => getTotalPower(a.stats) - getTotalPower(b.stats));
+    else if (sortMode == "power-desc")
+        visiblePokemons.sort((a, b) => getTotalPower(b.stats) - getTotalPower(a.stats));
 
     // TODO: Find selectedPokemon from selectedId.
-    const selectedPokemon = null;
+    const selectedPokemon = pokemons.find((poke) => poke.id == selectedId) || null;
 
     void search;
     void setSearch;
@@ -86,16 +99,36 @@ export default function PokemonExerciseTemplate() {
     void sortMode;
     void setSortMode;
 
+    function handleSearchOnChange(value) {
+        setSearch(value);
+    }
+
+    function getTotalPower(stats) {
+        return stats.reduce((sum, stat) => {
+            return sum + stat.value;
+        }, 0)
+    }
+    function handleSelectOnChange(value) {
+        value == "all" ? setSelectedType("") : setSelectedType(value)
+    }
+    function handleSortOnChange(value) {
+        setSortMode(value)
+    }
+    function handleClick(id) {
+        setSelectedId(id);
+    }
+
+
     return (
         <div style={{ padding: 16 }}>
             <h1>Pokemon Practice Template</h1>
 
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
                 {/* TODO: Wire search state + onChange */}
-                <input placeholder="Search by name" />
+                <input placeholder="Search by name" onChange={(e) => { handleSearchOnChange(e.target.value) }} />
 
                 {/* TODO: Wire selectedType state + onChange */}
-                <select>
+                <select onChange={(e) => { handleSelectOnChange(e.target.value) }}>
                     {availableTypes.map((type) => (
                         <option key={type} value={type}>
                             {type}
@@ -104,7 +137,7 @@ export default function PokemonExerciseTemplate() {
                 </select>
 
                 {/* TODO: Wire sortMode state + onChange */}
-                <select>
+                <select onChange={(e) => { handleSortOnChange(e.target.value) }}>
                     <option value="none">No sort</option>
                     <option value="power-asc">Power ascending</option>
                     <option value="power-desc">Power descending</option>
@@ -112,14 +145,35 @@ export default function PokemonExerciseTemplate() {
             </div>
 
             <h2 style={{ marginTop: 20 }}>Pokemon List</h2>
-            <div style={{ display: "grid", gap: 12 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))", gap: 12 }}>
                 {/* TODO: Map visiblePokemons and render name, type, stats. */}
                 {visiblePokemons.length === 0 && <p>No Pokemon to show.</p>}
+                {visiblePokemons.map((poke, id) => (
+                    <div onClick={() => handleClick(poke.id)} key={poke.id} style={{
+                        textAlign: "left",
+                        border:
+                            selectedId === poke.id
+                                ? "2px solid #2e7d32"
+                                : "1px solid #cccccc",
+                        background: "#715454",
+                        padding: 10,
+                        borderRadius: 8,
+                        cursor: "pointer",
+                    }}>
+                        <img src={poke.img} width="72" height="72" ></img>
+                        <div><strong>{poke.name}</strong></div>
+                        <div>Type: {poke.type}</div>
+                        <div>Power: {getTotalPower(poke.stats)}</div>
+                    </div>
+                ))}
             </div>
 
             <h2 style={{ marginTop: 20 }}>Selected Pokemon Details</h2>
             {/* TODO: Show selectedPokemon details (or fallback text). */}
             {!selectedPokemon && <p>Select a Pokemon from the list.</p>}
+            {selectedPokemon?.stats.map((stat) => (
+                <div>{stat.name} : {stat.value}</div>
+            ))}
         </div>
     );
 }
