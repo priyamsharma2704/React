@@ -54,12 +54,13 @@ const MOCK_POKEMONS = [
 export default function Pokemon1() {
     // TODO 1: Replace with data from your custom hook later.
     const pokemons = usePokemons();
-    console.log(pokemons);
+
     var typesSet = new Set();
     typesSet.add("all");
     for (var poke of pokemons) {
         typesSet.add(poke.type);
     }
+
     // TODO 2: Search by name.
     const [search, setSearch] = useState("");
 
@@ -108,13 +109,16 @@ export default function Pokemon1() {
             return sum + stat.value;
         }, 0)
     }
+
     function handleSelectOnChange(value) {
         value == "all" ? setSelectedType("") : setSelectedType(value)
     }
+
     function handleSortOnChange(value) {
         setSortMode(value)
     }
-    function handleClick(id) {
+
+    function handlePokemonClick(id) {
         setSelectedId(id);
     }
 
@@ -149,7 +153,7 @@ export default function Pokemon1() {
                 {/* TODO: Map visiblePokemons and render name, type, stats. */}
                 {visiblePokemons.length === 0 && <p>No Pokemon to show.</p>}
                 {visiblePokemons.map((poke, id) => (
-                    <div onClick={() => handleClick(poke.id)} key={poke.id} style={{
+                    <div onClick={() => handlePokemonClick(poke.id)} key={poke.id} style={{
                         textAlign: "left",
                         border:
                             selectedId === poke.id
@@ -171,8 +175,8 @@ export default function Pokemon1() {
             <h2 style={{ marginTop: 20 }}>Selected Pokemon Details</h2>
             {/* TODO: Show selectedPokemon details (or fallback text). */}
             {!selectedPokemon && <p>Select a Pokemon from the list.</p>}
-            {selectedPokemon?.stats.map((stat) => (
-                <div>{stat.name} : {stat.value}</div>
+            {selectedPokemon?.stats.map((stat, id) => (
+                <div key={id}>{stat.name} : {stat.value}</div>
             ))}
         </div>
     );
