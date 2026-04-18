@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solve Process Settings</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="sps-shell">
+
+  <!-- Left pane -->
+  <div class="sps-sidebar">
+    <div class="sps-sidebar__section-label">Queues</div>
+    <ul class="sps-queue-list">
+      <li class="sps-queue-item sps-queue-item--selected">My Computer</li>
+      <li class="sps-queue-item">Local Queue</li>
+      <li class="sps-queue-item">Remote HPC</li>
+      <li class="sps-queue-item">Cluster Node 1</li>
+    </ul>
+    <div class="sps-sidebar__actions">
+      <button class="sps-sidebar__btn" title="Add Queue">&#43;</button>
+      <button class="sps-sidebar__btn" title="Remove Queue">&#8722;</button>
+    </div>
+  </div>
+
+  <!-- Right pane -->
+  <div class="sps-root">
+
+    <!-- Solution Execution Target -->
+    <div class="sps-row sps-row--top">
+      <label class="sps-label">Solution Execution Target:</label>
+      <div class="sps-select-wrap">
+        <select class="sps-select">
+          <option>RSM</option>
+          <option>Local</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Settings Accordion -->
+    <div class="sps-accordion">
+      <div class="sps-accordion__header">
+        <span>Settings</span>
+      </div>
+      <div class="sps-accordion__body">
+        <div class="sps-row">
+          <label class="sps-label">License:</label>
+          <div class="sps-select-wrap sps-select-wrap--wide">
+            <select class="sps-select">
+              <option>Ansys Mechanical Enterprise</option>
+              <option>Ansys Mechanical Pro</option>
+            </select>
+          </div>
+        </div>
+        <div class="sps-row">
+          <label class="sps-label">RSM Queue:</label>
+          <div class="sps-select-wrap">
+            <select class="sps-select">
+              <option>Local</option>
+              <option>Remote</option>
+            </select>
+          </div>
+        </div>
+        <div class="sps-row">
+          <label class="sps-label">Job Name:</label>
+          <input class="sps-input" type="text" defaultValue="Mechanical" />
+        </div>
+        <div class="sps-row">
+          <label class="sps-label">HPC Configuration:</label>
+          <span class="sps-value">localhost</span>
+        </div>
+        <div class="sps-row">
+          <label class="sps-label">HPC Type:</label>
+          <span class="sps-value">ARC</span>
+        </div>
+        <div class="sps-row">
+          <label class="sps-label">HPC Queue:</label>
+          <span class="sps-value">local</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cores and GPU Accordion -->
+    <div class="sps-accordion">
+      <div class="sps-accordion__header">
+        <span>Cores and GPU</span>
+      </div>
+      <div class="sps-accordion__body">
+        <div class="sps-row sps-row--checkboxes">
+          <label class="sps-checkbox-label">
+            <input class="sps-checkbox" type="checkbox" defaultChecked />
+            <span>Distribute Solution (if possible)</span>
+          </label>
+          <label class="sps-checkbox-label">
+            <input class="sps-checkbox" type="checkbox" />
+            <span>Hybrid Parallel (Mechanical APDL)</span>
+          </label>
+        </div>
+        <div class="sps-row">
+          <label class="sps-label">Max number of utilized cores:</label>
+          <input class="sps-input sps-input--narrow" type="number" defaultValue="6" />
+        </div>
+        <div class="sps-row">
+          <label class="sps-label">Threads per process:</label>
+          <input class="sps-input sps-input--narrow" type="number" defaultValue="1" />
+        </div>
+        <div class="sps-row">
+          <label class="sps-label">Number of processes:</label>
+          <input class="sps-input sps-input--narrow" type="number" defaultValue="4" />
+        </div>
+        <div class="sps-row">
+          <label class="sps-checkbox-label">
+            <input class="sps-checkbox" type="checkbox" />
+            <span>Manually specify Mechanical APDL solver memory settings</span>
+          </label>
+        </div>
+        <div class="sps-row sps-row--indented">
+          <label class="sps-label">Workspace:</label>
+          <input class="sps-input sps-input--narrow" type="number" defaultValue="0" />
+          <span class="sps-unit">MB</span>
+        </div>
+        <div class="sps-row sps-row--indented">
+          <label class="sps-label">Database:</label>
+          <input class="sps-input sps-input--narrow" type="number" defaultValue="0" />
+          <span class="sps-unit">MB</span>
+        </div>
+        <div class="sps-row">
+          <label class="sps-label">Use GPU acceleration (if possible):</label>
+          <div class="sps-select-wrap">
+            <select class="sps-select">
+              <option>None</option>
+              <option>Auto</option>
+            </select>
+          </div>
+        </div>
+        <div class="sps-row">
+          <label class="sps-label">Number of utilized GPU devices:</label>
+          <input class="sps-input sps-input--narrow" type="number" defaultValue="1" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Advanced Accordion -->
+    <div class="sps-accordion">
+      <div class="sps-accordion__header">
+        <span>Advanced</span>
+      </div>
+      <div class="sps-accordion__body">
+        <div class="sps-row">
+          <label class="sps-label">Default Solver Type:</label>
+          <div class="sps-select-wrap">
+            <select class="sps-select">
+              <option>Program Controlled</option>
+              <option>Direct</option>
+              <option>Iterative</option>
+            </select>
+          </div>
+        </div>
+        <div class="sps-row">
+          <label class="sps-label">Result File Compression:</label>
+          <div class="sps-select-wrap">
+            <select class="sps-select">
+              <option>Program Controlled</option>
+              <option>None</option>
+              <option>Maximum</option>
+            </select>
+          </div>
+        </div>
+        <div class="sps-row">
+          <label class="sps-label">Save MAPDL db:</label>
+          <div class="sps-select-wrap">
+            <select class="sps-select">
+              <option>No</option>
+              <option>Yes</option>
+            </select>
+          </div>
+        </div>
+        <div class="sps-row">
+          <label class="sps-label">Scratch Directory:</label>
+          <input class="sps-input sps-input--wide" type="text" defaultValue="C:\Temp\Ansys" />
+        </div>
+        <div class="sps-row">
+          <label class="sps-label">Delete Unneeded Files:</label>
+          <div class="sps-select-wrap">
+            <select class="sps-select">
+              <option>Yes</option>
+              <option>No</option>
+            </select>
+          </div>
+        </div>
+        <div class="sps-row">
+          <label class="sps-label">Solver Units:</label>
+          <div class="sps-select-wrap">
+            <select class="sps-select">
+              <option>Active System</option>
+              <option>SI</option>
+              <option>CGS</option>
+              <option>BFT</option>
+            </select>
+          </div>
+        </div>
+        <div class="sps-row">
+          <label class="sps-label">Max RAM Limit:</label>
+          <input class="sps-input sps-input--narrow" type="number" defaultValue="8192" />
+          <span class="sps-unit">MB</span>
+        </div>
+        <div class="sps-row">
+          <label class="sps-label">License Queuing Timeout:</label>
+          <input class="sps-input sps-input--narrow" type="number" defaultValue="120" />
+          <span class="sps-unit">sec</span>
+        </div>
+        <div class="sps-row">
+          <label class="sps-checkbox-label">
+            <input class="sps-checkbox" type="checkbox" defaultChecked />
+            <span>Generate input file only (do not solve)</span>
+          </label>
+        </div>
+        <div class="sps-row">
+          <label class="sps-checkbox-label">
+            <input class="sps-checkbox" type="checkbox" />
+            <span>Enable Shared Memory Parallel (SMP)</span>
+          </label>
+        </div>
+        <div class="sps-row">
+          <label class="sps-checkbox-label">
+            <input class="sps-checkbox" type="checkbox" />
+            <span>Write APDL Commands Log File</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
