@@ -1,0 +1,348 @@
+/* ── Reset ────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* ── Page: fill the entire screen, no scroll ─────────────────── */
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: #1c1c1c;
+  overflow: hidden;
+}
+
+/* Center the shell on the page */
+body,
+#root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Outer shell: sidebar + right panel ──────────────────────── */
+.sps-shell {
+  display: flex;
+  width: 100%;
+  max-width: 760px;
+  /* Fill available vertical space inside the centered flex parent */
+  height: calc(100vh - 48px);
+  background: #2b2b2b;
+  overflow: hidden;
+}
+
+/* ── Left sidebar ─────────────────────────────────────────────── */
+.sps-sidebar {
+  width: 148px;
+  flex-shrink: 0;
+  background: #222;
+  border-right: 1px solid #3a3a3a;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.sps-sidebar__section-label {
+  padding: 9px 10px 6px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+/* ── Queue list ───────────────────────────────────────────────── */
+.sps-queue-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.sps-queue-list::-webkit-scrollbar {
+  width: 4px;
+}
+.sps-queue-list::-webkit-scrollbar-track {
+  background: #1e1e1e;
+}
+.sps-queue-list::-webkit-scrollbar-thumb {
+  background: #444;
+}
+
+.sps-queue-item {
+  padding: 7px 12px;
+  font-size: 12px;
+  color: #bbb;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: background 0.1s, color 0.1s;
+}
+
+.sps-queue-item:hover {
+  background: #2a3a44;
+  color: #ddd;
+}
+
+.sps-queue-item--selected {
+  background: #1a4a5a;
+  color: #fff;
+}
+
+/* ── Add / Remove buttons ─────────────────────────────────────── */
+.sps-sidebar__actions {
+  display: flex;
+  border-top: 1px solid #3a3a3a;
+  padding: 6px 8px;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.sps-sidebar__btn {
+  flex: 1;
+  height: 24px;
+  background: #2e2e2e;
+  border: 1px solid #505050;
+  color: #ccc;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  font-family: inherit;
+}
+
+.sps-sidebar__btn:hover {
+  background: #3a5a6a;
+  border-color: #00aacc;
+  color: #fff;
+}
+
+.sps-sidebar__btn:active {
+  background: #1a4a5a;
+}
+
+/* ── Right panel: scrollable content area ────────────────────── */
+.sps-root {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 14px 18px;
+  color: #d0d0d0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 13px;
+  min-width: 0;
+  overflow-y: auto;
+}
+
+.sps-root::-webkit-scrollbar {
+  width: 6px;
+}
+.sps-root::-webkit-scrollbar-track {
+  background: #222;
+}
+.sps-root::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 3px;
+}
+
+/* ── Rows ─────────────────────────────────────────────────────── */
+.sps-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 28px;
+}
+
+.sps-row--top {
+  padding-bottom: 2px;
+}
+
+.sps-row--checkboxes {
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.sps-row--indented {
+  padding-left: 32px;
+}
+
+/* ── Label ────────────────────────────────────────────────────── */
+.sps-label {
+  font-size: 12px;
+  color: #aaa;
+  white-space: nowrap;
+  min-width: 195px;
+  flex-shrink: 0;
+  text-align: right;
+}
+
+.sps-value {
+  font-size: 12px;
+  color: #bbb;
+}
+
+.sps-unit {
+  font-size: 12px;
+  color: #888;
+}
+
+/* ── Text & Number Input ──────────────────────────────────────── */
+.sps-input {
+  background: #1e1e1e;
+  border: 1px solid #505050;
+  color: #ddd;
+  font-size: 12px;
+  font-family: inherit;
+  padding: 4px 8px;
+  height: 26px;
+  width: 130px;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.sps-input:focus {
+  border-color: #00aacc;
+}
+
+.sps-input--narrow {
+  width: 56px;
+  text-align: center;
+}
+
+.sps-input--wide {
+  width: 190px;
+}
+
+.sps-input[type='number']::-webkit-inner-spin-button,
+.sps-input[type='number']::-webkit-outer-spin-button {
+  opacity: 0.35;
+}
+
+/* ── Select ───────────────────────────────────────────────────── */
+.sps-select-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.sps-select-wrap::after {
+  content: '';
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid #888;
+  pointer-events: none;
+}
+
+.sps-select {
+  appearance: none;
+  -webkit-appearance: none;
+  background: #1e1e1e;
+  border: 1px solid #505050;
+  color: #ddd;
+  font-size: 12px;
+  font-family: inherit;
+  padding: 4px 26px 4px 8px;
+  height: 26px;
+  min-width: 120px;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.sps-select:focus {
+  border-color: #00aacc;
+}
+
+.sps-select-wrap--wide .sps-select {
+  min-width: 190px;
+}
+
+/* ── Checkbox ─────────────────────────────────────────────────── */
+.sps-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  color: #bbb;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.sps-checkbox {
+  width: 15px;
+  height: 15px;
+  appearance: none;
+  -webkit-appearance: none;
+  background: #1e1e1e;
+  border: 1px solid #555;
+  cursor: pointer;
+  position: relative;
+  flex-shrink: 0;
+  transition: background 0.1s, border-color 0.1s;
+}
+
+.sps-checkbox:checked {
+  background: #00aacc;
+  border-color: #00aacc;
+}
+
+.sps-checkbox:checked::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 1px;
+  width: 5px;
+  height: 9px;
+  border: 2px solid #fff;
+  border-top: none;
+  border-left: none;
+  transform: rotate(45deg);
+}
+
+.sps-checkbox:hover {
+  border-color: #00aacc;
+}
+
+/* ── Accordion ────────────────────────────────────────────────── */
+.sps-accordion {
+  border: 1px solid #3a3a3a;
+  flex-shrink: 0;
+}
+
+.sps-accordion__header {
+  display: flex;
+  align-items: center;
+  padding: 7px 12px;
+  background: #333;
+  border-bottom: 1px solid #3a3a3a;
+  font-size: 12px;
+  font-weight: 600;
+  color: #ccc;
+  user-select: none;
+}
+
+.sps-accordion__body {
+  background: #262626;
+  padding: 10px 12px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
