@@ -2,7 +2,7 @@
 
     1. create a "Server/Backend" folder.
     2. pnpm init : it will make a package.json file
-    3. pnpm express nodemon cors mongoose
+    3. pnpm install express nodemon cors mongoose
     4. in the package.json, add these lines
 
     	"main": "server.js",
@@ -29,6 +29,55 @@
     	})
 
     6. pnpm run dev : to start the server.
+
+## TypeScript server
+
+Use this instead of the JavaScript file and scripts above when writing the server in TypeScript.
+
+1. Install the runtime packages and TypeScript development tools:
+
+       pnpm add express cors
+       pnpm add -D nodemon ts-node typescript @types/node @types/express @types/cors
+
+2. Create a `tsconfig.json` in the backend folder:
+
+       {
+         "compilerOptions": {
+           "target": "ES2020",
+           "module": "CommonJS",
+           "moduleResolution": "Node",
+           "strict": true,
+           "esModuleInterop": true,
+           "outDir": "dist"
+         },
+         "include": ["*.ts"]
+       }
+
+3. Use a `.ts` entry file such as `server.ts`. For example:
+
+       import cors from "cors";
+       import express, { Request, Response } from "express";
+
+       const app = express();
+       app.use(cors());
+
+       app.get("/api", (_req: Request, res: Response) => {
+         res.json({ data: 1234 });
+       });
+
+       app.listen(5000, () => {
+         console.log("Server started at 5000");
+       });
+
+4. Add scripts to `package.json`:
+
+       "scripts": {
+         "dev": "nodemon --exec ts-node server.ts",
+         "build": "tsc",
+         "start": "node dist/server.js"
+       }
+
+5. Run `pnpm install`, then use `pnpm run dev` while developing. For production, run `pnpm run build` and then `pnpm start`.
 
 ## On the front end side in REACT
 
