@@ -1,0 +1,10 @@
+#app
+{
+    margin-top:10px;
+    display: flex;
+}
+
+#btn_submit
+{
+    width:70px;
+}

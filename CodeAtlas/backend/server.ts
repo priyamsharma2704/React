@@ -11,8 +11,19 @@ app.post('/repo', (req:any, res:any)=>{
 
     let {owner, repo} = parseUrl(repoUrl);
 
-    res.json({ owner, repo });
+    //call github api
+    getRepoData(owner, repo).then((data)=>{ 
+        //console.log(data);
+        return res.json(data)
+    });
 });
+
+async function getRepoData(owner:string, repo:string)
+{
+    let branch = "main";
+    let res = await fetch(`https://api.github.com/repos/${owner}/${repo}/git/trees/${branch}?recursive=1`);
+    return res.json();
+}
 
 function parseUrl(url:string)
 {
