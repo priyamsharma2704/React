@@ -2,6 +2,7 @@ import Box from '@mui/material/Box';
 import { SimpleTreeView } from '@mui/x-tree-view/SimpleTreeView';
 import { TreeItem } from '@mui/x-tree-view/TreeItem';
 import type {DirectoryNode} from "../../../types";
+import FolderOutlinedIcon from '@mui/icons-material/FolderOutlined';
 
 type TreeProps = {
     data :DirectoryNode | null;
@@ -10,7 +11,16 @@ type TreeProps = {
 function renderTreeItem(node:DirectoryNode)
 {
     return(
-        <TreeItem key={node.id} itemId={node.id} label={node.name}>
+        <TreeItem 
+            key={node.id} 
+            itemId={node.id}
+            label={
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+                {node.type === 'directory' && <FolderOutlinedIcon fontSize="small" />}
+                {node.name}
+                </span>
+            }
+        >
             {node.children
             ?.slice()
             .sort((a, b) => Number(b.type === 'directory') - Number(a.type === 'directory'))
