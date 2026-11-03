@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require("cors");
+import type {GitHubTreeEntry, DirectoryNode} from "../types";
 
 const app = express();
 app.use(cors());
@@ -22,7 +23,66 @@ async function getRepoData(owner:string, repo:string)
 {
     let branch = "main";
     let res = await fetch(`https://api.github.com/repos/${owner}/${repo}/git/trees/${branch}?recursive=1`);
-    return res.json();
+    const data = await res.json();
+    let formattedData = formatResponse(data.tree);
+    return formattedData;
+}
+
+function formatResponse(entries:GitHubTreeEntry[]) : DirectoryNode 
+{
+    const root : DirectoryNode = {
+        id:"root",
+        name: "root",
+        path: "",
+        type: "directory",
+        children: []
+    };
+
+    for (const entry of entries) {
+    const parts = entry.path.split("/");
+    let current = root;
+
+    parts.forEach((part, index) => {
+      const isLast = index === parts.length - 1;
+
+      const path = parts.slice(0, index + 1).join("/");
+
+      let child = current.children!.find(
+        (node) => node.name === part
+      );
+
+      if (!child) {
+        child = {
+          id: path,
+          name: part,
+          path,
+          type: isLast && entry.type === "blob"
+            ? "file"
+            : "directory",
+          children: [],
+        };
+
+        current.children!.push(child);
+      }
+
+      // Store GitHub metadata on the actual entry
+      if (isLast) {
+        child.sha = entry.sha;
+        child.size = entry.size;
+
+        if (entry.type === "blob") {
+          child.type = "file";
+          delete child.children;
+        }
+      }
+
+      if (child.type === "directory") {
+        current = child;
+      }
+    });
+  }
+
+  return root;
 }
 
 function parseUrl(url:string)
